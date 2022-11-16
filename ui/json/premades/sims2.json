@@ -1,0 +1,55 @@
+{
+  "gameVersion": 2,
+  "main": [
+    {
+      "name": "Pleasantview"
+    },
+    {
+      "name": "Strangetown"
+    },
+    {
+      "name": "Veronaville"
+    },
+    {
+      "name": "Riverblossom Hills"
+    },
+    {
+      "name": "Desiderata Valley"
+    },
+    {
+      "name": "Belladonna Cove"
+    }
+  ],
+  "uni": [
+    {
+      "name": "Sim State University"
+    },
+    {
+      "name": "La Fiesta Tech"
+    },
+    {
+      "name": "Académie Le Tour"
+    }
+  ],
+  "downtown": [
+    {
+      "name": "Downtown"
+    }
+  ],
+  "shopping": [
+    {
+      "name": "Bluewater Village"
+    }
+  ],
+  "vacation": [
+    {
+      "name": "Twikkii Island"
+    },
+    {
+      "name": "Three Lakes"
+    },
+    {
+      "name": "Takemizu Village"
+    }
+  ]
+}

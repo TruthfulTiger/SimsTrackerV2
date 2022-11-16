@@ -1,0 +1,141 @@
+<h3 class="text-primary">{{ @cat }} <img src="{{@BASE}}{{@s2path}}FT.png" title="Needs FT" data-toggle="tooltip"
+										 alt="Needs FT"> <a href="#" aria-label="More details"
+															class="badge badge-pill badge-secondary"
+															data-toggle="collapse" data-target="#ftHelp"
+															aria-expanded="false" aria-controls="ftHelp">
+	<i aria-hidden="true" data-toggle="tooltip" title="More details" class="fas fa-question"></i></a>
+	</a></h3>
+<div class="collapse" id="ftHelp">
+	<div class="card card-body">
+		<blockquote>
+			<h6>Family Pastime</h6>
+			To earn any of these points, the founder must reach the maximum interest level in at least 1 hobby before
+			they die. This hobby does NOT have to be the founder’s “pre-destined hobby” assigned to them by the game, it
+			may be any hobby you wish. The first hobby that the founder maxes their interest in becomes the “family
+			hobby” for the rest of the challenge.
+			<br/><br/>
+			You may have your sims gain interest in other hobbies aside from the family hobby
+			<br/><br/>
+			There is no penalty for a sim who is part of the bloodline not reaching maximum interest in the family hobby
+			before death, you simply do not earn the half point for them.
+			<br/><br/>
+			If the founder dies before reaching the maximum interest in any hobby, you will be unable to gain any points
+			in this category.<br/><br/>
+			<cite>~ SimsLegacyChallenge.com</cite>
+		</blockquote>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="familyhobby">Family Hobby</label>
+			<select class="custom-select" name="familyhobby" id="familyhobby">
+				<option value="none">None</option>
+				<repeat group="{{ @hobbies }}" key="{{ @key }}" value="{{ @hobby }}">
+					<option value="{{ @key }}"
+					<check if="{{ @s2legacy.familyhobby == @key}}">
+						selected
+					</check>
+					>{{ trim(@hobby) }}</option>
+				</repeat>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="fhmax">Number of Sims to max Family Hobby</label>
+			<input type="number" min="0" class="form-control" id="fhmax" oninput="ftmaxChange(value)"
+				   value="{{ trim(@s2legacy.fhmax) }}" name="fhmax"/>
+		</div>
+		<div class="form-group">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" value="1" onchange="ftCheck()" name="pdhobby"
+					   id="pdhobby"
+				<check if="{{ @s2legacy.pdhobby == 1 }}">
+					checked
+				</check>
+				/>
+				<label class="custom-control-label" for="pdhobby">Family Hobby is Founder's Pre-Destined Hobby</label>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="fttotal" id="ftt" value="{{ trim(@s2legacy.fttotal) }}">
+<p class="lead mb-3"><b>Sub total:
+	<output id="fttotal" for="ftt"><span
+		<check if="{{ @s2legacy.fttotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.fttotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.fttotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.fttotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	let ft = 0;
+	$(function () {
+		ftCheck();
+	});
+
+	function ftCheck() {
+		if ($('#pdhobby').prop("checked")) {
+			if ({{@s2legacy.pdhobby
+			}
+		} ==
+			0
+		)
+			{
+				ft++;
+			}
+		else
+			ft = 1;
+		} else {
+			if ({{@s2legacy.pdhobby
+			}
+		} ==
+			1
+		)
+			{
+				ft = 1;
+				ft--;
+			}
+		else
+			ft = 0;
+		}
+
+		let m = $("#fhmax").val();
+
+		ftSub(ft, m);
+	}
+
+	function ftmaxChange(m) {
+		document.querySelector('#fhmax').value = m;
+		ftSub(ft, m);
+	}
+
+	function ftSub(ft, m) {
+		let result = parseFloat(ft) + (parseFloat(m) * 0.5);
+
+		$("#fttotal").val(result);
+		$("#ftt").val(result);
+
+		gtChange();
+
+		if (result == 0) {
+			$('#fttotal').removeClass('badge badge-danger');
+			$('#fttotal').removeClass('badge badge-success');
+			$('#fttotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#fttotal').removeClass('badge badge-danger');
+			$('#fttotal').removeClass('badge badge-primary');
+			$('#fttotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#fttotal').removeClass('badge badge-primary');
+			$('#fttotal').removeClass('badge badge-success');
+			$('#fttotal').addClass('badge badge-danger');
+		}
+	}
+</script>

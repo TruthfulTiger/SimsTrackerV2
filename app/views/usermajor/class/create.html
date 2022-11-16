@@ -1,0 +1,166 @@
+<form action="{{ @BASE.'/user/class/create' }}" autocomplete="off" validate="true" method="post"
+	  class="form-horizontal">
+	<check if="{{ @major.gameVersion == 2}}">
+		<h3>Freshman</h3>
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel1">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="1"
+						   name="classLevel1" id="classLevel1">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className1">Class Name</label>
+					<input type="text" class="form-control" name="className1" id="className1">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion1" id="gameVersion1" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester1" id="semester1" value="Freshman"/>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel2">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="2"
+						   name="classLevel2" id="classLevel2">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className2">Class Name</label>
+					<input type="text" class="form-control" name="className2" id="className2">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion2" id="gameVersion2" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester2" id="semester2" value="Freshman"/>
+		</div>
+
+		<h3>Sophomore</h3>
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel3">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="1"
+						   name="classLevel3" id="classLevel3">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className3">Class Name</label>
+					<input type="text" class="form-control" name="className3" id="className3">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion3" id="gameVersion3" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester3" id="semester3" value="Sophomore"/>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel4">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="2"
+						   name="classLevel4" id="classLevel4">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className4">Class Name</label>
+					<input type="text" class="form-control" name="className4" id="className4">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion4" id="gameVersion4" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester4" id="semester4" value="Sophomore"/>
+		</div>
+
+		<h3>Junior</h3>
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel5">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="1"
+						   name="classLevel5" id="classLevel5">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className5">Class Name</label>
+					<input type="text" class="form-control" name="className5" id="className5">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion5" id="gameVersion5" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester5" id="semester5" value="Junior"/>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel6">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="2"
+						   name="classLevel6" id="classLevel6">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className6">Class Name</label>
+					<input type="text" class="form-control" name="className6" id="className6">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion6" id="gameVersion6" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester6" id="semester6" value="Junior"/>
+		</div>
+
+		<h3>Senior</h3>
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel7">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="1"
+						   name="classLevel7" id="classLevel7">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className7">Class Name</label>
+					<input type="text" class="form-control" name="className7" id="className7">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion7" id="gameVersion7" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester7" id="semester7" value="Senior"/>
+		</div>
+
+		<div class="form-row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="classLevel8">Class Number</label>
+					<input type="number" readonly class="form-control-plaintext" class="form-control" value="2"
+						   name="classLevel8" id="classLevel8">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="className8">Class Name</label>
+					<input type="text" class="form-control" name="className8" id="className8">
+				</div>
+			</div>
+			<input type="hidden" name="gameVersion8" id="gameVersion8" value="{{ @major.gameVersion }}"/>
+			<input type="hidden" name="semester8" id="semester8" value="Senior"/>
+		</div>
+	</check>
+
+
+	<div class="control-group">
+		<div class="">
+			<input type="hidden" name="majorID" value="{{ @major.id }}"/>
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="create" value="create"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add Class
+			</button>
+			<a href="{{ @BASE.'/user/majors' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			  aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

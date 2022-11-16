@@ -1,0 +1,73 @@
+<check if="{{ @biz }}">
+	<true>
+		<table width="100%" cellpadding="5" id="businesses" class="table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">
+					<select class="custom-select" id="hhSort">
+						<option value="">Household</option>
+						<repeat group="{{ @households }}" value="{{ @household }}">
+							<option value="{{ trim(@household.name) }}">{{ trim(@household.name) }}</option>
+						</repeat>
+					</select>
+				</th>
+				<th scope="col">Name</th>
+				<th scope="col">Type</th>
+				<th scope="col">Rank</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<repeat group="{{ @households }}" value="{{ @household }}">
+				<repeat group="{{ @biz }}" value="{{ @b }}">
+					<check if="{{ @b.hhID == @household.hhID }}">
+						<tr>
+							<td>{{ trim(@household.name) }}</td>
+							<td>{{ trim(@b.busName) }}</td>
+							<td>{{ trim(@b.type) }}</td>
+							<td>{{ trim(@b.rank) }}</td>
+
+							<td>
+								<exclude>
+									<a href="{{ @BASE.'/biz/view/'. @b.id }}" data-toggle="tooltip" title="View"
+									   class="text-info" target="_blank"><i class="fa fa-eye mr-2"></i></a></exclude>
+								<a href="{{ @BASE.'/biz/update/'. @b.id }}" data-toggle="tooltip" title="Edit"
+								   class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+								<a href="#" onclick="confirm('{{ @BASE.'/biz/delete/'. @b.id }}');"
+								   data-toggle="tooltip"
+								   title="Delete"
+								   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					</check>
+				</repeat>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No businesses found.</p>
+	</false>
+</check>
+<a href="{{ @BASE.'/biz/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2" aria-hidden="true"></i>
+	Create</a>
+
+<script>
+	$(document).ready(function () {
+		let table = $('#businesses').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+		$('#hhSort').change(function () {
+			let val = $(this).find('option:selected').val();
+			console.log(val);
+			table.columns(0).search(val).draw();
+		});
+	});
+</script>

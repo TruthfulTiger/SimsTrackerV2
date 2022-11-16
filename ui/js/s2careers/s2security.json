@@ -1,0 +1,103 @@
+{   
+    "name" : "Security",  
+    "dog" : [
+        {
+            "name" : "Snooper Deterrent",
+            "pay" : 113, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Guard Pet",
+            "pay" : 200, 
+            "bonus" : 400,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Contraband Sniffer",
+            "pay" : 353, 
+            "bonus" : 706,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Pet Corps",
+            "pay" : 670, 
+            "bonus" : 1340,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : true
+        }
+    ],
+    "cat" : [
+        {
+            "name" : "Snooper Deterrent",
+            "pay" : 130, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Guard Pet",
+            "pay" : 230, 
+            "bonus" : 460,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Contraband Sniffer",
+            "pay" : 406, 
+            "bonus" : 812,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Pet Corps",
+            "pay" : 770, 
+            "bonus" : 1540,
+            "sit" : null,
+            "stay" : true,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : true
+        }
+    ]
+}

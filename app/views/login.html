@@ -1,0 +1,37 @@
+<!-- Modal HTML -->
+<div id="login" class="modal fade" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="text-primary modal-title" id="loginLabel">Member Login</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ @BASE.'/user/authenticate' }}" validate="true" method="post">
+					<div class="form-group">
+						<i class="fa fa-at" aria-hidden="true"></i>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email"
+							   required="required"/>
+					</div>
+					<div class="form-group">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Password"
+							   required="required"/>
+					</div>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="remember" name="remember">
+						<label class="custom-control-label" for="remember">Remember me</label>
+					</div>
+					<div class="form-group mt-3">
+						<input type="text" name="hptrap" class="hptrap"/>
+						<input type="submit" name="login" class="btn btn-primary btn-block btn-lg" value="Login">
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<a href="#forgot" id="forgotLink" data-toggle="modal">Forgot Password?</a>
+			</div>
+		</div>
+	</div>
+</div>

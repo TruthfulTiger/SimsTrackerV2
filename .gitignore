@@ -1,0 +1,16 @@
+/vendor/*
+/tmp/*
+/node_modules/*
+/logs/*
+/app/includes/*
+/app/models/php_errorlog
+/php_errorlog
+/package-lock.json
+/package.json
+/error.log
+/composer.phar
+/composer.lock
+/composer.json
+/ui/images/
+/ui/fonts/
+/.idea/

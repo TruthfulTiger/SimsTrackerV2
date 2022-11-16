@@ -1,0 +1,97 @@
+<form action="{{ @BASE.'/user/career/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="name">Career Name</label>
+		<input type="text" class="form-control" required="required" value="{{ @career.careerName }}" name="careerName"
+			   id="careerName"/>
+	</div>
+
+	<check if="{{ @career.gameVersion == 2 }}">
+		<div class="form-row">
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="reward">Career Reward</label>
+					<input type="text" class="form-control" required="required" value="{{ @career.reward }}"
+						   name="reward" id="reward"/>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="unlockLevel">Unlock level</label>
+					<input type="number" class="form-control" min="0" max="10" required="required"
+						   value="{{ @career.unlockLevel }}" name="unlockLevel" id="unlockLevel"/>
+				</div>
+			</div>
+		</div>
+	</check>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="id" value="{{ @career.id }}"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-primary mb-3"><i class="fa fa-save mr-2"
+																			  aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/user/job/create/'. @career.id }}" class="btn btn-success mb-3"><i
+					class="fa fa-plus mr-2" aria-hidden="true"></i>Add Jobs</a>
+			<a href="{{ @BASE.'/user/careers' }}" class="btn btn-secondary mb-3"><i class="fa fa-times mr-2"
+																					aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<check if="{{ @jobs }}">
+	<true>
+		<table width="100%" cellpadding="5" id="jobs" class="table table-hover table-bordered mt-3">
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Level</th>
+				<th scope="col">Name</th>
+				<th scope="col">Age</th>
+				<th scope="col">Pay</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<repeat group="{{ @jobs }}" value="{{ @job }}">
+				<tr>
+					<th scope="row">{{ trim(@job.id) }}
+					</td>
+					<td>{{ trim(@job.jobLevel) }}</td>
+					<td>{{ trim(@job.jobName) }}</td>
+					<td>{{ trim(@job.age) }}</td>
+					<td>{{ trim(@job.pay) | simoleons }}</td>
+					<td><a href="javascript:window.open('{{ @BASE.'/user/job/update/'. @job.id }}','_blank')"
+						   data-toggle="tooltip" title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+						<a href="#" onclick="confirm('{{ @BASE.'/user/job/delete/'. @job.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p class="mt-3">No jobs found.</p>
+	</false>
+</check>
+
+<script>
+	$(document).ready(function () {
+		$('#jobs').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

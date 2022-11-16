@@ -1,0 +1,159 @@
+<p class="mb-3">Keep track of your ISBI challenge here. For the official rules, visit <a
+		href="https://isbichallenge.blogspot.com/2005/07/isbi-challenge-rules.html" target="_blank">isbichallenge.blogspot.com</a>
+</p>
+<form method="post" name="legacyscores" validate="true" action="{{ @BASE }}/s2isbi/update/{{ @SESSION.challenge }}">
+	<h3 class="text-primary">{{ trim(@challenge.challengeName) }} - {{ trim(@household.name) }} household</h3>
+	<div class="form-group mb-3">
+		<label for="difficulty">Choose a difficulty setting</label>
+		<select class="custom-select" name="difficulty" id="difficulty">
+			<option value="5"
+			<check if="{{ @isbi.difficulty == 5}}">
+				selected
+			</check>
+			>Amateur - Successfully pass on the torch to the 5th generation</option>
+			<option value="10"
+			<check if="{{ @isbi.difficulty == 10}}">
+				selected
+			</check>
+			>Average - Successfully pass on the torch to the 10th generation</option>
+			<option value="15"
+			<check if="{{ @isbi.difficulty == 15}}">
+				selected
+			</check>
+			>Expert - Successfully pass on the torch to the 15th generation</option>
+			<option value="20"
+			<check if="{{ @isbi.difficulty == 20}}">
+				selected
+			</check>
+			>Supremely Awesome - Successfully pass on the torch to the 20th generation</option>
+		</select>
+	</div>
+	<div class="form-row mb-3">
+		<div class="col">
+			<div class="form-group">
+				<label for="currentGen">Torch-holders</label>
+				<input type="number" class="form-control" id="currentGen" min=1 name="currentGen"
+					   value="{{ @isbi.currentGen }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="permaPlat">Perma-plat Sims</label>
+				<input type="number" class="form-control" id="permaPlat" name="permaPlat" min=0
+					   value="{{ @isbi.permaPlat }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="shrinkVisit">Shrink Visits</label>
+				<input type="number" class="form-control" id="shrinkVisit" min=0 name="shrinkVisit"
+					   value="{{ @isbi.shrinkVisit }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="bunnyVisit">Social Bunny Visits</label>
+				<input type="number" class="form-control" id="bunnyVisit" name="bunnyVisit" min=0
+					   value="{{ @isbi.bunnyVisit }}"/>
+			</div>
+		</div>
+	</div>
+	<div class="form-row mb-3">
+		<div class="col">
+			<div class="form-group">
+				<label for="socialWorker">Social Worker Visits</label>
+				<input type="number" class="form-control" id="socialWorker" min=0 name="socialWorker"
+					   value="{{ @isbi.socialWorker }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="fatalAccident">Accidental Deaths</label>
+				<input type="number" class="form-control" id="fatalAccident" name="fatalAccident" min=0
+					   value="{{ @isbi.fatalAccident }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="peakCareer">Sims to peak career</label>
+				<input type="number" class="form-control" id="peakCareer" min=0 name="peakCareer"
+					   value="{{ @isbi.peakCareer }}"/>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label for="hundredKMonies">§100,000 earned</label>
+				<input type="number" class="form-control" id="hundredKMonies" name="hundredKMonies" min=0
+					   value="{{ @isbi.hundredKMonies }}"/>
+			</div>
+		</div>
+	</div>
+	<div class="form-row mb-3">
+		<div class="col">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Special tombstones vs total deaths</span>
+				</div>
+				<input type="number" aria-label="Special tombstones" class="form-control" id="platDeath"
+					   name="platDeath" min=0 value="{{ @isbi.platDeath }}"/>
+				<input type="number" aria-label="Total deaths" class="form-control" id="totalDeath" name="totalDeath"
+					   min=0 value="{{ @isbi.totalDeath }}"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group mb-3">
+		Is this also a <a
+			href="https://web.archive.org/web/20110112123130/http://community.livejournal.com/rainbowlegacy/tag/rules"
+			target="_blank">Rainbow Challenge?</a>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="no" value="0" name="isRainbow" class="custom-control-input"
+			<check if="{{ @isbi.isRainbow == 0}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="no">No</label>
+		</div>
+		<div class="custom-control custom-radio">
+			<input type="radio" id="yes" value="1" name="isRainbow" class="custom-control-input"
+			<check if="{{ @isbi.isRainbow == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="yes">Yes</label>
+		</div>
+	</div>
+	<check if="{{ @isbi.isRainbow == 1}}">
+		<a href="{{ @BASE.'/colours/'. @isbi.cid }}" target="_blank" class="btn btn-success mb-3"><i
+				class="fa fa-plus mr-2" aria-hidden="true"></i> Set up colours</a>
+	</check>
+
+	<include if="{{ @isbi.isRainbow == 0 }}" href="/legacygen/bwlist.html"/>
+	<include if="{{ @isbi.isRainbow == 1 }}" href="/legacygen/colourlist.html"/>
+
+	<input type="text" class="hptrap"/>
+	<input type="hidden" name="update" value="update"/>
+	<input type="hidden" name="hhID" value="{{ @household.hhID }}"/>
+	<input type="hidden" name="userID" value="{{ @SESSION.user[2] }}"/>
+	<input type="hidden" name="cid" value="{{ @isbi.cid }}"/>
+	<input type="hidden" name="id" value="{{ @isbi.id }}"/>
+	<input type="hidden" name="modified" value="{{ @modified }}"/>
+	<button class="btn btn-primary" name="save" id="save" type="submit"><i class="fa fa-save mr-2"></i>Save</button>
+	<a href="{{ @BASE.'/challenges' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"></i>Cancel</a>
+</form>
+
+
+<script>
+	let difficulty = $('#difficulty').val();
+	$(function () {
+		$('#currentGen').attr("max", difficulty);
+		$("#currentGen").on("input", function () {
+			gen = $('#currentGen').val();
+			showGen(gen);
+		});
+		$("#difficulty").on("change", function () {
+			difficulty = $('#difficulty').val();
+			$('#currentGen').attr("max", difficulty);
+		});
+	});
+</script>

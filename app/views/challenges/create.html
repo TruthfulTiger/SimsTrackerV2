@@ -1,0 +1,139 @@
+<form action="{{ @BASE.'/challenge/create' }}" validate="true" method="post" class="form-horizontal">
+	<p>These values can't be changed later, so choose wisely!</p>
+	<div class="form-group">
+		<label for="challengeName">Name</label>
+		<input type="text" required="required" class="form-control" name="challengeName" id="challengeName"/>
+	</div>
+	<div class="form-row">
+		<div class="col">
+			<div class="form-group">
+				<label for="scope">Challenge scope</label>
+				<select class="custom-select" required="required" name="scope" id="scope">
+					<option>-- Choose scope --</option>
+					<option value="Neighbourhood">Neighbourhood</option>
+					<option value="Household">Household</option>
+					<option value="Sim">Sim</option>
+				</select>
+			</div>
+		</div>
+		<div class="col" style="display: none;" id="hoods">
+			<label for="nhID">Choose Neighbourhood</label>
+			<select class="custom-select" name="nhID" id="nhID">
+				<option>-- None --</option>
+				<repeat group="{{ @hoods }}" value="{{ @hood }}">
+					<option value="{{ @hood.id }}">{{ trim(@hood.name) }}</option>
+				</repeat>
+			</select>
+		</div>
+		<div class="col" style="display: none;" id="households">
+			<label for="hhID">Choose Household</label>
+			<select class="custom-select" name="hhID" id="hhID">
+				<option>-- None --</option>
+				<repeat group="{{ @households }}" value="{{ @household }}">
+					<option value="{{ @household.hhID }}">{{ trim(@household.name) }}</option>
+				</repeat>
+			</select>
+		</div>
+		<div class="col" style="display: none;" id="sims">
+			<label for="simID">Choose Sim</label>
+			<select class="custom-select" name="simID" id="simID">
+				<option>-- None --</option>
+				<repeat group="{{ @sims }}" value="{{ @sim }}">
+					<option value="{{ @sim.id }}">{{ trim(@sim.firstName) }}</option>
+				</repeat>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group" id="nh" style="display: none;">
+		<label for="nhType">Challenge Type</label>
+		<select class="custom-select" name="nhType" id="nhType">
+			<option>-- Choose a type --</option>
+			<repeat group="{{ @s2hoodchallenges }}" value="{{ @value }}">
+				<option value="{{ @value }}">{{ @value }}</option>
+			</repeat>
+		</select>
+	</div>
+
+	<div class="form-group" id="hh" style="display: none;">
+		<label for="hhType">Challenge Type</label>
+		<select class="custom-select" name="hhType" id="hhType">
+			<option>-- Choose a type --</option>
+			<repeat group="{{ @s2hhchallenges }}" value="{{ @value }}">
+				<option value="{{ @value }}">{{ @value }}</option>
+			</repeat>
+		</select>
+	</div>
+
+	<div class="form-group" id="sim" style="display: none;">
+		<label for="simType">Challenge Type</label>
+		<select class="custom-select" name="simType" id="simType">
+			<option>-- Choose a type --</option>
+			<repeat group="{{ @s2simchallenges }}" value="{{ @value }}">
+				<option value="{{ @value }}">{{ @value }}</option>
+			</repeat>
+		</select>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="gameVersion" value="{{@hood.gameVersion}}"/>
+			<input type="hidden" name="create" value="create"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
+				Challenge
+			</button>
+			<a href="{{ @BASE.'/challenges' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			 aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<script>
+	$(function () {
+		let scope = $("#scope").find('option:selected').val();
+
+		$("#scope").change(function () {
+			scope = $(this).find('option:selected').val();
+			scopeChange(scope);
+		});
+	});
+
+	function scopeChange(s) {
+		if (s == "Neighbourhood") {
+			$("div#hoods").attr('aria-hidden', 'false').show();
+			$("div#nh").attr('aria-hidden', 'false').show();
+			$('select#nhType').attr("name", "type");
+		} else {
+			$("div#hoods").attr('aria-hidden', 'true').hide();
+			$("div#nh").attr('aria-hidden', 'true').hide();
+			$("#nhID").val(0);
+			$('select#nhType').attr("name", "nhType");
+			$("#nhType").val('');
+		}
+		if (s == "Household") {
+			$("div#households").attr('aria-hidden', 'false').show();
+			$("div#hh").attr('aria-hidden', 'false').show();
+			$('select#hhType').attr("name", "type");
+		} else {
+			$("div#households").attr('aria-hidden', 'true').hide();
+			$("div#hh").attr('aria-hidden', 'true').hide();
+			$("#hhID").val(0);
+			$('select#hhType').attr("name", "hhType");
+			$("#hhType").val('');
+		}
+		if (s == "Sim") {
+			$("div#sims").attr('aria-hidden', 'false').show();
+			$("div#sim").attr('aria-hidden', 'false').show();
+			$('select#simType').attr("name", "type");
+		} else {
+			$("div#sims").attr('aria-hidden', 'true').hide();
+			$("div#sim").attr('aria-hidden', 'true').hide();
+			$("#simID").val(0);
+			$('select#simType').attr("name", "simType");
+			$("#simType").val('');
+		}
+	}
+
+</script>

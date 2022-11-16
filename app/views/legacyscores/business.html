@@ -1,0 +1,109 @@
+<h3 class="text-primary">{{ @cat }} <img src="{{@BASE}}{{@s2path}}OFB.png" title="Needs OFB" data-toggle="tooltip"
+										 alt="Needs OFB"> <a href="#" class="badge badge-pill badge-secondary"
+															 data-toggle="collapse" aria-label="More details"
+															 data-target="#bizHelp" aria-expanded="false"
+															 aria-controls="bizHelp">
+	<i aria-hidden="true" data-toggle="tooltip" title="More details" class="fas fa-question"></i>
+</a></h3>
+<div class="collapse" id="bizHelp">
+	<div class="card card-body">
+		<blockquote>
+			You gain 1 point for every generation the “Family Business” is a level 10 business.
+			<br/><br/>
+			The “Family Business” is defined as the very first business opened by the founder or heir of the legacy
+			family. This may be a home-based or community lot business.
+			<br/><br/>
+			The business will only start earning the family points once it becomes a level 10 business.
+			<br/><br/>
+			If more than one generation is alive once the business becomes a level 10, it only counts for the youngest
+			generation. (For example: In order for the business to earn the family 10 points for 10 generations, the
+			founder would have to get it to a level 10 business before the 2nd generation was even born)
+			<br/><br/>
+			In addition, any sim that dies a platinum death with all 7 gold talent badges will earn 1 point in this
+			category.
+			<br/><br/>
+			Points earned over 10 carry over to the overflow category.<br/><br/>
+			<cite>~ SimsLegacyChallenge.com</cite>
+		</blockquote>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="busgens">Level 10 Family Business Generations</label>
+			<input type="number" min="0" class="form-control" oninput="gensChange(value)"
+				   value="{{ trim(@s2legacy.busgens) }}" id="busgens" name="busgens"/>
+		</div>
+		<div class="form-group">
+			<label for="badgecount">Sims with all 7 Gold Talent Badges</label>
+			<input type="number" min="0" class="form-control" oninput="badgeChange(value)"
+				   value="{{ trim(@s2legacy.badgecount) }}" id="badgecount" name="badgecount"/>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="biztotal" id="bt" value="{{ trim(@s2legacy.biztotal) }}">
+<p class="lead mt-3"><b>Sub total:
+	<output id="biztotal" for="bt"><span
+		<check if="{{ @s2legacy.biztotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.biztotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.biztotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.biztotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	$(function () {
+		let g = $("#busgens").val();
+		let b = $("#badgecount").val();
+		bizSub(g, b);
+	});
+
+	function gensChange(g) {
+		let b = $("#badgecount").val();
+		document.querySelector('#busgens').value = g;
+		bizSub(g, b);
+	}
+
+	function badgeChange(b) {
+		let g = $("#busgens").val();
+		document.querySelector('#badgecount').value = b;
+		bizSub(g, b);
+	}
+
+	function bizSub(g, b) {
+		let result = parseInt(g) + parseInt(b);
+
+		if (result > 10) {
+			let o = result - 10;
+			result = 10;
+			$("#obusiness").val(o);
+			obusinessChange(o);
+		} else {
+			$("#obusiness").val(0);
+			obusinessChange(0);
+		}
+		$("#biztotal").val(result);
+		$("#bt").val(result);
+		gtChange();
+
+		if (result == 0) {
+			$('#biztotal').removeClass('badge badge-danger');
+			$('#biztotal').removeClass('badge badge-success');
+			$('#biztotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#biztotal').removeClass('badge badge-danger');
+			$('#biztotal').removeClass('badge badge-primary');
+			$('#biztotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#biztotal').removeClass('badge badge-primary');
+			$('#biztotal').removeClass('badge badge-success');
+			$('#biztotal').addClass('badge badge-danger');
+		}
+	}
+</script>

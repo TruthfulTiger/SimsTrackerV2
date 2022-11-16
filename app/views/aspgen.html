@@ -1,0 +1,119 @@
+<p class="mb-3">Pick a random aspiration for when your child Sim becomes a Teen. Includes turn-ons / offs where
+	applicable.</p>
+<p>Which expansions do you own?</p>
+<div class="form-group mb-3">
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="uni" name="uni" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.uni == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="uni"><img src="{{@BASE}}{{@s2path}}UNI.png" alt="University"
+														   data-toggle="tooltip" title="University"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="nl" name="nl" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.nl == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="nl"><img src="{{@BASE}}{{@s2path}}NL.png" alt="Nightlife"
+														  data-toggle="tooltip" title="Nightlife"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="ofb" name="ofb" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.ofb == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="ofb"><img src="{{@BASE}}{{@s2path}}OFB.png" alt="Open For Business"
+														   data-toggle="tooltip" title="Open For Business"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="pets" name="pets" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.pets == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="pets"><img src="{{@BASE}}{{@s2path}}Pets.png" alt="Pets"
+															data-toggle="tooltip" title="Pets"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="sns" name="sns" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.sns == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="sns"><img src="{{@BASE}}{{@s2path}}Seasons.png" alt="Seasons"
+														   data-toggle="tooltip" title="Seasons"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="bv" name="bv" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.bv == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="bv"><img src="{{@BASE}}{{@s2path}}BV.png" alt="Bon Voyage"
+														  data-toggle="tooltip" title="Bon Voyage"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="ft" name="ft" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.ft == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="ft"><img src="{{@BASE}}{{@s2path}}FT.png" alt="Free Time"
+														  data-toggle="tooltip" title="Free Time"></label>
+	</div>
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="al" name="al" class="custom-control-input s2eps select_all"
+		<check if="{{ @users2.al == 1 }}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="al"><img src="{{@BASE}}{{@s2path}}AL.png" alt="Apartment Life"
+														  data-toggle="tooltip" title="Apartment Life"></label>
+	</div>
+	<!-- Select all -->
+	<div class="custom-control custom-checkbox custom-control-inline">
+		<input type="checkbox" id="select_all" name="select_all" class="custom-control-input s2eps">
+		<label class="custom-control-label" for="select_all"><img
+				src="{{@BASE}}{{@s2path}}The Sims 2 Ultimate Collection.png" alt="Ultimate Collection / All EPs"
+				data-toggle="tooltip" title="Ultimate Collection / All EPs"></label>
+	</div>
+</div>
+
+<div class="form-group mb-3">
+	<div class="custom-control custom-checkbox custom-checkbox custom-control-inline">
+		<input type="checkbox" class="custom-control-input s2eps" id="cheese">
+		<label class="custom-control-label" for="cheese">Include Grilled Cheese</label>
+	</div>
+	<div class="custom-control custom-checkbox custom-checkbox custom-control-inline">
+		<input type="checkbox" class="custom-control-input s2eps" id="tocheck">
+		<label class="custom-control-label" for="tocheck">Check for turn-ons</label>
+	</div>
+</div>
+
+<div class="card w-25">
+	<div class="card-body text-center">
+		<div class="col">
+			<img id="aspiration" data-toggle="tooltip" src="{{@BASE}}{{@s2path}}Null.png" title="" alt="">
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col">
+				<img id="ton1" src="{{@BASE}}{{@s2path}}Null.png" alt="">
+				<img id="ton2" src="{{@BASE}}{{@s2path}}Null.png" alt="">
+				<img id="toff" src="{{@BASE}}{{@s2path}}Null.png" alt="">
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-center">
+		<button class="btn btn-success" id="sims2gen">Randomise</button>
+	</div>
+
+	<script type="text/javascript">s2path = '{{@BASE}}{{@s2path}}';</script>
+	<script src="{{@BASE}}/ui/js/aspgen.min.js"></script>
+
+	<script src="{{@BASE}}/ui/js/randomiser.min.js"></script>
+

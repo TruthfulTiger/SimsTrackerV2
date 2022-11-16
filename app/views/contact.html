@@ -1,0 +1,23 @@
+<p class="mb-3">If you have any issues with this site, or would just like to ask me something, drop me a line and I will
+	get back to you as soon as I can.</p>
+<form method="POST" action="{{ @BASE.'/contact' }}" validate="true">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<input type="text" class="form-control" required name="name" id="name" value="{{@SESSION.user[0]}}"/>
+	</div>
+	<div class="form-group">
+		<label for="email">Email address</label>
+		<input type="email" class="form-control" required name="email" id="email" value="{{@SESSION.user[3]}}"/>
+	</div>
+	<div class="form-group">
+		<label for="subject">Subject</label>
+		<input type="text" class="form-control" required name="subject" id="subject"/>
+	</div>
+	<div class="form-group">
+		<label for="message">Message</label>
+		<textarea class="form-control" required name="message" id="message" rows="3"></textarea>
+	</div>
+	<input type="text" id="hptrap" name="hptrap" class="hptrap"/>
+	<button type="submit" name="send" class="btn btn-primary">Send</button>
+	<button type="reset" class="btn btn-secondary">Clear</button>
+</form>

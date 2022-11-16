@@ -1,0 +1,650 @@
+<!-- Default Light Table -->
+<form method="post" action="{{@BASE}}/user/profile" validate="true">
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="card card-small mb-4">
+				<div class="card-header border-bottom text-center">
+					<div class="mb-3 mx-auto">
+						<img class="rounded-circle" src="{{ trim(@user.image) }}" alt="User Avatar" width="110"></div>
+					<h4 class="mb-0">{{ trim(@user.name) }}</h4>
+					<span class="text-muted d-block mb-2">{{ trim(@user.role) }}</span>
+					<button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
+						<i class="material-icons mr-1">person_add</i>Follow
+					</button>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item p-4">
+						<div class="form-group">
+							<label class="d-block" for="about">About me</label>
+							<textarea class="form-control" placeholder="Write a few words about yourself" id="about"
+									  name="about" rows="3">{{ trim(@user.about) }}</textarea>
+						</div>
+					</li>
+					<li class="list-group-item p-4">
+						<div class="form-group">
+							<label class="d-block" for="timeFormat">Time format</label>
+							<select class="form-control" id="timeFormat" name="timeFormat">
+								<option value="12"
+								<check if="{{ @user.timeFormat == 12 }}">
+									selected
+								</check>
+								>12 hour</option>
+								<option value="24"
+								<check if="{{ @user.timeFormat == 24 }}">
+									selected
+								</check>
+								>24 hour</option>
+							</select>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div class="card card-small mb-4">
+				<div class="card-header border-bottom">
+					<h6 class="m-0">Account Details</h6>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item p-3">
+						<div class="row">
+							<div class="col">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="feFirstName">Display Name</label>
+										<input type="text" class="form-control" id="feFirstName" required name="name"
+											   placeholder="First Name" value="{{ trim(@user.name) }}"></div>
+									<div class="form-group col-md-6">
+										<label for="feEmailAddress">Email</label>
+										<input type="email" class="form-control" id="feEmailAddress" required
+											   name="email" placeholder="Email" value="{{ trim(@user.email) }}"></div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="password">Password</label>
+										<input type="password" class="form-control" id="password" name="password"
+											   placeholder="Password"></div>
+									<div class="form-group col-md-6">
+										<label for="confirmPassword">Confirm Password</label>
+										<input type="password" class="form-control" id="confirmPassword"
+											   name="confirmPassword"
+											   data-match="password"
+											   data-match-field="#password" placeholder="Confirm Password"></div>
+								</div>
+								<div class="form-group">
+									<label for="memorableWord">Memorable word</label>
+									<div class="input-group">
+										<input type="password" class="form-control" id="memorableWord"
+											   name="memorableWord" placeholder="Memorable word"
+											   value="{{ trim(@user.memorableWord) }}" aria-describedby="show">
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="button"
+													onclick="showPassword();" id="show">Show
+											</button>
+										</div>
+									</div>
+									<small>This is for in case you need to reset your password</small>
+								</div>
+								<div class="form-group">
+									<label>Games Owned</label><br/>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="sims2" name="sims2" class="custom-control-input"
+										<check if="{{ @users2.sims2 == 1 }}">
+											checked
+										</check>
+										/>
+										<label class="custom-control-label" for="sims2">
+											<img src="{{@BASE}}{{@s2path}}/The_Sims_2_Icon.png" width="24"
+												 alt="The Sims 2" data-toggle="tooltip" title="The Sims 2"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="sims3" name="sims3" class="custom-control-input"
+										<check if="{{ @users3.sims3 == 1 }}">
+											checked
+										</check>
+										/>
+										<label class="custom-control-label" for="sims3">
+											<img src="{{@BASE}}{{@s3path}}/Base Game/The Sims 3 (PNG).png" class="s3eps"
+												 alt="The Sims 3" data-toggle="tooltip" title="The Sims 3"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="sims4" name="sims4" class="custom-control-input"
+										<check if="{{ @users4.sims4 == 1 }}">
+											checked
+										</check>
+										/>
+										<label class="custom-control-label" for="sims4">
+											<img src="{{@BASE}}{{@s4path}}/TS4_Icon.png" class="s4eps" alt="The Sims 4"
+												 data-toggle="tooltip" title="The Sims 4"></label>
+									</div>
+								</div>
+								{* Sims 2 EPs *}
+								<div class="form-group" id="sims2EPs"
+								<check if="{{ @users2.sims2 != 1 }}">
+									style="display: none"
+								</check>
+								/>
+								<label>Sims 2 Expansions Owned</label><br/>
+								<div class="form-group mb-3">
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="uni" name="uni"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.uni == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="uni"><img
+												src="{{@BASE}}{{@s2path}}UNI.png" alt="University" data-toggle="tooltip"
+												title="University"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="nl" name="nl"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.nl == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="nl"><img
+												src="{{@BASE}}{{@s2path}}NL.png" alt="Nightlife" data-toggle="tooltip"
+												title="Nightlife"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="ofb" name="ofb"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.ofb == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="ofb"><img
+												src="{{@BASE}}{{@s2path}}OFB.png" alt="Open For Business"
+												data-toggle="tooltip" title="Open For Business"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="pets" name="pets"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.pets == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="pets"><img
+												src="{{@BASE}}{{@s2path}}Pets.png" alt="Pets" data-toggle="tooltip"
+												title="Pets"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="sns" name="sns"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.sns == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="sns"><img
+												src="{{@BASE}}{{@s2path}}Seasons.png" alt="Seasons"
+												data-toggle="tooltip" title="Seasons"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="bv" name="bv"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.bv == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="bv"><img
+												src="{{@BASE}}{{@s2path}}BV.png" alt="Bon Voyage" data-toggle="tooltip"
+												title="Bon Voyage"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="ft" name="ft"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.ft == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="ft"><img
+												src="{{@BASE}}{{@s2path}}FT.png" alt="Free Time" data-toggle="tooltip"
+												title="Free Time"></label>
+									</div>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="al" name="al"
+											   class="custom-control-input select_all s2eps"
+										<check if="{{ @users2.al == 1 }}">
+											checked
+										</check>
+										>
+										<label class="custom-control-label" for="al"><img
+												src="{{@BASE}}{{@s2path}}AL.png" alt="Apartment Life"
+												data-toggle="tooltip" title="Apartment Life"></label>
+									</div>
+									<!-- Select all -->
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" id="select_all" name="select_all"
+											   class="custom-control-input s2eps">
+										<label class="custom-control-label" for="select_all"><img
+												src="{{@BASE}}{{@s2path}}The Sims 2 Ultimate Collection.png"
+												alt="Ultimate Collection / All EPs" data-toggle="tooltip"
+												title="Ultimate Collection / All EPs"></label>
+									</div>
+								</div>
+							</div>
+							{* Sims 3 EPs *}
+							<div class="form-group" id="sims3EPs"
+							<check if="{{ @users3.sims3 != 1 }}">
+								style="display: none"
+							</check>
+							/>
+							<label>Sims 3 Expansions Owned</label><br/>
+							<div class="form-group mb-3">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="wa" name="wa"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.wa == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="wa"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/1. World Adventures (PNG).png"
+											class="s3eps" alt="World Adventures" data-toggle="tooltip"
+											title="World Adventures"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="amb" name="amb"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.amb == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="amb"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/2. Ambitions (PNG).png"
+											class="s3eps" alt="Ambitions" data-toggle="tooltip"
+											title="Ambitions"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="ln" name="ln"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.ln == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="ln"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/3. Late Night (PNG).png"
+											class="s3eps" alt="Late Night" data-toggle="tooltip"
+											title="Late Night"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="gns" name="gns"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.gns == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="gns"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/4. Generations (PNG).png"
+											class="s3eps" alt="Generations" data-toggle="tooltip"
+											title="Generations"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="pets3" name="pets3"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.pets3 == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="pets3"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/5. Pets (PNG).png" class="s3eps"
+											alt="Pets" data-toggle="tooltip" title="Pets"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="st" name="st"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.st == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="st"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/6. Showtime (PNG).png"
+											class="s3eps" alt="Showtime" data-toggle="tooltip" title="Showtime"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="sn" name="sn"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.sn == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="sn"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/7. Supernatural (PNG).png"
+											class="s3eps" alt="Supernatural" data-toggle="tooltip" title="Supernatural"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="sns3" name="sns3"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.sns3 == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="sns3"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/8. Seasons (PNG).png" class="s3eps"
+											alt="Seasons" data-toggle="tooltip" title="Seasons"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="uni3" name="uni3"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.uni3 == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="uni3"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/9. University Life (PNG).png"
+											class="s3eps" alt="University Life" data-toggle="tooltip"
+											title="University Life"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="ip" name="ip"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.ip == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="ip"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/10. Island Paradise (PNG).png"
+											class="s3eps" alt="Island Paradise" data-toggle="tooltip"
+											title="Island Paradise"></label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="itf" name="itf"
+										   class="custom-control-input select_all3 s3eps"
+									<check if="{{ @users3.itf == 1 }}">
+										checked
+									</check>
+									>
+									<label class="custom-control-label" for="itf"><img
+											src="{{@BASE}}{{@s3path}}Expansion Packs/11. Into The Future (PNG).png"
+											class="s3eps" alt="Into The Future" data-toggle="tooltip"
+											title="Into The Future"></label>
+								</div>
+								<!-- Select all -->
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" id="select_all3" name="select_all3"
+										   class="custom-control-input s3eps">
+									<label class="custom-control-label" for="select_all3"><img
+											src="{{@BASE}}{{@s3path}}Base Game/The Sims 3 (PNG).png" class="s3eps"
+											alt="All EPs" data-toggle="tooltip" title="All EPs"></label>
+								</div>
+							</div>
+						</div>
+						{* Sims 4 EPs *}
+						<div class="form-group" id="sims4EPs"
+						<check if="{{ @users4.sims4 != 1 }}">
+							style="display: none"
+						</check>
+						/>
+						<label>Sims 4 Expansions Owned</label><br/>
+						<div class="form-group mb-3">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="gtw" name="gtw"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.gtw == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="gtw"><img
+										src="{{@BASE}}{{@s4path}}TS4GTW_Icon.png" class="s4eps" alt="Get to Work"
+										data-toggle="tooltip" title="Get to Work"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="gt" name="gt" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.gt == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="gt"><img
+										src="{{@BASE}}{{@s4path}}TS4GT_Icon.png" class="s4eps" alt="Get Together"
+										data-toggle="tooltip" title="Get Together"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="cl" name="cl" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.cl == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="cl"><img
+										src="{{@BASE}}{{@s4path}}TS4_City_Living_Icon.png" class="s4eps"
+										alt="City Living" data-toggle="tooltip" title="City Living"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="pets4" name="pets4"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.pets4 == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="pets4"><img
+										src="{{@BASE}}{{@s4path}}TS4_Cats_and_Dogs_Icon.png" class="s4eps"
+										alt="Cats & Dogs" data-toggle="tooltip" title="Cats & Dogs"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="sns4" name="sns4"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.sns4 == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="sns4"><img
+										src="{{@BASE}}{{@s4path}}TS4_Seasons_Icon.png" class="s4eps" alt="Seasons"
+										data-toggle="tooltip" title="Seasons"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="gf" name="gf" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.gf == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="gf"><img
+										src="{{@BASE}}{{@s4path}}TS4_EP6_GF_Icon.png" class="s4eps" alt="Get Famous"
+										data-toggle="tooltip" title="Get Famous"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="il" name="il" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.il == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="il"><img
+										src="{{@BASE}}{{@s4path}}TS4_EP7_Island_Living_Icon.png" class="s4eps"
+										alt="Island Living" data-toggle="tooltip" title="Island Living"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="uni4" name="uni4"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.uni4 == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="uni4"><img
+										src="{{@BASE}}{{@s4path}}TS4_EP8_Discover_University_Icon.png" class="s4eps"
+										alt="Discover University" data-toggle="tooltip"
+										title="Discover University"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="eco" name="eco"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.eco == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="eco"><img
+										src="{{@BASE}}{{@s4path}}TS4_EP9_Eco_Lifestyle_Icon.png" class="s4eps"
+										alt="Eco Lifestyle" data-toggle="tooltip" title="Eco Lifestyle"></label>
+							</div>
+						</div>
+						<div class="form-group mb-3">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="otrt" name="otrt"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.otrt == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="otrt"><img
+										src="{{@BASE}}{{@s4path}}TS4OR_Icon.png" class="s4eps" alt="Outdoor Retreat"
+										data-toggle="tooltip" title="Outdoor Retreat"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="spa" name="spa"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.spa == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="spa"><img
+										src="{{@BASE}}{{@s4path}}TS4SD_Icon.png" class="s4eps" alt="Spa Day"
+										data-toggle="tooltip" title="Spa Day"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="do" name="do" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.do == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="do"><img
+										src="{{@BASE}}{{@s4path}}TS4DO_Icon.png" class="s4eps" alt="Dine Out"
+										data-toggle="tooltip" title="Dine Out"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="vamps" name="vamps"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.vamps == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="vamps"><img
+										src="{{@BASE}}{{@s4path}}The_Sims_4_Vampires_Icon.png" class="s4eps"
+										alt="Vampires" data-toggle="tooltip" title="Vampires"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="ph" name="ph" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.ph == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="ph"><img
+										src="{{@BASE}}{{@s4path}}Parenthood_Icon.png" class="s4eps" alt="Parenthood"
+										data-toggle="tooltip" title="Parenthood"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="ja" name="ja" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.ja == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="ja"><img
+										src="{{@BASE}}{{@s4path}}TS4AT_Icon.png" class="s4eps" alt="Jungle Adventure"
+										data-toggle="tooltip" title="Jungle Adventure"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="sv" name="sv" class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.sv == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="sv"><img
+										src="{{@BASE}}{{@s4path}}The_Sims_4_StrangerVille_Icon.png" class="s4eps"
+										alt="StrangerVille" data-toggle="tooltip" title="StrangerVille"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="rom" name="rom"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.rom == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="rom"><img
+										src="{{@BASE}}{{@s4path}}Realm_of_Magic_icon.png" class="s4eps"
+										alt="Realm of Magic" data-toggle="tooltip" title="Realm of Magic"></label>
+							</div>
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="jtb" name="jtb"
+									   class="custom-control-input select_all4 s4eps"
+								<check if="{{ @users4.jtb == 1 }}">
+									checked
+								</check>
+								>
+								<label class="custom-control-label" for="jtb"><img
+										src="{{@BASE}}{{@s4path}}TS4_GP9_Journey_to_Batuu_Icon.png" class="s4eps"
+										alt="Journey to Batuu" data-toggle="tooltip" title="Journey to Batuu"></label>
+							</div>
+							<!-- Select all -->
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" id="select_all4" name="select_all4"
+									   class="custom-control-input s4eps">
+								<label class="custom-control-label" for="select_all4"><img
+										src="{{@BASE}}{{@s4path}}/TS4_Icon.png" class="s4eps" alt="All EPs"
+										data-toggle="tooltip" title="All EPs"></label>
+							</div>
+						</div>
+			</div>
+			<button type="submit" name="update" class="btn btn-primary"><i class="fa fa-save-alt mr-2"
+																		   aria-hidden="true"></i>Update Account
+			</button>
+		</div>
+	</div>
+	</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+</form>
+<!-- End Default Light Table -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
+<script src="{{@BASE}}/ui/js/extras.1.1.0.min.js"></script>
+<script src="{{@BASE}}/ui/js/shards-dashboards.1.1.0.min.js"></script>
+
+<script>
+	let sims2 = $("#sims2");
+	let sims2EPs = $("#sims2EPs");
+	let sims3 = $("#sims3");
+	let sims3EPs = $("#sims3EPs");
+	let sims4 = $("#sims4");
+	let sims4EPs = $("#sims4EPs");
+	$(function () {
+		gameCheck();
+
+		$("#sims2").change(function () {
+			gameCheck();
+		});
+		$("#sims3").change(function () {
+			gameCheck();
+		});
+		$("#sims4").change(function () {
+			gameCheck();
+		});
+	});
+
+	function gameCheck() {
+		if (sims2.prop('checked')) {
+			sims2EPs.attr('aria-hidden', 'false').show();
+		} else {
+			sims2EPs.attr('aria-hidden', 'true').hide();
+		}
+		if (sims3.prop('checked')) {
+			sims3EPs.attr('aria-hidden', 'false').show();
+		} else {
+			sims3EPs.attr('aria-hidden', 'true').hide();
+		}
+		if (sims4.prop('checked')) {
+			sims4EPs.attr('aria-hidden', 'false').show();
+		} else {
+			sims4EPs.attr('aria-hidden', 'true').hide();
+		}
+	}
+
+	function showPassword() {
+		var x = document.getElementById("memorableWord");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+</script>

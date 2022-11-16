@@ -1,0 +1,319 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+@import url('opensans.css');
+/* open-sans-regular - greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.eot'); /* IE9 Compat Modes */
+	src: local('Open Sans Regular'), local('OpenSans-Regular'),
+	url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/open-sans-v15-greek_latin_latin-ext_vietnamese_greek-ext_cyrillic_cyrillic-ext-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+	font-family: "Sims LLHP";
+	src: url(../fonts/SimsLLHP.ttf);
+}
+
+@font-face {
+	font-family: "Kabel";
+	src: url('../fonts/Kabel Medium Regular.ttf');
+}
+
+html,
+body {
+	overflow-x: hidden; /* Prevent scroll on narrow devices */
+	position: relative;
+	margin: 0;
+	height: 100%;
+}
+
+.main-container {
+	padding: 20px;
+	margin-top: 1rem;
+	background-color: white;
+	min-height: calc(100vh - 8.5rem); /* Sticky footer */
+}
+
+body {
+	/* Margin bottom by footer height */
+	font-family: 'Open Sans', sans-serif;
+}
+
+.bg {
+	background-image: url("6.jpg");
+	/* Full height */
+
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.footer {
+	background-color: #005cbf;
+	padding: 1rem;
+	height: 7.5rem;
+}
+
+.footer .nav a {
+	text-decoration: underline;
+}
+
+.title {
+	font-family: "Sims LLHP";
+	padding: 0;
+}
+
+h1, h2, h3, h4 {
+	font-family: "Kabel";
+}
+
+.footer > .container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+code {
+	font-size: 80%;
+}
+
+.hptrap {
+	position: absolute;
+	z-index: -50000000000000;
+	bottom: -500000000000000000px;
+	display: none;
+}
+
+.s3eps {
+	width: 24px;
+	image-rendering: crisp-edges;
+}
+
+.s4eps {
+	width: 28px;
+	image-rendering: crisp-edges;
+}
+
+/*!
+ * Yamm!3 - Yet another megamenu for Bootstrap 3
+ * http://geedmo.github.com/yamm3
+ *
+ * @geedmo - Licensed under the MIT license
+ */
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+	position: static;
+}
+
+.yamm .container {
+	position: relative;
+}
+
+.yamm .dropdown-menu {
+	left: auto;
+}
+
+.yamm .yamm-content {
+	padding: 20px 30px;
+}
+
+.yamm .dropdown.yamm-fw .dropdown-menu {
+	left: 0;
+	right: 0;
+}
+
+/*//Copy this css - multi-level dropdown*/
+.navbar-light .navbar-nav .nav-link {
+	color: rgb(64, 64, 64);
+}
+
+.btco-menu li > a {
+	padding: 10px 15px;
+	color: #000;
+
+}
+
+.btco-menu .active a:focus,
+.btco-menu li a:focus,
+.navbar > .show > a:focus {
+	background: transparent;
+	outline: 0;
+}
+
+
+.dropdown-menu .show > .dropdown-toggle::after {
+	transform: rotate(-90deg);
+}
+
+/* Modal login */
+
+.modal-login {
+	/*	color: #636363; */
+	width: 350px;
+}
+
+.modal-login .modal-content {
+	padding: 20px;
+	border: none;
+}
+
+.modal-login .modal-header {
+	border-bottom: none;
+	position: relative;
+	justify-content: center;
+}
+
+.modal-login h4 {
+	text-align: center;
+	font-size: 26px;
+}
+
+.modal-login .form-group {
+	position: relative;
+}
+
+.modal-login i {
+	position: absolute;
+	left: 13px;
+	top: 11px;
+	font-size: 18px;
+}
+
+.modal-login .form-control {
+	padding-left: 40px;
+}
+
+.modal-login .form-control:focus {
+	border-color: green;
+}
+
+.modal-login .form-control, .modal-login .btn {
+	min-height: 40px;
+	border-radius: 3px;
+}
+
+.modal-login .hint-text {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.modal-login .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+
+.modal-login .modal-footer {
+	/*	background: #ecf0f1;
+		border-color: #dee4e7; */
+	text-align: center;
+	margin: 0 -20px -20px;
+	border-radius: 5px;
+	font-size: 13px;
+	justify-content: center;
+}
+
+/* Form validation */
+input:not([type="file"]).error,
+textarea.error,
+select.error {
+	border: 1px solid red !important;
+}
+
+input:not([type="file"]).no-error,
+textarea.no-error,
+select.no-error {
+	border: 1px solid green !important;
+}
+
+div.error-field {
+	color: red;
+	font-size: small;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #007bff !important;
+}
+
+.ui-autocomplete {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	list-style: none;
+	font-size: 14px;
+	text-align: left;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	background-clip: padding-box;
+}
+
+.ui-autocomplete > li > div {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 1.42857143;
+	color: #333333;
+	white-space: nowrap;
+}
+
+.ui-state-hover,
+.ui-state-active,
+.ui-state-focus {
+	text-decoration: none;
+	color: #262626;
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+#img-upload {
+	width: 100%;
+}

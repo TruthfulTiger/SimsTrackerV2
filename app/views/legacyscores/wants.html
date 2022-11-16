@@ -1,0 +1,461 @@
+<h3 class="text-primary">{{ @cat }} <a href="#" class="badge badge-pill badge-secondary" data-toggle="collapse"
+									   data-target="#wantsHelp" aria-expanded="false" aria-label="More details"
+									   aria-controls="wantsHelp">
+	<i aria-hidden="true" data-toggle="tooltip" title="More details" class="fas fa-question"></i></a>
+	</a></h3>
+<div class="collapse" id="wantsHelp">
+	<div class="card card-body">
+		<blockquote>
+			You get 1 point for every impossible want earned by a sim in the family. A sim may only ever earn you 1
+			impossible want in their lifetime. Sims may only earn impossible wants related to their aspirations. A
+			Romance sim that maxes all their skills will not earn a point, because the “max all skills” is a knowledge
+			impossible want.
+			<br/><br/>
+			<h6 class="text-primary">Free Time Updates</h6>
+			You may earn points for a sim’s secondary aspiration if you fulfill an impossible want for that aspiration.
+			This allows you to earn a possible 2 points per sim if you manage to meet impossible wants for both of their
+			aspirations.
+			<br/><br/>
+			Points earned over 10 carry over to the overflow category.<br/><br/>
+			<cite>~ SimsLegacyChallenge.com</cite>
+		</blockquote>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="accordion" id="wants">
+			<div class="card show">
+				<div class="card-header" id="family">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-family"
+								aria-expanded="true" aria-controls="coll-family">
+							Family
+						</button>
+					</h5>
+				</div>
+				<div id="coll-family" class="collapse" aria-labelledby="family" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="childrencount">Have 10 Children</label>
+							<input type="number" oninput="childrenChange(value)" min="0"
+								   value="{{ trim(@s2legacy.childrencount) }}" id="childrencount" name="childrencount"
+								   class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="grandkidscount">Have 30 Grandchildren</label>
+							<input type="number" oninput="gkChange(value)" min="0"
+								   value="{{ trim(@s2legacy.grandkidscount) }}" id="grandkidscount"
+								   name="grandkidscount" class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="wealth">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-wealth"
+								aria-expanded="true" aria-controls="coll-wealth">
+							Wealth
+						</button>
+					</h5>
+				</div>
+				<div id="coll-wealth" class="collapse" aria-labelledby="wealth" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="earncount">Earn §100,000</label>
+							<input type="number" oninput="earnChange(value)" min="0"
+								   value="{{ trim(@s2legacy.earncount) }}" id="earncount" name="earncount"
+								   class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="opencount">Open 5 Level 10 Businesses <img src="{{@BASE}}{{@s2path}}OFB.png"
+																				   data-toggle="tooltip"
+																				   title="Needs OFB"
+																				   alt="Needs Open For Business"></label>
+							<input type="number" oninput="openChange(value)" min="0"
+								   value="{{ trim(@s2legacy.opencount) }}" id="opencount" name="opencount"
+								   class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="knowledge">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-knowledge"
+								aria-expanded="true" aria-controls="coll-knowledge">
+							Knowledge
+						</button>
+					</h5>
+				</div>
+				<div id="coll-knowledge" class="collapse" aria-labelledby="knowledge" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="skillscount">Max All Skills</label>
+							<input type="number" oninput="skillsChange(value)" min="0"
+								   value="{{ trim(@s2legacy.skillscount) }}" id="skillscount" name="skillscount"
+								   class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="alienscount">Be Abducted 3 Times</label>
+							<input type="number" oninput="aliensChange(value)" min="0"
+								   value="{{ trim(@s2legacy.alienscount) }}" id="alienscount" name="alienscount"
+								   class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="popularity">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-popularity"
+								aria-expanded="true" aria-controls="coll-popularity">
+							Popularity
+						</button>
+					</h5>
+				</div>
+				<div id="coll-popularity" class="collapse" aria-labelledby="popularity" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="bestiescount">Have 30 Best Friends</label>
+							<input type="number" oninput="bestiesChange(value)" min="0"
+								   value="{{ trim(@s2legacy.bestiescount) }}" id="bestiescount" name="bestiescount"
+								   class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="romance">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-romance"
+								aria-expanded="true" aria-controls="coll-romance">
+							Romance
+						</button>
+					</h5>
+				</div>
+				<div id="coll-romance" class="collapse" aria-labelledby="romance" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="lovescount">Have 20 Loves At Once</label>
+							<input type="number" oninput="lovesChange(value)" min="0"
+								   value="{{ trim(@s2legacy.lovescount) }}" id="lovescount" name="lovescount"
+								   class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="woohoocount">WooHoo 30 Sims</label>
+							<input type="number" oninput="woohooChange(value)" min="0"
+								   value="{{ trim(@s2legacy.woohoocount) }}" id="woohoocount" name="woohoocount"
+								   class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="pleasure">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-pleasure"
+								aria-expanded="true" aria-controls="coll-pleasure">
+							Pleasure <img src="{{@BASE}}{{@s2path}}NL.png" title="Needs at least NL"
+										  data-toggle="tooltip" alt="Needs at least Nightlife">
+						</button>
+					</h5>
+				</div>
+				<div id="coll-pleasure" class="collapse" aria-labelledby="pleasure" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="firstdatescount">Have 50 First Dates</label>
+							<input type="number" oninput="firstdatesChange(value)" min="0"
+								   value="{{ trim(@s2legacy.firstdatescount) }}" id="firstdatescount"
+								   name="firstdatescount" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="dreamdatescount">Have 100 Dream Dates</label>
+							<input type="number" oninput="dreamdatesChange(value)" min="0"
+								   value="{{ trim(@s2legacy.dreamdatescount) }}" id="dreamdatescount"
+								   name="dreamdatescount" class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="cheese">
+					<h5>
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#coll-cheese"
+								aria-expanded="true" aria-controls="coll-cheese">
+							Grilled Cheese <img src="{{@BASE}}{{@s2path}}NL.png" title="Needs at least NL"
+												data-toggle="tooltip" alt="Needs at least Nightlife">
+						</button>
+					</h5>
+				</div>
+				<div id="coll-cheese" class="collapse" aria-labelledby="cheese" data-parent="#wants">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="sarniescount">Eat 200 Grilled Cheese Sandwiches</label>
+							<input type="number" oninput="sarniesChange(value)" min="0"
+								   value="{{ trim(@s2legacy.sarniescount) }}" id="sarniescount" name="sarniescount"
+								   class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" name="wantstotal" id="wt" value="{{ trim(@s2legacy.wantstotal) }}">
+<p class="lead mt-3"><b>Sub total:
+	<output id="wantstotal" for="wt"><span
+		<check if="{{ @s2legacy.wantstotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.wantstotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.wantstotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.wantstotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	$(function () {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	});
+
+	function childrenChange(c) {
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#childrencount').value = c;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function gkChange(g) {
+		let c = $("#childrencount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#grandkidscount').value = g;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function earnChange(e) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#earncount').value = e;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function openChange(o) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#opencount').value = o;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function skillsChange(sk) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#skillscount').value = sk;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function aliensChange(a) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#alienscount').value = a;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function bestiesChange(b) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#bestiescount').value = b;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function lovesChange(l) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#lovescount').value = l;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function woohooChange(w) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#woohoocount').value = w;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function firstdatesChange(fd) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let dd = $("#dreamdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#firstdatescount').value = fd;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function dreamdatesChange(dd) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let s = $("#sarniescount").val();
+		document.querySelector('#dreamdatescount').value = dd;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function sarniesChange(s) {
+		let c = $("#childrencount").val();
+		let g = $("#grandkidscount").val();
+		let e = $("#earncount").val();
+		let o = $("#opencount").val();
+		let sk = $("#skillscount").val();
+		let a = $("#alienscount").val();
+		let b = $("#bestiescount").val();
+		let l = $("#lovescount").val();
+		let w = $("#woohoocount").val();
+		let fd = $("#firstdatescount").val();
+		let dd = $("#dreamdatescount").val();
+		document.querySelector('#sarniescount').value = s;
+		wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s);
+	}
+
+	function wantsSub(g, c, e, o, sk, a, b, l, w, fd, dd, s) {
+		let result = (parseInt(g) + parseInt(c) + parseInt(e) + parseInt(o) + parseInt(sk) + parseInt(a) + parseInt(b) + parseInt(l) + parseInt(w) + parseInt(fd) + parseInt(dd) + parseInt(s));
+
+		if (result > 10) {
+			let o = result - 10;
+			result = 10;
+			$("#owants").val(o);
+			owantsChange(o);
+		} else {
+			$("#owants").val(0);
+			owantsChange(0);
+		}
+		$("#wantstotal").val(result);
+		$("#wt").val(result);
+		gtChange();
+
+		if (result == 0) {
+			$('#wantstotal').removeClass('badge badge-danger');
+			$('#wantstotal').removeClass('badge badge-success');
+			$('#wantstotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#wantstotal').removeClass('badge badge-danger');
+			$('#wantstotal').removeClass('badge badge-primary');
+			$('#wantstotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#wantstotal').removeClass('badge badge-primary');
+			$('#wantstotal').removeClass('badge badge-success');
+			$('#wantstotal').addClass('badge badge-danger');
+		}
+	}
+</script>

@@ -1,0 +1,164 @@
+<form action="{{ @BASE.'/pet/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="name">Name</label>
+			<input type="text" required="required" class="form-control" name="name" value="{{ trim(@pet.name) }}"
+				   id="name"/>
+		</div>
+		<div class="form-group col">
+			<label for="species">Species</label>
+			<select class="custom-select" name="species" id="species">
+				<option value="Cat"
+				<check if="{{ @pet.species == 'Cat'}}">
+					selected
+				</check>
+				>Cat</option>
+				<option value="Small dog"
+				<check if="{{ @pet.species == 'Small dog'}}">
+					selected
+				</check>
+				>Small dog</option>
+				<option value="Large dog"
+				<check if="{{ @pet.species == 'Large dog'}}">
+					selected
+				</check>
+				>Large dog</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="gender">Gender</label>
+			<select class="custom-select" required="required" name="gender" id="gender">
+				<option value="F"
+				<check if="{{ @pet.gender == 'F'}}">
+					selected
+				</check>
+				>Female</option>
+				<option value="M"
+				<check if="{{ @pet.gender == 'M'}}">
+					selected
+				</check>
+				>Male</option>
+			</select>
+		</div>
+		<div class="form-group col">
+			<label for="age">Age</label>
+			<select class="custom-select" required="required" name="age" id="age">
+				<option value="Baby"
+				<check if="{{ @pet.age == 'Baby'}}">
+					selected
+				</check>
+				>Kitten / puppy</option>
+				<option value="Adult"
+				<check if="{{ @pet.age == 'Adult'}}">
+					selected
+				</check>
+				>Adult</option>
+				<option value="Elder"
+				<check if="{{ @pet.age == 'Elder'}}">
+					selected
+				</check>
+				>Elder</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="origin">Origin</label>
+			<select class="custom-select" name="origin" required="required" id="origin">
+				<option>-- Where does this pet come from? --</option>
+				<option value="cas"
+				<check if="{{ @pet.origin == 'cas'}}">
+					selected
+				</check>
+				>CAS</option>
+				<option value="big"
+				<check if="{{ @pet.origin == 'big'}}">
+					selected
+				</check>
+				>Born in-game</option>
+				<option value="stray"
+				<check if="{{ @pet.origin == 'stray'}}">
+					selected
+				</check>
+				>Stray</option>
+			</select>
+		</div>
+		<div class="form-group col" id="genshow" style="display: none;">
+			<label for="generation">What generation is this pet?</label>
+			<input type="number" class="form-control" value="{{ trim(@pet.generation) }}" name="generation"
+				   id="generation"/>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="parent1">Parent 1</label>
+			<select class="custom-select" name="parent1" id="parent1">
+				<option value="">Unknown</option>
+				<repeat group="{{ @parents }}" value="{{ @parent }}">
+					<check if="{{ @parent.id !=  @pet.id}}">
+						<option value="{{@parent.id}}"
+						<check if="{{ @parent.id == @pet.parent1}}">
+							selected
+						</check>
+						>{{trim(@parent.name)}}</option>
+					</check>
+				</repeat>
+			</select>
+		</div>
+		<div class="form-group col">
+			<label for="parent2">Parent 2</label>
+			<select class="custom-select" name="parent2" id="parent2">
+				<option value="">Unknown</option>
+				<repeat group="{{ @parents }}" value="{{ @parent }}">
+					<check if="{{ @parent.id !=  @pet.id }}">
+						<option value="{{@parent.id}}"
+						<check if="{{ @parent.id == @pet.parent2}}">
+							selected
+						</check>
+						>{{trim(@parent.name)}}</option>
+					</check>
+				</repeat>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="lifeState">Life state</label>
+		<select class="custom-select" name="lifeState" id="lifeState">
+			<option value="Alive"
+			<check if="{{ @pet.lifeState == 'Alive'}}">
+				selected
+			</check>
+			>Alive</option>
+			<option value="Deceased"
+			<check if="{{ @pet.lifeState == 'Deceased'}}">
+				selected
+			</check>
+			>Deceased</option>
+		</select>
+	</div>
+
+	<!-- Hidden fields and form submission -->
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="id" value="{{ @pet.id }}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-success mb-3"><i class="fa fa-save mr-2"
+																			  aria-hidden="true"></i> Save
+			</button>
+			<a href="{{ @BASE.'/pets' }}" class="btn btn-secondary mb-3"><i class="fa fa-times mr-2"
+																			aria-hidden="true"></i> Cancel</a>
+		</div>
+	</div>
+
+	<include if="{{@pet.gameVersion == 2}}" href="pet/sims2/update.html"/>
+	<include if="{{@pet.gameVersion == 3}}" href="pet/sims3/update.html"/>
+	<include if="{{@pet.gameVersion == 4}}" href="pet/sims4/update.html"/>
+</form>

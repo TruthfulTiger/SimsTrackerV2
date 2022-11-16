@@ -1,0 +1,66 @@
+<check if="{{ @hoods }}">
+	<true>
+		<table width="100%" cellpadding="5" id="hoods" class="table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Game version</th>
+				<th scope="col">Type</th>
+				<th scope="col">Total households</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<repeat group="{{ @hoods }}" value="{{ @hood }}">
+				<tr>
+					<td>{{ trim(@hood.name) }}</td>
+					<td>Sims {{ trim(@hood.gameVersion) }}</td>
+					<td>{{ trim(@hood.type) }}
+						<check if="{{ @hood.parentHood > 0}}">
+							<repeat group="{{ @parents }}" value="{{ @parent }}">
+								<check if="{{ @hood.parentHood == @parent.id }}">
+									of {{ trim(@parent.name) }}
+								</check>
+							</repeat>
+						</check>
+					</td>
+					<check if="{{ @hood.households > 0 }}">
+						<true>
+							<td>{{ trim(@hood.households) }}</td>
+						</true>
+						<false>
+							<td>0</td>
+						</false>
+					</check>
+					<td id="parent"><a href="{{ @BASE.'/hood/update/'. @hood.id }}" data-toggle="tooltip" title="Edit"
+									   class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+						<a href="#" onclick="confirm('{{ @BASE.'/hood/delete/'. @hood.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No neighbourhoods found.</p>
+	</false>
+</check>
+<a href="{{ @BASE.'/hood/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+
+<script>
+	$(document).ready(function () {
+		$('#hoods').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

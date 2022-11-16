@@ -1,0 +1,1348 @@
+<check if="{{ @colours }}">
+	<true>
+		<table class="table table-hover table-responsive-md table-sm" id="gens" width="100%">
+			<thead class="sr-only">
+			<th scope="col">Generation</th>
+			<th scope="col">Founder / heir</th>
+			<th scope="col">Action</th>
+			</thead>
+			<tbody>
+			<tr id="founder"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 1 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">Founder</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen1" class="sr-only">Founder</label>
+					<select class="custom-select" name="simID" id="gen1">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 1 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @founder }}">
+										<check if="{{ @founder.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url1"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 1 }}">
+								<true>
+									<check if="{{ @ctr == 1 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 1 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen2heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 2 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">2nd generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen2" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen2">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 2 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url2"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 2 }}">
+								<true>
+									<check if="{{ @ctr == 2 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 2 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen3heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 3 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">3rd generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen3" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen3">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 3 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url3"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 3 }}">
+								<true>
+									<check if="{{ @ctr == 3 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 3 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen4heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 4 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">4th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen4" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen4">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 4 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url4"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 4 }}">
+								<true>
+									<check if="{{ @ctr == 4 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 4 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen5heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 5 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">5th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen5" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen5">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 5 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url5"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 5 }}">
+								<true>
+									<check if="{{ @ctr == 5 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 5 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen6heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 6 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">6th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen6" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen6">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 6 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url6"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 6 }}">
+								<true>
+									<check if="{{ @ctr == 6 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 6 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen7heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 7 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">7th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen7" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen7">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 7 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url7"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 7 }}">
+								<true>
+									<check if="{{ @ctr == 7 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 7 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+
+			</td>
+			</tr>
+
+			<tr id="gen8heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 8 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">8th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen8" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen8">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 8 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url8"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 8 }}">
+								<true>
+									<check if="{{ @ctr == 8 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 8 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen9heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 9 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">9th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen9" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen9">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 9 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url9"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 9 }}">
+								<true>
+									<check if="{{ @ctr == 9 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 9 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen10heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 10 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+
+			<th scope="row" class="p-3">10th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen10" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen10">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 10 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url10"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 10 }}">
+								<true>
+									<check if="{{ @ctr == 10 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 10 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen11heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 11 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">11th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen11" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen11">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 11 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+			<td scope="row" class="pt-2">
+				<a id="url11"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 11 }}">
+								<true>
+									<check if="{{ @ctr == 11 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 11 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen12heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 12 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">12th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen12" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen12">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 12 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected="selected"
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url12"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 12 }}">
+								<true>
+									<check if="{{ @ctr == 12 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 12 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen13heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 13 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">13th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen13" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen13">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 13 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url13"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 13 }}">
+								<true>
+									<check if="{{ @ctr == 13 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 13 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen14heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 14 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">14th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen14" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen14">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 14 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url14"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 14 }}">
+								<true>
+									<check if="{{ @ctr == 14 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 14 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen15heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 15 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">15th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen15" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen15">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 15 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url15"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 15 }}">
+								<true>
+									<check if="{{ @ctr == 15 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 15 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen16heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 16 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">16th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen16" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen16">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 16 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url16"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 16 }}">
+								<true>
+									<check if="{{ @ctr == 16 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 16 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen17heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 17 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">17th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen17" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen17">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 17 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url17"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 17 }}">
+								<true>
+									<check if="{{ @ctr == 17 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 17 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen18heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 18 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">18th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen18" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen18">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 18 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url18"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 18 }}">
+								<true>
+									<check if="{{ @ctr == 18 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 18 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen19heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 19 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">19th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen19" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen19">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 19 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url19"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 19 }}">
+								<true>
+									<check if="{{ @ctr == 19 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 19 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			<tr id="gen20heir"
+			<repeat group="{{ @colours }}" value="{{ @colour }}">
+				<check if="{{ @colour.generation == 20 }}">
+					class="{{ @colour.colour }}"
+				</check>
+			</repeat>
+			>
+			<th scope="row" class="p-3">20th generation heir/ess</th>
+			<td scope="row" class="pt-2 pr-3">
+				<div class="form-group">
+					<label for="gen20" class="sr-only">Heir/ess</label>
+					<select class="custom-select" name="simID" id="gen20">
+						<repeat group="{{ @sims }}" value="{{ @sim }}">
+							<check if="{{ @sim.generation == 20 }}">
+								<option value="{{ @sim.id }}"
+								<check if="{{ @legacygen }}">
+									<repeat group="{{ @legacygen }}" value="{{ @heir }}">
+										<check if="{{ @heir.simID == @sim.id }}">
+											selected
+										</check>
+									</repeat>
+								</check>
+								>
+								{{ trim(@sim.firstName) }}
+								</option>
+							</check>
+						</repeat>
+					</select>
+				</div>
+			</td>
+
+			<td scope="row" class="pt-2">
+				<a id="url20"
+				<check if="{{ @legacygen }}">
+					<true>
+						<repeat group="{{ @legacygen }}" value="{{ @heir }}" counter="{{@ctr}}">
+							<check if="{{ @heir.generation != 20 }}">
+								<true>
+									<check if="{{ @ctr == 20 }}">
+										data-log="Need to create sim data"
+										data-href="0"
+										href="#"
+									</check>
+								</true>
+								<false>
+									<check if="{{ @heir.generation == 20 }}">
+										data-log="{{@heir.id}}"
+										data-href="{{@heir.id}}"
+										href="#"
+									</check>
+								</false>
+							</check>
+						</repeat>
+					</true>
+					<false>
+						data-log="Legacygen = false"
+						data-href="0"
+						href="#"
+					</false>
+				</check>
+				class="btn btn-primary text-white">
+				<i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+				</a>
+			</td>
+			</tr>
+
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<include href="/legacygen/bwlist.html"/>
+	</false>
+</check>
+
+<script src="{{@BASE}}/ui/js/legacygen.js"></script>

@@ -1,0 +1,17 @@
+<img src="{{@BASE}}/{{@sim.image}}" width="150" data-toggle="tooltip"
+<check if="{{@sim.lifeState == 'Deceased'}}">
+	<true>
+		class="img-thumbnail float-right grayscale" title="Deceased"
+	</true>
+	<false>
+		class="img-thumbnail float-right" title="Alive"
+	</false>
+</check>
+alt="Image of Sim"/>
+<include if="{{@sim.gameVersion == 2}}" href="sim/sims2/view.html"/>
+<include if="{{@sim.gameVersion == 3}}" href="sim/sims3/view.html"/>
+<include if="{{@sim.gameVersion == 4}}" href="sim/sims4/view.html"/>
+
+<p><a href="#" class="btn btn-secondary mt-3" onclick="window.close();"><i class="fa fa-times mr-2"
+																		   aria-hidden="true"></i>Close</a>
+

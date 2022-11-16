@@ -1,0 +1,193 @@
+{
+  "gameVersion": 4,
+  "wc": [
+    {
+      "name": "Foundry Cove"
+    },
+    {
+      "name": "Courtyard Lane"
+    },
+    {
+      "name": "Pendula View"
+    },
+    {
+      "name": "Sage Estates"
+    },
+    {
+      "name": "Crawdad Quarter"
+    },
+    {
+      "name": "Magnolia Blossom Park"
+    }
+  ],
+  "os": [
+    {
+      "name": "Bedrock Strait"
+    },
+    {
+      "name": "Parched Prospect"
+    },
+    {
+      "name": "Skyward Palms"
+    },
+    {
+      "name": "Acquisition Butte"
+    },
+    {
+      "name": "Mirage Canyon"
+    },
+    {
+      "name": "Desert Bloom Park"
+    }
+  ],
+  "nc": [
+    {
+      "name": "Bridgeview"
+    },
+    {
+      "name": "Llama Lagoon"
+    },
+    {
+      "name": "Ridgeline Drive"
+    }
+  ],
+  "gf": [
+    {
+      "name": "Campground"
+    },
+    {
+      "name": "Granite Falls Forest"
+    }
+  ],
+  "wd": [
+    {
+      "name": "The Crumbling Isle"
+    },
+    {
+      "name": "Windslar"
+    },
+    {
+      "name": "Lykke Centre"
+    },
+    {
+      "name": "Olde Platz"
+    },
+    {
+      "name": "The Bluffs"
+    },
+    {
+      "name": "Ancient Ruins"
+    },
+    {
+      "name": "Von Haunt Estate"
+    }
+  ],
+  "sm": [
+    {
+      "name": "Uptown"
+    },
+    {
+      "name": "Spice Market"
+    },
+    {
+      "name": "Arts Quarter"
+    },
+    {
+      "name": "Fashion District"
+    },
+    {
+      "name": "Myshuno Meadows"
+    }
+  ],
+  "bb": [
+    {
+      "name": "Sable Square"
+    },
+    {
+      "name": "Whiskerman's Wharf"
+    },
+    {
+      "name": "Cavalier Cove"
+    },
+    {
+      "name": "Deadgrass Isle"
+    }
+  ],
+  "sl": [
+    {
+      "name": "Puerto Llamante Marketplace"
+    },
+    {
+      "name": "Belomisia Jungle"
+    },
+    {
+      "name": "Jungle District"
+    }
+  ],
+  "dsv": [
+    {
+      "name": "Mirage Park"
+    },
+    {
+      "name": "The Pinnacles"
+    },
+    {
+      "name": "Starlight Boulevard"
+    }
+  ],
+  "sv": [
+    {
+      "name": "Shady Acres"
+    },
+    {
+      "name": "StrangerVille Plaza"
+    },
+    {
+      "name": "The ██████ Lab"
+    }
+  ],
+  "su": [
+    {
+      "name": "Mua Pel'am"
+    },
+    {
+      "name": "Ohan'ali Town"
+    },
+    {
+      "name": "Lani St. Taz"
+    }
+  ],
+  "bc": [
+    {
+      "name": "University of Britechester"
+    },
+    {
+      "name": "Foxbury Institute"
+    },
+    {
+      "name": "Gibbs Hill"
+    }
+  ],
+  "eh": [
+    {
+      "name": "Grims Quarry"
+    },
+    {
+      "name": "Port Promise"
+    },
+    {
+      "name": "Conifer Station"
+    }
+  ],
+  "indy": [
+    {
+      "name": "Magnolia Promenade"
+    },
+    {
+      "name": "Forgotten Hollow"
+    },
+    {
+      "name": "Glimmerbrook"
+    }
+  ]
+}

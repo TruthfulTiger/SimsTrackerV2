@@ -1,0 +1,67 @@
+<check if="{{ @majors }}">
+	<true>
+		<table width="100%" cellpadding="5" id="majors" class="table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Icon</th>
+				<th scope="col">Name</th>
+				<th scope="col">Game version</th>
+				<th scope="col">Total classes</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<repeat group="{{ @majors }}" value="{{ @major }}">
+				<tr>
+					<td>
+						<check if="{{ @major.icon !='' }}">
+							<true>
+								<img src="{{@BASE}}/{{@major.icon}}">
+							</true>
+							<false>
+								{{ trim(@major.icon) }}
+							</false>
+						</check>
+					</td>
+					<td>{{ trim(@major.majorName) }}</td>
+					<td>Sims {{ trim(@major.gameVersion) }}</td>
+					<check if="{{ @major.classes > 0 }}">
+						<true>
+							<td>{{ trim(@major.classes) }}</td>
+						</true>
+						<false>
+							<td>0</td>
+						</false>
+					</check>
+					<td><a href="{{ @BASE.'/major/update/'. @major.id }}" data-toggle="tooltip" title="Edit"
+						   class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+						<a href="#" onclick="confirm('{{ @BASE.'/major/delete/'. @major.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No majors found.</p>
+	</false>
+</check>
+<a href="{{ @BASE.'/major/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+
+<script>
+	$(document).ready(function () {
+		$('#majors').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

@@ -1,0 +1,99 @@
+<check if="{{ @nhID != null }}">
+	<true>
+		<form action="{{ @BASE.'/relationship/create' }}" validate="true" method="post" class="form-horizontal">
+			<div class="form-row">
+				<div class="col">
+					<div class="form-row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sim1">Sim 1</label>
+								<select class="custom-select" name="sim1" id="sim1">
+									<option value="">-- None --</option>
+									<repeat group="{{ @sims }}" value="{{ @sim }}">
+										<option value="{{@sim.id}}">{{trim(@sim.firstName)}} {{trim(@sim.lastName)}}
+										</option>
+									</repeat>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sim2">Sim 2</label>
+								<select class="custom-select" name="sim2" id="sim2">
+									<option value="">-- None --</option>
+									<repeat group="{{ @sims }}" value="{{ @sim }}">
+										<option value="{{@sim.id}}">{{trim(@sim.firstName)}} {{trim(@sim.lastName)}}
+										</option>
+									</repeat>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="relName">Relationship Name</label>
+				<select class="custom-select" name="relName" id="relName">
+					<option value="">-- None --</option>
+					<repeat group="{{ @ships }}" key="{{@key}}" value="{{ @ship }}">
+						<option value="{{@ship}}"
+						>{{trim(@ship)}}
+						</option>
+					</repeat>
+				</select>
+			</div>
+
+			<div class="control-group">
+				<div class="">
+					<input type="text" name="hptrap" class="hptrap"/>
+					<input type="hidden" name="nhID" value="{{ @nhID }}"/>
+					<input type="hidden" name="gameVersion" value="{{ @gameVersion }}"/>
+					<input type="hidden" name="create" value="create"/>
+					<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
+						Relationship
+					</button>
+					<a href="{{ @BASE.'/relationships' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																						aria-hidden="true"></i>Cancel</a>
+				</div>
+			</div>
+		</form>
+	</true>
+	<false>
+		<div class="form-group">
+			<label for="nh">Which neighbourhood is this relationship part of?</label>
+			<select class="custom-select" name="nh" id="nh">
+				<option value="">-- Create new hood --</option>
+				<repeat group="{{ @hoods }}" value="{{ @hood }}">
+					<option value="{{ @hood.id }}">{{ @hood.name }}</option>
+				</repeat>
+			</select>
+		</div>
+		<a href="" id="url" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+		<a href="{{ @BASE.'/relationships' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			aria-hidden="true"></i>Cancel</a>
+	</false>
+</check>
+
+<script>
+	$(function () {
+		let v = $("#nh").children("option:selected").val();
+		url(v);
+		$("#nh").change(function () {
+			v = $("#nh").children("option:selected").val();
+			url(v);
+		});
+	});
+
+	function url(v) {
+		if (v === '') {
+			$('#url').attr("href", "{{ @BASE.'/hood/create/' }}");
+		} else {
+			$('#url').attr("href", "{{ @BASE.'/relationship/create/' }}" + v);
+		}
+	}
+</script>

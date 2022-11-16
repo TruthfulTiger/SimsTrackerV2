@@ -1,0 +1,198 @@
+<form action="{{ @BASE.'/relationship/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-row">
+		<div class="col">
+			<div class="form-row">
+				<div class="col">
+					<div class="form-group">
+						<label for="sim1">Sim 1</label>
+						<select class="custom-select" name="sim1" id="sim1">
+							<option value="">-- None --</option>
+							<repeat group="{{ @sims }}" value="{{ @sim }}">
+								<option value="{{@sim.id}}"
+								<check if="{{ @sim.id == @relationship.sim1}}">
+									selected
+								</check>
+								>{{trim(@sim.firstName)}} {{trim(@sim.lastName)}}</option>
+							</repeat>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-row">
+				<div class="col">
+					<div class="form-group">
+						<label for="sim2">Sim 2</label>
+						<select class="custom-select" name="sim2" id="sim2">
+							<option value="">-- None --</option>
+							<repeat group="{{ @sims }}" value="{{ @sim }}">
+								<option value="{{@sim.id}}"
+								<check if="{{ @sim.id == @relationship.sim2}}">
+									selected
+								</check>
+								>{{trim(@sim.firstName)}} {{trim(@sim.lastName)}}</option>
+							</repeat>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="relName">Relationship Name</label>
+		<select class="custom-select" name="relName" id="relName">
+			<option value="">-- None --</option>
+			<repeat group="{{ @ships }}" value="{{ @ship }}">
+				<option value="{{@ship}}"
+				<check if="{{ @ship == @relationship.relName}}">
+					selected
+				</check>
+				>{{trim(@ship)}}</option>
+			</repeat>
+		</select>
+	</div>
+	<div class="form-row">
+		<div class="col mr-3">
+			<div class="form-group">
+				<label for="str">Short-term relationship: <span id="st"></span></label>
+				<div id="str" class="mb-5">
+					<input type="hidden" class='custom-slider-input' name="str">
+				</div>
+			</div>
+		</div>
+		<div class="col ml-3">
+			<div class="form-group">
+				<label for="ltr">Short-term relationship: <span id="lt"></span></label>
+				<div id="ltr" class="mb-5">
+					<input type="hidden" class='custom-slider-input' name="ltr">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="form-group col mr-3">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isEnemy" id="isEnemy"
+				<check if="{{ @relationship.isEnemy == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isEnemy">Enemy</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isFriend" id="isFriend"
+				<check if="{{ @relationship.isFriend == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isFriend">Friend</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isBF" id="isBF"
+				<check if="{{ @relationship.isBF == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isBF">Best Friend</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isCrush" id="isCrush"
+				<check if="{{ @relationship.isCrush == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isCrush">Crush</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isLove" id="isLove"
+				<check if="{{ @relationship.isLove == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isLove">Love</label>
+			</div>
+		</div>
+		<div class="form-group col ml-3">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isFamily" id="isFamily"
+				<check if="{{ @relationship.isFamily == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isFamily">Family</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isSteady" id="isSteady"
+				<check if="{{ @relationship.isSteady == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isSteady">Steady</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isEngaged" id="isEngaged"
+				<check if="{{ @relationship.isEngaged == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isEngaged">Engaged</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="isMarried" id="isMarried"
+				<check if="{{ @relationship.isMarried == 1}}">
+					checked
+				</check>
+				>
+				<label class="custom-control-label" for="isMarried">Married</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="id" value="{{ @relationship.id }}"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-success"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/relationships' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																				aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<script>
+	$(function () {
+		relChange();
+
+		$("#isFamily").change(function () {
+			relChange();
+		});
+	});
+
+	function relChange() {
+		if ($("#isFamily").prop("checked")) {
+			$("#isSteady").attr("disabled", true);
+			$("#isEngaged").attr("disabled", true);
+			if ($("#relName").val() !== 'Partner') {
+				$("#isMarried").attr("disabled", true);
+				$("#isCrush").attr("disabled", true);
+				$("#isLove").attr("disabled", true);
+			}
+
+		} else {
+			$("#isSteady").attr("disabled", false);
+			$("#isEngaged").attr("disabled", false);
+			if ($("#relName").val() !== 'Partner') {
+				$("#isMarried").attr("disabled", false);
+				$("#isCrush").attr("disabled", false);
+				$("#isLove").attr("disabled", false);
+			}
+		}
+	}
+</script>

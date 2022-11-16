@@ -1,0 +1,60 @@
+<p class="mb-3">Keep track of your legacy challenge here. For the official rules, visit <a
+		href="https://www.simslegacychallenge.com/legacy-challenge-rules/sims-2-legacy-challenge-rules-advanced/"
+		target="_blank">www.simslegacychallenge.com</a></p>
+<form method="post" name="legacyscores" validate="true" action="{{ @BASE }}/s2legacy/update/{{ @SESSION.challenge }}">
+	<div class="row">
+		<div class="col-3">
+			<div class="nav flex-column nav-pills pl-0" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+				<a class="nav-link active" id="v-pills-summary-tab" data-toggle="pill" href="#v-pills-summary"
+				   role="tab" aria-controls="v-pills-summary" aria-selected="true">Summary</a>
+				<repeat group="{{ @legacycats }}" key="{{ @lkey }}" value="{{ @cat }}">
+					<a class="nav-link" onclick="negText()" id="v-pills-{{ @lkey }}-tab" data-toggle="pill"
+					   href="#v-pills-{{ @lkey }}" role="tab" aria-controls="v-pills-{{ @lkey }}" aria-selected="false">{{
+						@cat }}</a>
+				</repeat>
+			</div>
+		</div>
+
+		<div class="col-9">
+			<div class="tab-content" id="v-pills-tabContent">
+				<div class="tab-pane fade show active" id="v-pills-summary" role="tabpanel"
+					 aria-labelledby="v-pills-summary-tab">
+					<include href="legacyscores/summary.html"/>
+				</div>
+
+				<repeat group="{{ @legacycats }}" key="{{ @lkey }}" value="{{ @cat }}">
+					<div class="tab-pane fade" id="v-pills-{{ @lkey }}" role="tabpanel"
+						 aria-labelledby="v-pills-{{ @lkey }}-tab">
+						<include if="{{@lkey == 'legacy'}}" href="legacyscores/core.html"/>
+						<include if="{{@lkey == 'money'}}" href="legacyscores/money.html"/>
+						<include if="{{@lkey == 'friends'}}" href="legacyscores/friends.html"/>
+						<include if="{{@lkey == 'wants'}}" href="legacyscores/wants.html"/>
+						<include if="{{@lkey == 'graves'}}" href="legacyscores/graves.html"/>
+						<include if="{{@lkey == 'ghosts'}}" href="legacyscores/ghosts.html"/>
+						<include if="{{@lkey == 'business'}}" href="legacyscores/business.html"/>
+						<include if="{{@lkey == 'pets'}}" href="legacyscores/pets.html"/>
+						<include if="{{@lkey == 'seasons'}}" href="legacyscores/seasons.html"/>
+						<include if="{{@lkey == 'bv'}}" href="legacyscores/bv.html"/>
+						<include if="{{@lkey == 'ft'}}" href="legacyscores/ft.html"/>
+						<include if="{{@lkey == 'sets'}}" href="legacyscores/collections.html"/>
+						<include if="{{@lkey == 'master'}}" href="legacyscores/master.html"/>
+						<include if="{{@lkey == 'handicaps'}}" href="legacyscores/handicaps.html"/>
+						<include if="{{@lkey == 'overflow'}}" href="legacyscores/overflow.html"/>
+						<include if="{{@lkey == 'penalties'}}" href="legacyscores/penalties.html"/>
+					</div>
+				</repeat>
+			</div>
+			<input type="text" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="hhID" value="{{ @household.hhID }}"/>
+			<input type="hidden" name="userID" value="{{ @SESSION.user[2] }}"/>
+			<input type="hidden" name="cid" value="{{ @s2legacy.cid }}"/>
+			<input type="hidden" name="id" value="{{ @s2legacy.id }}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button class="btn btn-primary mb-5" name="save" id="save" type="submit"><i class="fa fa-save mr-2"></i>Save
+			</button>
+			<a href="{{ @BASE.'/challenges' }}" class="btn btn-secondary mb-5"><i
+					class="fa fa-times mr-2"></i>Cancel</a>
+		</div>
+	</div>
+</form>

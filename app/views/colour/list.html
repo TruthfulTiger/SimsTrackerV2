@@ -1,0 +1,56 @@
+<check if="{{ @challenge.hhID == null }}">
+	<check if="{{ @colours }}">
+		<true>
+			<table width="100%" cellpadding="5" id="colours" class="table table-hover table-bordered">
+				<thead>
+				<tr>
+					<th scope="col">Colour</th>
+					<th scope="col">Generation</th>
+					<th scope="col">Action</th>
+				</tr>
+				</thead>
+
+				<tbody>
+				<repeat group="{{ @colours }}" value="{{ @colour }}">
+					<tr class="{{ @colour.colour }}">
+						<td>{{ trim(@colour.colour) }}</td>
+						<td>{{ trim(@colour.generation) }}</td>
+						<td><a href="{{ @BASE.'/colour/update/'. @colour.id }}" data-toggle="tooltip" title="Edit"
+							   class="btn btn-primary mr-2"><i class="fa fa-edit"></i></a>
+							<a href="#" onclick="confirm('{{ @BASE.'/colour/delete/'. @colour.id }}');"
+							   data-toggle="tooltip"
+							   title="Delete"
+							   class="btn btn-danger delete"><i class="fa fa-trash"></i></a></td>
+					</tr>
+				</repeat>
+				</tbody>
+			</table>
+		</true>
+		<false>
+			<p>No colours found.</p>
+		</false>
+	</check>
+</check>
+<a href="{{ @BASE.'/colour/create/'. @SESSION.challenge }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2"
+																							aria-hidden="true"></i>
+	Create</a>
+<a href="#" class="btn btn-secondary mt-3" onclick="window.close();"><i class="fa fa-times mr-2" aria-hidden="true"></i>Close</a>
+
+<script>
+	$(document).ready(function () {
+		let table = $('#colours').DataTable({
+			ordering: false,
+			paging: false,
+			searching: false,
+			order: [[1, 'asc']],
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

@@ -1,0 +1,103 @@
+{   
+    "name" : "",  
+    "dog" : [
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        }
+    ],
+    "cat" : [
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "",
+            "pay" : 0, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        }
+    ]
+}

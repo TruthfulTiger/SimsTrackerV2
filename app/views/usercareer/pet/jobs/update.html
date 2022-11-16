@@ -1,0 +1,223 @@
+<form action="{{ @BASE.'/pjob/update' }}" validate="true" method="post" class="form-horizontal">
+	<div class="form-group">
+		<label for="jobName">Job Name</label>
+		<input type="text" class="form-control" required="required" value="{{ @job.jobName }}" name="jobName"
+			   id="jobName"/>
+	</div>
+
+	<div class="form-group">
+		<label for="jobDesc">Job Description</label>
+		<textarea class="form-control" required="required" name="jobDesc" id="jobDesc">{{ @job.jobDesc }}</textarea>
+	</div>
+
+	<div class="form-row">
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="payCat">Pay (Cat)</label>
+				<input type="number" class="form-control" required="required" min="0" value="{{ @job.payCat }}"
+					   name="payCat" id="payCat"/>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="payDog">Pay (Dog)</label>
+				<input type="number" class="form-control" required="required" min="0" value="{{ @job.payDog }}"
+					   name="payDog" id="payDog"/>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="bonusCat">Bonus (Cat)</label>
+				<input type="number" class="form-control" required="required" min="0" value="{{ @job.bonusCat }}"
+					   name="bonusCat" id="bonusCat"/>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="bonusDog">Bonus (Dog)</label>
+				<input type="number" class="form-control" required="required" min="0" value="{{ @job.bonusDog }}"
+					   name="bonusDog" id="bonusDog"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="startTime">Start time</label>
+				<select class="form-control" name="startTime" id="startTime">
+					<repeat group="{{ @hours }}" key="{{@h}}" value="{{ @hour }}">
+						<option value="{{@h}}"
+						<check if="{{ @job.startTime == @h }}">
+							selected
+						</check>
+						>
+						<check if="{{ @user.timeFormat == 12 }}">
+							<true>
+								{{ date("g:i A", strtotime(@hour)) }}
+							</true>
+							<false>
+								{{ date("H:i", strtotime( @hour)) }}
+							</false>
+						</check>
+						</option>
+					</repeat>
+				</select>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="form-group">
+				<label for="finishTime">Finish time</label>
+				<select class="form-control" name="finishTime" id="finishTime">
+					<repeat group="{{ @hours }}" key="{{@h}}" value="{{ @hour }}">
+						<option value="{{@h}}"
+						<check if="{{ @job.finishTime == @h }}">
+							selected
+						</check>
+						>
+						<check if="{{ @user.timeFormat == 12 }}">
+							<true>
+								{{ date("g:i A", strtotime(@hour)) }}
+							</true>
+							<false>
+								{{ date("H:i", strtotime( @hour)) }}
+							</false>
+						</check>
+						</option>
+					</repeat>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="sun" id="sun"
+			<check if="{{@job.sun == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="sun">Sunday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="mon" id="mon"
+			<check if="{{@job.mon == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="mon">Monday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="tue" id="tue"
+			<check if="{{@job.tue == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="tue">Tuesday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="wed" id="wed"
+			<check if="{{@job.wed == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="wed">Wednesday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="thu" id="thu"
+			<check if="{{@job.thu == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="thu">Thursday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="fri" id="fri"
+			<check if="{{@job.fri == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="fri">Friday</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="sat" id="sat"
+			<check if="{{@job.sat == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="sat">Saturday</label>
+		</div>
+	</div>
+
+	<label>Commands needed to advance</label>
+	<div class="form-group">
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="sit" id="sit"
+			<check if="{{@job.sit == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="sit">Sit Up</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="stay" id="stay"
+			<check if="{{@job.stay == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="stay">Stay</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="shake" id="shake"
+			<check if="{{@job.shake == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="shake">Shake</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="come" id="come"
+			<check if="{{@job.come == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="come">Come Here</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="rollOver" id="rollOver"
+			<check if="{{@job.rollOver == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="rollOver">Roll Over</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="speak" id="speak"
+			<check if="{{@job.speak == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="speak">Speak</label>
+		</div>
+		<div class="custom-control custom-checkbox custom-control-inline">
+			<input type="checkbox" class="custom-control-input" value="1" name="playDead" id="playDead"
+			<check if="{{@job.playDead == 1}}">
+				checked
+			</check>
+			>
+			<label class="custom-control-label" for="playDead">Play Dead</label>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="id" value="{{ @job.id }}"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/careers' }}" class="btn btn-secondary" onclick="window.close();"><i
+					class="fa fa-times mr-2" aria-hidden="true"></i>Close</a>
+		</div>
+	</div>
+</form>

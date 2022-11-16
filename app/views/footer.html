@@ -1,0 +1,325 @@
+</div>
+</div>
+</div>
+</main>
+<footer class="footer text-light shadow-sm">
+	<div class="container-fluid">
+		<div class="container">
+			<ul class="nav nav-white justify-content-center">
+				<repeat group="{{ @footer }}" key="{{ @fkey }}" value="{{ @fitem }}">
+					<li
+					<check if="{{ @title == @fitem }}">
+						<true>
+							class="nav-item active"
+						</true>
+						<false>
+							class="nav-item"
+						</false>
+					</check>
+					>
+					<a href="{{@BASE}}{{@fkey}}"
+					<check if="{{ @title == @fitem }}">
+						<true>
+							class="nav-link active"
+						</true>
+						<false>
+							class="nav-link"
+						</false>
+					</check>
+					>{{@fitem}}
+					<check if="{{ @title == @fitem }}"><span class="sr-only">(current)</span></check>
+					</a>
+					</li>
+				</repeat>
+			</ul>
+			<small>
+				This site is not endorsed by or affiliated with Electronic Arts, or its licensors. Trademarks are the
+				property of their respective owners. Game content and materials copyright Electronic Arts Inc. and its
+				licensors. All Rights Reserved. Site built by Sam Phoenix &copy;
+				<check if="{{ @copyyear == 2018}}">
+					<true>{{ @copyyear }}</true>
+					<false>2018 - {{ @copyyear }}</false>
+				</check>
+			</small>
+		</div>
+	</div>
+</footer>
+
+{* Scripts *}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<script src="{{@BASE}}/ui/js/jquery-simple-validator.min.js"></script>
+<script src="{{@BASE}}/node_modules/shards-ui/dist/js/shards.min.js"></script>
+<script src='{{@BASE}}/ui/js/wNumb.min.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+<script src="https://npmcdn.com/jquery-gray@1.6.0/js/jquery.gray.min.js"></script>
+<script>
+	let json = "";
+	let user = '{{@SESSION.user[2]}}';
+	let challenge = '{{@SESSION.challenge }}';
+	let base = '{{ @BASE }}';
+	$(function () {
+		'use strict';
+		$('[data-toggle="offcanvas"]').on('click', function () {
+			$('.offcanvas-collapse').toggleClass('open')
+		});
+		$('.toast').toast({delay: 5000});
+		$('.toast').toast('show');
+	});
+	$("body").tooltip({selector: '[data-toggle=tooltip]'});
+	//select all checkboxes - https://www.sanwebe.com/2014/01/how-to-select-all-deselect-checkboxes-jquery
+	$("#select_all").change(function () {  //"select all" change
+		var status = this.checked; // "select all" checked status
+		$('.select_all').each(function () { //iterate all listed checkbox items
+			this.checked = status; //change ".checkbox" checked status
+		});
+	});
+
+	$("#select_all3").change(function () {  //"select all" change
+		var status = this.checked; // "select all" checked status
+		$('.select_all3').each(function () { //iterate all listed checkbox items
+			this.checked = status; //change ".checkbox" checked status
+		});
+	});
+
+	$("#select_all4").change(function () {  //"select all" change
+		var status = this.checked; // "select all" checked status
+		$('.select_all4').each(function () { //iterate all listed checkbox items
+			this.checked = status; //change ".checkbox" checked status
+		});
+	});
+
+	// Delete confirmation dialog
+	function confirm(url) {
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to recover this data!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					swal("Item has been deleted", {
+						icon: "success",
+						type: "success"
+					}).then(function () {
+						window.location = url;
+					});
+				}
+			});
+	}
+
+	$('#forgot').on('show.bs.modal', function (e) {
+		$('#login').modal('toggle');
+	});
+
+	$('.select_all').change(function () { //".checkbox" change
+		//uncheck "select all", if one of the listed checkbox item is unchecked
+		if (this.checked == false) { //if this item is unchecked
+			$("#select_all")[0].checked = false; //change "select all" checked status to false
+		}
+
+		//check "select all" if all checkbox items are checked
+		if ($('.select_all:checked').length == $('.select_all').length) {
+			$("#select_all")[0].checked = true; //change "select all" checked status to true
+		}
+	});
+
+	$('.select_all3').change(function () { //".checkbox" change
+		//uncheck "select all", if one of the listed checkbox item is unchecked
+		if (this.checked == false) { //if this item is unchecked
+			$("#select_all3")[0].checked = false; //change "select all" checked status to false
+		}
+
+		//check "select all" if all checkbox items are checked
+		if ($('.select_all3:checked').length == $('.select_all3').length) {
+			$("#select_all3")[0].checked = true; //change "select all" checked status to true
+		}
+	});
+
+	$('.select_all4').change(function () { //".checkbox" change
+		//uncheck "select all", if one of the listed checkbox item is unchecked
+		if (this.checked == false) { //if this item is unchecked
+			$("#select_all4")[0].checked = false; //change "select all" checked status to false
+		}
+
+		//check "select all" if all checkbox items are checked
+		if ($('.select_all4:checked').length == $('.select_all4').length) {
+			$("#select_all4")[0].checked = true; //change "select all" checked status to true
+		}
+	});
+
+	var simoleans = wNumb({
+		decimals: 0,
+		thousand: ',',
+		prefix: '§'
+	});
+	// From https://forum.jquery.com/topic/how-to-set-aria-hidden-attribute-on-jquery-show-hide-functions
+	jQuery.fn.extend({
+		myShow: function () {
+			return this.attr('aria-hidden', 'false').show()
+		},
+		myHide: function () {
+			return this.attr('aria-hidden', 'true').hide()
+		}
+	});
+</script>
+
+<check if="{{@hood.gameVersion == 2}}">
+	{* Careers *}
+	<script>
+		function careerPet(c) {
+			let path = "{{ @BASE.'/ui/json/sims2/careers/' }}";
+			switch (c) {
+				case 1:
+					json = path + "s2security.json";
+					break;
+				case 2:
+					json = path + "s2service.json";
+					break;
+				case 3:
+					json = path + "s2showbiz.json";
+					break;
+				default:
+					json = path + "s2careerpets.json";
+					break;
+			}
+		}
+	</script>
+
+	{* Sims 2 sliders *}
+	<check if="{{ @title == 'Update Sim' }}">
+		{* Update-related sliders *}
+		<script>
+			// initiate s2personality
+			let neatVal = {{trim(@s2sim.neatPoints)}};
+			let outgoingVal = {{trim(@s2sim.outgoingPoints)}};
+			let activeVal = {{trim(@s2sim.activePoints)}};
+			let playfulVal = {{trim(@s2sim.playfulPoints)}};
+			let niceVal = {{trim(@s2sim.nicePoints)}};
+
+			// initiate s2skills
+			let cookVal = {{trim(@sim.cooking)}};
+			let mechVal = {{trim(@sim.mechanical)}};
+			let charVal = {{trim(@sim.charisma)}};
+			let bodyVal = {{trim(@sim.body)}};
+			let logicVal = {{trim(@sim.logic)}};
+			let createVal = {{trim(@s2sim.creativity)}};
+			let cleanVal = {{trim(@s2sim.cleaning)}};
+
+			// initialise s2interests
+			let envVal = {{trim(@s2sim.environment)}};
+			let weatherVal = {{trim(@s2sim.weather)}};
+			let moneyVal = {{trim(@s2sim.money)}};
+			let paraVal = {{trim(@s2sim.paranormal)}};
+			let fashionVal = {{trim(@s2sim.fashion)}};
+			let crimeVal = {{trim(@s2sim.crime)}};
+			let entVal = {{trim(@s2sim.entertainment)}};
+			let workVal = {{trim(@s2sim.work)}};
+			let toysVal = {{trim(@s2sim.toys)}};
+			let foodVal = {{trim(@s2sim.food)}};
+			let cultureVal = {{trim(@s2sim.culture)}};
+			let politicsVal = {{trim(@s2sim.politics)}};
+			let healthVal = {{trim(@s2sim.health)}};
+			let travelVal = {{trim(@s2sim.travel)}};
+			let sportsVal = {{trim(@s2sim.sports)}};
+			let animalsVal = {{trim(@s2sim.animals)}};
+			let schoolVal = {{trim(@s2sim.school)}};
+			let scifiVal = {{trim(@s2sim.scifi)}};
+
+			// initialise s2hobbies
+			let cuisineVal = {{trim(@s2sim.cuisine)}};
+			let filmVal = {{trim(@s2sim.film)}};
+			let tinkeringVal = {{trim(@s2sim.tinkering)}};
+			let sportVal = {{trim(@s2sim.sport)}};
+			let musicVal = {{trim(@s2sim.music)}};
+			let fitnessVal = {{trim(@s2sim.fitness)}};
+			let artsVal = {{trim(@s2sim.arts)}};
+			let scienceVal = {{trim(@s2sim.science)}};
+			let gamesVal = {{trim(@s2sim.games)}};
+			let natureVal = {{trim(@s2sim.nature)}};
+
+			// initiate s2al
+			let repVal = {{trim(@sim.reputation)}};
+			let alignVal = {{trim(@s2sim.alignment)}};
+			let magicVal = {{trim(@s2sim.magicLevel)}};
+		</script>
+		<script src="{{@BASE}}/ui/js/s2sliders.js"></script>
+	</check>
+</check>
+{* Sims 3 specific *}
+<check if="{{@hood.gameVersion == 3}}">
+
+</check>
+{* Sims 4 specific *}
+<check if="{{@hood.gameVersion == 4}}">
+
+</check>
+
+{* Universal scripts *}
+<script>
+	<check if="{{ @title == 'Update Relationship' }}">
+		let strVal = {{trim(@relationship.str)}};
+		let ltrVal = {{trim(@relationship.ltr)}};
+		var str = document.getElementById('str');
+		var strValueElement = document.getElementById('st');
+		var ltr = document.getElementById('ltr');
+		var ltrValueElement = document.getElementById('lt');
+
+		/* STR */
+		$('#str').customSlider({
+		start: [strVal],
+		step: 1,
+		range: {
+		'min': -100,
+		'max': 100
+	},
+		format: wNumb({
+		decimals: 0
+	}),
+		ariaFormat: wNumb({
+		decimals: 0
+	}),
+		pips: {
+		mode: 'positions',
+		values: [0, 25, 50, 75, 100],
+		density: 5
+	}
+	});
+
+		str.noUiSlider.on('update', function (values, handle) {
+		strValueElement.innerHTML = values[handle];
+	});
+
+		/* LTR */
+		$('#ltr').customSlider({
+		start: [ltrVal],
+		step: 1,
+		range: {
+		'min': -100,
+		'max': 100
+	},
+		format: wNumb({
+		decimals: 0
+	}),
+		ariaFormat: wNumb({
+		decimals: 0
+	}),
+		pips: {
+		mode: 'positions',
+		values: [0, 25, 50, 75, 100],
+		density: 5
+	}
+	});
+
+		ltr.noUiSlider.on('update', function (values, handle) {
+		ltrValueElement.innerHTML = values[handle];
+	});
+	</check>
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<header>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+		<repeat group="{{ @mainmenu }}" value="{{ @item }}">
+			<div class="container">
+				<a class="navbar-brand title" style="font-size: xx-large" href="#">Sims Tracker</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+						aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav mr-auto">
+						<li
+						<check if="{{ @title == @item.title }}">
+							<true>
+								class="nav-item active"
+							</true>
+							<false>
+								class="nav-item"
+							</false>
+						</check>
+						>
+						<a href="{{@BASE}}{{@item.url}}"
+						<check if="{{ @title == @item.title }}">
+							<true>
+								class="nav-link active"
+							</true>
+							<false>
+								class="nav-link"
+							</false>
+						</check>
+						><i class="{{ @item.icon }} mr-2" aria-hidden="true"></i>{{ @item.title }}
+						<check if="{{ @title == @item.title }}"><span class="sr-only">(current)</span></check>
+						</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+							   aria-haspopup="true" aria-expanded="false"><i class="fas fa-tools mr-2"
+																			 aria-hidden="true"></i>Tools&nbsp;&nbsp;</a>
+							<div class="dropdown-menu">
+								<repeat group="{{ @toolsmenu }}" value="{{ @tool }}">
+									<a class="dropdown-item" href="{{@BASE}}{{ @tool.url }}">
+										<i class="{{ @tool.icon }} mr-2" aria-hidden="true"></i>{{ trim(@tool.title) }}</a>
+								</repeat>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="navbar-nav">
+						<check if="{{ @SESSION.user }}">
+							<true>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+									   aria-haspopup="true" aria-expanded="false">
+										<img src="{{@user.image}}" class="mr-2 img-circle" width="24"
+											 alt="User avatar"/>My Account&nbsp;&nbsp;</a>
+									<div class="dropdown-menu">
+										<repeat group="{{ @usermenu }}" value="{{ @member }}">
+											<a class="dropdown-item" href="{{@BASE}}{{ @member.url }}">
+												<i class="{{ @member.icon }} mr-2" aria-hidden="true"></i>{{
+												trim(@member.title) }}</a>
+										</repeat>
+										<check if="{{ @SESSION.user[1] == 'Admin' }}">
+											<div class="dropdown-divider"></div>
+											<repeat group="{{ @adminmenu }}" value="{{ @admin }}">
+												<a class="dropdown-item" href="{{@BASE}}{{ @admin.url }}">
+													<i class="{{ @admin.icon }} mr-2" aria-hidden="true"></i>{{
+													trim(@admin.title) }}</a>
+											</repeat>
+										</check>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{@BASE}}/user/logout"><i
+												class="fas fa-sign-out-alt mr-2" aria-hidden="true"></i>Logout</a>
+									</div>
+								</li>
+							</true>
+							<false>
+								<li class="nav-item"><a class="nav-link" href="#login" data-toggle="modal"><i
+										class="fas fa-sign-in-alt" aria-hidden="true">&nbsp;</i> Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="{{@BASE}}/user/register"><i
+										class="fas fa-user-plus" aria-hidden="true">&nbsp;</i> Register</a></li>
+							</false>
+						</check>
+					</ul>
+				</div>
+			</div>
+		</repeat>
+	</nav>
+	<check if="{{ @SESSION.user }}">
+		<include href="usermenu.html"></include>
+	</check>
+</header>
+

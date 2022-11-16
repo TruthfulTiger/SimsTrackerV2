@@ -1,0 +1,110 @@
+<check if="{{ @hh.hhID != null }}">
+	<true>
+		<form action="{{ @BASE.'/sim/create' }}" validate="true" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="firstName">First Name</label>
+				<input type="text" class="form-control" required="required" name="firstName" id="firstName"/>
+			</div>
+
+			<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<input type="text" class="form-control" required="required" name="lastName" id="lastName"/>
+			</div>
+
+			<div class="form-group">
+				<label for="gender">Gender</label>
+				<select class="custom-select" name="gender" required="required" id="gender">
+					<option value="F">Female</option>
+					<option value="M">Male</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="origin">Origin</label>
+				<select class="custom-select" name="origin" required="required" id="origin">
+					<option>-- Where does this sim come from? --</option>
+					<option value="cas">CAS</option>
+					<option value="big">Born in-game</option>
+					<option value="npc">NPC</option>
+					<option value="townie">Townie</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="age">Age</label>
+				<select class="custom-select" required="required" name="age" id="age">
+					<repeat group="{{ @ages }}" value="{{ @age }}">
+						<option value="{{ @age }}">{{ @age }}</option>
+					</repeat>
+				</select>
+			</div>
+
+			<div class="control-group">
+				<div class="">
+					<input type="text" name="hptrap" class="hptrap"/>
+					<input type="hidden" name="generation" id="generation" value=""/>
+					<input type="hidden" name="hhID" value="{{ @hh.hhID }}"/>
+					<input type="hidden" name="gameVersion" value="{{ @hood.gameVersion }}"/>
+					<check if="{{ @hh.phID == NULL}}">
+						<true>
+							<input type="hidden" name="nhID" value="{{ @hh.nhID }}"/>
+						</true>
+						<false>
+							<input type="hidden" name="nhID" value="{{ @hh.phID }}"/>
+						</false>
+					</check>
+					<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+					<input type="hidden" name="create" value="create"/>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
+						Sim
+					</button>
+					<a href="{{ @BASE.'/sims' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			   aria-hidden="true"></i>Cancel</a>
+				</div>
+			</div>
+		</form>
+	</true>
+	<false>
+		<div class="form-group">
+			<label for="hh">Which household is this Sim part of?</label>
+			<select class="custom-select" name="hh" id="hh">
+				<repeat group="{{ @households }}" value="{{ @household }}">
+					<option value="{{ @household.hhID }}">{{ @household.name }}</option>
+				</repeat>
+			</select>
+		</div>
+		<a href="" id="url" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+		<a href="{{ @BASE.'/sims' }}" class="btn btn-secondary"><i class="fa fa-times mr-2" aria-hidden="true"></i>Cancel</a>
+	</false>
+</check>
+<script>
+	$(function () {
+		let v = 0;
+		$('#url').attr("href", "{{ @BASE.'/household/create/' }}");
+
+		$("#hh").change(function () {
+			v = $("#hh").children("option:selected").val();
+
+			if (v > 0) {
+				$('#url').attr("href", "{{ @BASE.'/sim/create/' }}" + v);
+			} else {
+				$('#url').attr("href", "{{ @BASE.'/household/create/' }}");
+			}
+		});
+		genshow();
+
+		$("#origin").change(function () {
+			genshow();
+		});
+	});
+
+	function genshow() {
+		if ($("#origin").val() === "big")
+			$("#generation").val(2);
+		if ($("#origin").val() === "cas")
+			$("#generation").val(1);
+		if ($("#origin").val() === "townie" || $("#origin").val() === "npc")
+			$("#generation").val(0);
+	}
+
+</script>

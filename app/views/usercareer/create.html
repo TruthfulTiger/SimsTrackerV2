@@ -1,0 +1,33 @@
+<form action="{{ @BASE.'/user/career/create' }}" autocomplete="off" validate="true" method="post"
+	  class="form-horizontal">
+	<div class="form-group">
+		<label for="gameVersion">Game version</label>
+		<select class="custom-select" name="gameVersion" required="required" id="gameVersion">
+			<option value=0>-- Sims version --</option>
+			<repeat group="{{ @games }}" key="{{@gkey}}" value="{{ @game }}">
+				<option value="{{ @gkey }}">{{ @game }}</option>
+			</repeat>
+		</select>
+	</div>
+
+	<div class="form-row">
+		<div class="col">
+			<div class="form-group">
+				<label for="careerName">Career Name</label>
+				<input type="text" class="form-control" name="careerName" id="careerName">
+			</div>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="hidden" name="money" value=""/>
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="create" value="create"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add Career
+			</button>
+			<a href="{{ @BASE.'/user/careers' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			   aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

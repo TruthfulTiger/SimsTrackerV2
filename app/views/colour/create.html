@@ -1,0 +1,103 @@
+<form action="{{ @BASE.'/colour/create/'.@SESSION.challenge }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="colour">Colour</label>
+		<div id="colourpick"></div>
+	</div>
+
+	<div class="form-group">
+		<label for="generation">Generation</label>
+		<input type="number" min="1" value="1" class="form-control" required="required" name="generation"
+			   id="generation"/>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input hidden name="colour" id="colour" value=""/>
+			<input type="hidden" name="create" value="create"/>
+			<input hidden name="gen" id="gen" value="{{@colour.generation}}"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="challengeID" value="{{@SESSION.challenge}}"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add Colour
+			</button>
+			<a href="{{ @BASE.'/colours/'. @SESSION.challenge }}" class="btn btn-secondary"><i
+					class="fa fa-times mr-2"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<script src="{{@BASE}}/ui/js/colorpalettepicker.js"></script>
+<script>
+	$('#colourpick').colorPalettePicker({
+		buttonText: 'Choose colour',
+		lines: 2,
+		palette: [
+			'red',
+			'orange',
+			'yellow',
+			'lime',
+			'green',
+			'cyan',
+			'blue',
+			'violet',
+			'black',
+			'lightgrey',
+			'white',
+			'brown',
+			'pink'
+		],
+		onSelected: function (color) {
+			colour(color);
+		}
+	});
+
+	function colour(color) {
+		let name = '';
+		switch (color) {
+			case 'rgb(255, 0, 0)':
+				name = 'Red';
+				break;
+			case 'rgb(255, 165, 0)':
+				name = 'Orange';
+				break;
+			case 'rgb(255, 255, 0)':
+				name = 'Yellow';
+				break;
+			case 'rgb(0, 255, 0)':
+				name = 'Lime';
+				break;
+			case 'rgb(0, 128, 0)':
+				name = 'Green';
+				break;
+			case 'rgb(0, 255, 255)':
+				name = 'Turquoise';
+				break;
+			case 'rgb(0, 0, 255)':
+				name = 'Blue';
+				break;
+			case 'rgb(128, 0, 128)':
+				name = 'Purple';
+				break;
+			case 'rgb(0, 0, 0)':
+				name = 'Black';
+				break;
+			case 'rgb(211, 211, 211)':
+				name = 'Grey';
+				break;
+			case 'rgb(255, 255, 255)':
+				name = 'White';
+				break;
+			case 'rgb(165, 42, 42)':
+				name = 'Brown';
+				break;
+			case 'rgb(255, 192, 203)':
+				name = 'Pink';
+				break;
+			default:
+				name = 'Undefined';
+				break;
+		}
+		$("#colour").val(name);
+	}
+</script>

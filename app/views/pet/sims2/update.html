@@ -1,0 +1,589 @@
+<ul class="nav nav-tabs mb-3" id="s2PetTabs" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link active" id="s2personality-tab" data-toggle="tab" href="#s2personality" role="tab"
+		   aria-controls="s2personality" aria-selected="true">Personality</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="s2commands-tab" data-toggle="tab" href="#s2commands" role="tab"
+		   aria-controls="s2commands" aria-selected="false">Commands</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="s2career-tab" data-toggle="tab" href="#s2career" role="tab" aria-controls="s2career"
+		   aria-selected="false">Career</a>
+	</li>
+</ul>
+
+<div class="tab-content mb-3" id="s2PetDetails">
+	<div class="tab-pane fade show active" id="s2personality" role="tabpanel" aria-labelledby="s2personality-tab">
+		<div class="form-row">
+			<div class="col text-center">
+				<h5 class="mb-3 text-primary">Star Sign</h5>
+				<div class="form-group">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="aries" value="Aries" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Aries'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="aries"><img src="{{@BASE}}{{@s2path}}Zodiac5.png"
+																			 alt="Aries"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="taurus" value="Taurus" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Taurus'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="taurus"><img src="{{@BASE}}{{@s2path}}Zodiac11.png"
+																			  alt="Aries"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="gemini" value="Gemini" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Gemini'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="gemini"><img src="{{@BASE}}{{@s2path}}Zodiac7.png"
+																			  alt="Gemini"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="cancer" value="Cancer" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Cancer'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="cancer"><img src="{{@BASE}}{{@s2path}}Zodiac6.png"
+																			  alt="Cancer"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="leo" value="Leo" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Leo'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="leo"><img src="{{@BASE}}{{@s2path}}Zodiac8.png"
+																		   alt="Leo"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="virgo" value="Virgo" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Virgo'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="virgo"><img src="{{@BASE}}{{@s2path}}Zodiac12.png"
+																			 alt="Virgo"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="libra" value="Libra" onchange="zodiacPoints(value)" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Libra'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="libra"><img src="{{@BASE}}{{@s2path}}Zodiac3.png"
+																			 alt="Libra"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="scorpio" onchange="zodiacPoints(value)" value="Scorpio" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Scorpio'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="scorpio"><img src="{{@BASE}}{{@s2path}}Zodiac10.png"
+																			   alt="Scorpio"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sag" onchange="zodiacPoints(value)" value="Sagittarius" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Sagittarius'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="sag"><img src="{{@BASE}}{{@s2path}}Zodiac2.png"
+																		   alt="Sagittarius"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="capricorn" onchange="zodiacPoints(value)" value="Capricorn"
+							   name="starSign" class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Capricorn'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="capricorn"><img src="{{@BASE}}{{@s2path}}Zodiac1.png"
+																				 alt="Capricorn"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="aquarius" onchange="zodiacPoints(value)" value="Aquarius"
+							   name="starSign" class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Aquarius'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="aquarius"><img src="{{@BASE}}{{@s2path}}Zodiac4.png"
+																				alt="Aquarius"></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="pisces" onchange="zodiacPoints(value)" value="Pisces" name="starSign"
+							   class="custom-control-input"
+						<check if="{{ @s2pet.starSign == 'Pisces'}}">
+							checked
+						</check>
+						>
+						<label class="custom-control-label" for="pisces"><img src="{{@BASE}}{{@s2path}}Zodiac9.png"
+																			  alt="Pisces"></label>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<h5 class="text-center text-primary mb-3">Personality</h5>
+				<div class="form-group">
+					<label for="playfulPoints">Intelligence:
+						<output for="playfulPoints" id="pP">1</output>
+					</label>
+					<input type="range" class="custom-range" min="1" max="3" value="{{ trim(@s2pet.intelligence) }}"
+						   class="form-control-range" name="intelligence" id="playfulPoints"
+						   oninput="playfulUpdate(value)">
+				</div>
+				<div class="form-group">
+					<label for="activePoints">Activeness:
+						<output for="activePoints" id="aP">1</output>
+					</label>
+					<input type="range" class="custom-range" min="1" max="3" value="{{ trim(@s2pet.activeness) }}"
+						   class="form-control-range" name="activeness" id="activePoints" oninput="activeUpdate(value)">
+				</div>
+				<div class="form-group">
+					<label for="outgoingPoints">Friendliness:
+						<output for="outgoingPoints" id="oP">1</output>
+					</label>
+					<input type="range" class="custom-range" min="1" max="3" value="{{ trim(@s2pet.friendliness) }}"
+						   class="form-control-range" name="friendliness" id="outgoingPoints"
+						   oninput="outgoingUpdate(value)">
+				</div>
+				<div class="form-group">
+					<label for="nicePoints">Aggression:
+						<output for="nicePoints" id="ncP">1</output>
+					</label>
+					<input type="range" class="custom-range" min="1" max="3" value="{{ trim(@s2pet.aggression) }}"
+						   class="form-control-range" name="aggression" id="nicePoints" oninput="niceUpdate(value)">
+				</div>
+				<div class="form-group">
+					<label for="neatPoints">Cleanliness:
+						<output for="neatPoints" id="nP">1</output>
+					</label>
+					<input type="range" class="custom-range" min="1" max="3" value="{{ trim(@s2pet.cleanliness) }}"
+						   class="form-control-range" name="cleanliness" id="neatPoints" oninput="neatUpdate(value)">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="s2commands" role="tabpanel" aria-labelledby="s2commands-tab">
+		<div class="form-row">
+			<div class="col">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="sit" name="learnedSit"
+					<check if="{{ @s2pet.learnedSit == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="sit">Sit</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="stay" name="learnedStay"
+					<check if="{{ @s2pet.learnedStay == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="stay">Stay</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="come" name="learnedCome"
+					<check if="{{ @s2pet.learnedCome == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="come">Come Here</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="roll" name="learnedRoll"
+					<check if="{{ @s2pet.learnedRoll == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="roll">Roll Over</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="speak" name="learnedSpeak"
+					<check if="{{ @s2pet.learnedSpeak == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="speak">Speak</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="shake" name="learnedShake"
+					<check if="{{ @s2pet.learnedShake == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="shake">Shake</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="dead" name="learnedDead"
+					<check if="{{ @s2pet.learnedDead == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="dead">Play Dead</label>
+				</div>
+				<div class="custom-control custom-checkbox" id="toiletShow">
+					<input type="checkbox" class="custom-control-input" id="toilet" name="toiletTrained"
+					<check if="{{ @s2pet.toiletTrained == 1}}">
+						checked
+					</check>
+					>
+					<label class="custom-control-label" for="toilet">Use Toilet</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="s2career" role="tabpanel" aria-labelledby="s2career-tab">
+		<div class="form-row">
+			<div class="col">
+				<div class="form-group">
+					<label for="careerTrack">Career Track</label>
+					<select class="custom-select" name="careerTrack" id="careerTrack">
+						<option value="">Unemployed</option>
+						<repeat group="{{ @petcareers }}" key="{{@pkey}}" value="{{ @petcareer }}">
+							<option value="{{ @pkey }}"
+							<check if="{{ @s2pet.careerTrack == @pkey}}">
+								selected
+							</check>
+							>{{ @petcareer }}</option>
+						</repeat>
+					</select>
+				</div>
+			</div>
+			<div class="col">
+				<label for="jobLevel">Job</label>
+				<select class="custom-select" name="jobLevel" id="jobLevel">
+					<option value="0">-- Unemployed --</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-row">
+			<check if="{{ @pet.age == 'Elder'}}">
+				<div class="custom-control custom-toggle my-2">
+					<input type="checkbox" id="retired" name="retired" value="1" class="custom-control-input"
+					<check if="{{ @s2pet.retired == 1}}">
+						checked
+					</check>
+					/>
+					<label class="custom-control-label" for="retired">Retired</label>
+				</div>
+			</check>
+		</div>
+	</div>
+</div>
+
+<script>
+	let career;
+	let careerSpecies;
+
+	$(function () {
+		// initiate s2personality
+		neatUpdate({
+		{
+			trim(@s2pet.cleanliness)
+		}
+	})
+		;
+		outgoingUpdate({
+		{
+			trim(@s2pet.friendliness)
+		}
+	})
+		;
+		activeUpdate({
+		{
+			trim(@s2pet.activeness)
+		}
+	})
+		;
+		playfulUpdate({
+		{
+			trim(@s2pet.intelligence)
+		}
+	})
+		;
+		niceUpdate({
+		{
+			trim(@s2pet.aggression)
+		}
+	})
+		;
+
+		genshow();
+		toiletCheck();
+		careerLoad();
+
+		$("#origin").change(function () {
+			genshow();
+		});
+
+		$("#species").change(function () {
+			careerLoad();
+			toiletCheck();
+		});
+
+		$("#careerTrack").on('change', function () {
+			careerLoad();
+		});
+	});
+
+	function genshow() {
+		if ($("#origin").val() === "big" || $("#origin").val() === "cas") {
+			$("#genshow").attr('aria-hidden', 'false').show();
+			$("#generation").val({
+			{
+				trim(@pet.generation)
+			}
+		})
+			;
+		} else {
+			$("#genshow").attr('aria-hidden', 'true').hide();
+		}
+		if ($("#origin").val() === "stray")
+			$("#generation").val(0);
+	}
+
+	function toiletCheck() {
+		if ($('#species').val() === 'Cat') {
+			$('#toiletShow').attr('aria-hidden', 'false').show();
+		} else {
+			$('#toiletShow').attr('aria-hidden', 'true').hide();
+		}
+	}
+
+	// check s2personality
+	function neatUpdate(v) {
+		document.querySelector('#nP').value = v;
+		if (v == 1) {
+			$('#nP').val('Pigpen');
+		} else if (v == 3) {
+			$('#nP').val('Finicky');
+		} else {
+			$('#nP').val('Normal');
+		}
+	}
+
+	function outgoingUpdate(v) {
+		document.querySelector('#oP').value = v;
+		if (v == 1) {
+			$('#oP').val('Independent');
+		} else if (v == 3) {
+			$('#oP').val('Friendly');
+		} else {
+			$('#oP').val('Normal');
+		}
+	}
+
+	function activeUpdate(v) {
+		document.querySelector('#aP').value = v;
+		if (v == 1) {
+			$('#aP').val('Lazy');
+		} else if (v == 3) {
+			$('#aP').val('Hyper');
+		} else {
+			$('#aP').val('Normal');
+		}
+	}
+
+	function playfulUpdate(v) {
+		document.querySelector('#pP').value = v;
+		if (v == 1) {
+			$('#pP').val('Doofus');
+		} else if (v == 3) {
+			$('#pP').val('Genius');
+		} else {
+			$('#pP').val('Normal');
+		}
+	}
+
+	function niceUpdate(v) {
+		document.querySelector('#ncP').value = v;
+		if (v == 1) {
+			$('#ncP').val('Cowardly');
+		} else if (v == 3) {
+			$('#ncP').val('Aggressive');
+		} else {
+			$('#ncP').val('Normal');
+		}
+	}
+
+	function zodiacPoints(v) {
+		let nP;
+		let oP;
+		let aP;
+		let pP;
+		let ncP;
+
+		switch (v) {
+			case 'Aries':
+				nP = 2;
+				oP = 3;
+				aP = 2;
+				pP = 3;
+				ncP = 3;
+				break;
+			case 'Taurus':
+				nP = 3;
+				oP = 1;
+				aP = 1;
+				pP = 1;
+				ncP = 2;
+				break;
+			case 'Gemini':
+				nP = 1;
+				oP = 2;
+				aP = 3;
+				pP = 2;
+				ncP = 3;
+				break;
+			case 'Cancer':
+				nP = 2;
+				oP = 1;
+				aP = 2;
+				pP = 2;
+				ncP = 1;
+				break;
+			case 'Leo':
+				nP = 1;
+				oP = 3;
+				aP = 1;
+				pP = 2;
+				ncP = 3;
+				break;
+			case 'Virgo':
+				nP = 3;
+				oP = 1;
+				aP = 2;
+				pP = 3;
+				ncP = 2;
+				break;
+			case 'Libra':
+				nP = 1;
+				oP = 3;
+				aP = 1;
+				pP = 1;
+				ncP = 2;
+				break;
+			case 'Scorpio':
+				nP = 2;
+				oP = 1;
+				aP = 3;
+				pP = 3;
+				ncP = 3;
+				break;
+			case 'Sagittarius':
+				nP = 1;
+				oP = 3;
+				aP = 3;
+				pP = 1;
+				ncP = 1;
+				break;
+			case 'Capricorn':
+				nP = 3;
+				oP = 1;
+				aP = 1;
+				pP = 3;
+				ncP = 2;
+				break;
+			case 'Aquarius':
+				nP = 2;
+				oP = 3;
+				aP = 2;
+				pP = 1;
+				ncP = 1;
+				break;
+			case 'Pisces':
+				nP = 3;
+				oP = 2;
+				aP = 3;
+				pP = 2;
+				ncP = 1;
+				break;
+			default:
+				break;
+		}
+		$('#neatPoints').val(nP);
+		neatUpdate(nP);
+		$('#outgoingPoints').val(oP);
+		outgoingUpdate(oP);
+		$('#activePoints').val(aP);
+		activeUpdate(aP);
+		$('#playfulPoints').val(pP);
+		playfulUpdate(pP);
+		$('#nicePoints').val(ncP);
+		niceUpdate(ncP);
+	}
+
+	function careerLoad() {
+		career = parseInt($("#careerTrack").val());
+		jobLevel = {
+		{ @s2pet.jobLevel
+		}
+	}
+		;
+
+		if (career > 0) {
+			careerPet(career);
+			$.ajax({
+				type: 'POST',
+				url: json,
+				data: {get_param: 'value'},
+				dataType: 'json',
+				success: function (data) {
+					if ($('#species').val() == "Small dog" || $('#species').val() == "Large dog") {
+						careerSpecies = data.dog;
+					}
+					if ($('#species').val() == "Cat") {
+						careerSpecies = data.cat;
+					}
+					jobMenu();
+				},
+				error: function (result) {
+					console.log("File not found");
+				}
+			});
+		} else {
+			$('select[name="jobLevel"]').empty();
+			$('select[name="jobLevel"]').find('option[value="0"]').show();
+		}
+	}
+
+	function jobMenu() {
+		let jobOptions = "";
+		let index = -1;
+		$('select[name="jobLevel"]').empty();
+
+		for (var i = 0; i < careerSpecies.length; i++) {
+			index = careerSpecies.findIndex(obj => obj.name == careerSpecies[i].name);
+			job = index + 1;
+			jobOptions += "<option value='" + job + "'>" + careerSpecies[i].name + "</option>";
+		}
+		$('select[name="jobLevel"]').append(jobOptions);
+		$('select[name="jobLevel"]').find('option[value="' + jobLevel + '"]').attr("selected", true);
+		$('select[name="jobLevel"]').find('option[value="0"]').attr("selected", false);
+		$('select[name="jobLevel"]').find('option[value="0"]').hide();
+	}
+
+</script>

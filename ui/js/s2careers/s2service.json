@@ -1,0 +1,103 @@
+{   
+    "name" : "Service",  
+    "dog" : [
+        {
+            "name" : "Vermin Chaser",
+            "pay" : 107, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Therapy Pet",
+            "pay" : 190, 
+            "bonus" : 380,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        },
+        {
+            "name" : "Seeing Eye Pet",
+            "pay" : 335, 
+            "bonus" : 670,
+            "sit" : null,
+            "stay" : null,
+            "come" : true,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        },
+        {
+            "name" : "Rescue Pet",
+            "pay" : 636, 
+            "bonus" : 1272,
+            "sit" : null,
+            "stay" : null,
+            "come" : true,
+            "rollover" : true,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        }
+    ],
+    "cat" : [
+        {
+            "name" : "Vermin Chaser",
+            "pay" : 123, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Therapy Pet",
+            "pay" : 218, 
+            "bonus" : 436,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        },
+        {
+            "name" : "Seeing Eye Pet",
+            "pay" : 385, 
+            "bonus" : 770,
+            "sit" : null,
+            "stay" : null,
+            "come" : true,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        },
+        {
+            "name" : "Rescue Pet",
+            "pay" : 731, 
+            "bonus" : 1462,
+            "sit" : null,
+            "stay" : null,
+            "come" : true,
+            "rollover" : true,
+            "speak" : null,
+            "shake" : true,
+            "playdead" : null
+        }
+    ]
+}

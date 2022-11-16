@@ -1,0 +1,46 @@
+{
+  "gameVersion": 3,
+  "main": [
+    {
+      "name": "Sunset Valley"
+    },
+    {
+      "name": "Adventureland"
+    },
+    {
+      "name": "Twinbrook"
+    },
+    {
+      "name": "Bridgeport"
+    },
+    {
+      "name": "Appaloosa Plains"
+    },
+    {
+      "name": "Starlight Shores"
+    },
+    {
+      "name": "Moonlight Falls"
+    },
+    {
+      "name": "Isla Paradiso"
+    }
+  ],
+  "subworld": [
+    {
+      "name": "Al Simhara"
+    },
+    {
+      "name": "Champs Les Sims"
+    },
+    {
+      "name": "Shang Simla"
+    },
+    {
+      "name": "Sims University"
+    },
+    {
+      "name": "Oasis Landing"
+    }
+  ]
+}

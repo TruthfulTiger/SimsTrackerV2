@@ -1,0 +1,357 @@
+<h3 class="text-primary">{{ @cat }}</h3>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="kaching">Kaching</label>
+			<input type="number" min="0" class="form-control" oninput="kachingChange(value)" id="kaching"
+				   value="{{ trim(@s2legacy.kaching) }}" name="kaching"/>
+		</div>
+		<div class="form-group">
+			<label for="shrink">Sim Shrink Visit</label>
+			<input type="number" min="0" class="form-control" id="shrink" oninput="shrinkChange(value)"
+				   value="{{ trim(@s2legacy.shrink) }}" name="shrink"/>
+		</div>
+		<div class="form-group">
+			<label for="sw">Child Taken By Social Worker</label>
+			<input type="number" min="0" class="form-control" id="sw" oninput="swChange(value)"
+				   value="{{ trim(@s2legacy.sw) }}" name="sw"/>
+		</div>
+		<div class="form-group">
+			<label for="repo">Visit From Repo Man</label>
+			<input type="number" min="0" class="form-control" id="repo" oninput="repoChange(value)"
+				   value="{{ trim(@s2legacy.repo) }}" name="repo"/>
+		</div>
+		<div class="form-group">
+			<label for="dropout">Expelled/Dropped Out Of College <img src="{{@BASE}}{{@s2path}}UNI.png"
+																	  title="Neesd Uni" data-toggle="tooltip"
+																	  alt="Needs University"></label>
+			<input type="number" min="0" class="form-control" id="dropout" oninput="dropoutChange(value)"
+				   value="{{ trim(@s2legacy.dropout) }}" name="dropout"/>
+		</div>
+		<div class="form-group">
+			<label for="visitordeath">Visitor Dies</label>
+			<input type="number" min="0" class="form-control" id="visitordeath" oninput="visitordeathChange(value)"
+				   value="{{ trim(@s2legacy.visitordeath) }}" name="visitordeath"/>
+		</div>
+		<div class="form-group">
+			<label for="diva">Diva/Mr Big Moves In <img src="{{@BASE}}{{@s2path}}NL.png" title="Needs Nightlife"
+														data-toggle="tooltip" alt="Needs Nightlife"></label>
+			<input type="number" min="0" class="form-control" id="diva" oninput="divaChange(value)"
+				   value="{{ trim(@s2legacy.diva) }}" name="diva"/>
+		</div>
+		<div class="form-group">
+			<label for="reload">Game Reload</label>
+			<input type="number" min="0" class="form-control" id="reload" oninput="reloadChange(value)"
+				   value="{{ trim(@s2legacy.reload) }}" name="reload"/>
+		</div>
+		<div class="form-group">
+			<label for="aspchange">Aspiration Change (not Grilled Cheese)</label>
+			<input type="number" min="0" class="form-control" id="aspchange" oninput="aspChange(value)"
+				   value="{{ trim(@s2legacy.aspchange) }}" name="aspchange"/>
+		</div>
+		<div class="form-group">
+			<label for="neglect">Animal Taken Due To Neglect <img src="{{@BASE}}{{@s2path}}Pets.png" title="Needs Pets"
+																  data-toggle="tooltip" alt="Needs Pets"></label>
+			<input type="number" min="0" class="form-control" id="neglect" oninput="neglectChange(value)"
+				   value="{{ trim(@s2legacy.neglect) }}" name="neglect"/>
+		</div>
+		<div class="form-group">
+			<label for="runaway">Animal That Runs Away <img src="{{@BASE}}{{@s2path}}Pets.png" title="Needs Pets"
+															data-toggle="tooltip" alt="Needs Pets"></label>
+			<input type="number" min="0" class="form-control" id="runaway" oninput="runawayChange(value)"
+				   value="{{ trim(@s2legacy.runaway) }}" name="runaway"/>
+		</div>
+		<div class="form-group">
+			<label for="retrieved">Animal That Runs Away, But Later Retrieved <img src="{{@BASE}}{{@s2path}}Pets.png"
+																				   title="Needs Pets"
+																				   data-toggle="tooltip"
+																				   alt="Needs Pets"></label>
+			<input type="number" min="0" class="form-control" id="retrieved" oninput="retrievedChange(value)"
+				   value="{{ trim(@s2legacy.retrieved) }}" name="retrieved"/>
+		</div>
+		<div class="form-group">
+			<label for="badvacation">Bad Vacation Memory <img src="{{@BASE}}{{@s2path}}BV.png" title="Needs BV"
+															  data-toggle="tooltip" alt="Needs BV"></label>
+			<input type="number" min="0" class="form-control" id="badvacation" oninput="badvacationChange(value)"
+				   value="{{ trim(@s2legacy.badvacation) }}" name="badvacation"/>
+		</div>
+	</div>
+</div>
+
+<p class="lead mt-3"><b>Sub total:
+	<output id="penaltiestotal" for="pnt"><span
+		<check if="{{ @s2legacy.penaltiestotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.penaltiestotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.penaltiestotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.penaltiestotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	$(function () {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	});
+
+	function kachingChange(k) {
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#kaching').value = k;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function shrinkChange(s) {
+		let k = $("#kaching").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#shrink').value = s;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function swChange(sw) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#sw').value = sw;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function repoChange(rm) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#repo').value = rm;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function dropoutChange(d) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#dropout').value = d;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function visitordeathChange(v) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#visitordeath').value = v;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function divaChange(dv) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#diva').value = dv;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function reloadChange(r) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#reload').value = r;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function aspChange(a) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#aspchange').value = a;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function neglectChange(n) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#neglect').value = n;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function runawayChange(rw) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rt = $("#retrieved").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#runaway').value = rw;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function retrievedChange(rt) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let bv = $("#badvacation").val();
+		document.querySelector('#retrieved').value = rt;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function badvacationChange(bv) {
+		let k = $("#kaching").val();
+		let s = $("#shrink").val();
+		let sw = $("#sw").val();
+		let rm = $("#repo").val();
+		let d = $("#dropout").val();
+		let v = $("#visitordeath").val();
+		let dv = $("#diva").val();
+		let r = $("#reload").val();
+		let a = $("#aspchange").val();
+		let n = $("#neglect").val();
+		let rw = $("#runaway").val();
+		let rt = $("#retrieved").val();
+		document.querySelector('#badvacation').value = bv;
+		penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv);
+	}
+
+	function penaltiesSub(k, s, sw, rm, d, v, dv, r, a, n, rw, rt, bv) {
+		let result = (parseFloat(k) * -1) + (parseFloat(s) * -1) + (parseFloat(sw) * -1) + (parseFloat(rm) * -1) + (parseFloat(d) * -1) + (parseFloat(v) * -1) + (parseFloat(dv) * -1) + (parseFloat(r) * -1) + (parseFloat(a) * -1) + (parseFloat(n) * -1) + (parseFloat(rw) * -1) + (parseFloat(rt) * -0.5) + (parseFloat(bv) * -1);
+
+		$("#penaltiestotal").val(result);
+		$("#pnt").val(result);
+		pntChange(result);
+		gtChange();
+
+		if (result == 0) {
+			$('#penaltiestotal').removeClass('badge badge-danger');
+			$('#penaltiestotal').removeClass('badge badge-success');
+			$('#penaltiestotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#penaltiestotal').removeClass('badge badge-danger');
+			$('#penaltiestotal').removeClass('badge badge-primary');
+			$('#penaltiestotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#penaltiestotal').removeClass('badge badge-primary');
+			$('#penaltiestotal').removeClass('badge badge-success');
+			$('#penaltiestotal').addClass('badge badge-danger');
+		}
+	}
+</script>

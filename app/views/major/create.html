@@ -1,0 +1,31 @@
+<form action="{{ @BASE.'/major/create' }}" autocomplete="off" validate="true" method="post" class="form-horizontal">
+	<div class="form-group">
+		<label for="gameVersion">Game version</label>
+		<select class="custom-select" name="gameVersion" required="required" id="gameVersion">
+			<option value=0>-- Sims version --</option>
+			<repeat group="{{ @games }}" key="{{@gkey}}" value="{{ @game }}">
+				<option value="{{ @gkey }}">{{ @game }}</option>
+			</repeat>
+		</select>
+	</div>
+
+	<div class="form-row">
+		<div class="col">
+			<div class="form-group">
+				<label for="majorName">Major Name</label>
+				<input type="text" class="form-control" name="majorName" id="majorName">
+			</div>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="create" value="create"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add Major
+			</button>
+			<a href="{{ @BASE.'/majors' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																		 aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

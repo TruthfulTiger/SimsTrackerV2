@@ -1,0 +1,112 @@
+<p class="mb-3">Pick from the options below to generate a name for your new Sim.</p>
+<div class="form-group">
+	<h6>Name</h6>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="first" name="name" class="custom-control-input">
+		<label class="custom-control-label" for="first">First name</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="last" name="name" class="custom-control-input">
+		<label class="custom-control-label" for="last">Last name</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="both" name="name" class="custom-control-input">
+		<label class="custom-control-label" for="both">Both</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<h6>Gender</h6>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="female" name="gender" class="custom-control-input">
+		<label class="custom-control-label" for="female">Female</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="male" name="gender" class="custom-control-input">
+		<label class="custom-control-label" for="male">Male</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="unisex" name="gender" class="custom-control-input">
+		<label class="custom-control-label" for="unisex">Unisex</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline">
+		<input type="radio" id="any" name="gender" class="custom-control-input">
+		<label class="custom-control-label" for="any">Any</label>
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-header">
+		<button class="btn btn-primary">Generate name</button>
+	</div>
+	<div class="card-body">
+		<h5 class="card-title"><span id="name" class="h1"></span></h5>
+	</div>
+</div>
+
+<script src="{{@BASE}}/ui/js/randomiser.min.js"></script>
+<script>
+	$(function () {
+		let json1 = "{{@BASE}}/ui/json/test.json";
+		let json2 = "{{@BASE}}/ui/json/test2.json";
+		let male = $("#male");
+		let female = $("#female");
+		let unisex = $("#unisex");
+		let any = $("#any");
+		let first = $("#first");
+		let last = $("#last");
+		let both = $("#both");
+
+
+		$("button").click(function () {
+			$("span").empty();
+			$.when(
+				$.getJSON(json1, function (data) {
+					test = data;
+				}),
+				$.getJSON(json2, function (data) {
+					test2 = data;
+				})
+			).then(function () {
+				if (test) {
+					if (first.prop("checked") || both.prop("checked")) {
+						let fn = getRandomInt(0, test.length - 1);
+						if (male.prop("checked")) {
+							test = jQuery.grep(test, function (a, i) {
+								return (a.gender == "M" && i == fn);
+							});
+							$("span").append(test[fn].name + " ");
+						}
+						if (female.prop("checked")) {
+							if (test[fn].gender == "F") {
+								$("span").append(test[fn].name + " ");
+							} else {
+								fn = getRandomInt(0, test.length - 1);
+							}
+						}
+						if (unisex.prop("checked")) {
+							if (test[fn].gender == "U") {
+								$("span").append(test[fn].name + " ");
+							} else {
+								fn = getRandomInt(0, test.length - 1);
+							}
+						}
+						if (any.prop("checked")) {
+							$("span").append(test[fn].name + " ");
+						}
+					}
+				} else {
+					console.log("Couldn't handle test");
+				}
+				if (test2) {
+					if (last.prop("checked") || both.prop("checked")) {
+						let ln = getRandomInt(0, test2.length - 1);
+						$("span").append(test2[ln].name);
+					}
+				} else {
+					console.log("Couldn't handle test2");
+				}
+			});
+		});
+	});
+</script>

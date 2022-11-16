@@ -1,0 +1,78 @@
+<form action="{{ @BASE.'/pjob/create' }}" autocomplete="off" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="jobLevel1">Job Level</label>
+				<input type="number" readonly class="form-control-plaintext" class="form-control" value="1"
+					   name="jobLevel1" id="jobLevel1">
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="form-group">
+				<label for="jobName1">Job Name</label>
+				<input type="text" class="form-control" name="jobName1" id="jobName1">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="jobLevel2">Job Level</label>
+				<input type="number" readonly class="form-control-plaintext" class="form-control" value="2"
+					   name="jobLevel2" id="jobLevel2">
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="form-group">
+				<label for="jobName2">Job Name</label>
+				<input type="text" class="form-control" name="jobName2" id="jobName2">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="jobLevel3">Job Level</label>
+				<input type="number" readonly class="form-control-plaintext" class="form-control" value="3"
+					   name="jobLevel3" id="jobLevel3">
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="form-group">
+				<label for="jobName3">Job Name</label>
+				<input type="text" class="form-control" name="jobName3" id="jobName3">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="jobLevel4">Job Level</label>
+				<input type="number" readonly class="form-control-plaintext" class="form-control" value="4"
+					   name="jobLevel4" id="jobLevel4">
+			</div>
+		</div>
+		<div class="col-md-10">
+			<div class="form-group">
+				<label for="jobName4">Job Name</label>
+				<input type="text" class="form-control" name="jobName4" id="jobName4">
+			</div>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="hidden" name="pcareerID" value="{{@careerID}}"/>
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="create" value="create"/>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add Job
+			</button>
+			<a href="{{ @BASE.'/careers' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																		  aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

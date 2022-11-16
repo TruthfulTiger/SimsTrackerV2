@@ -1,0 +1,87 @@
+<form action="{{ @BASE.'/major/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="majorName">Major Name</label>
+		<input type="text" class="form-control" value="{{ @major.majorName }}" name="majorName" id="majorName">
+	</div>
+
+	<div class="form-group">
+		<label for="majorDesc">Major Description</label>
+		<textarea class="form-control" required="required" name="majorDesc"
+				  id="majorDesc">{{ @major.majorDesc }}</textarea>
+	</div>
+
+	<div class="form-group">
+		<label for="icon">Icon</label>
+		<input type="text" class="form-control" value="{{ @major.icon }}" name="icon" id="icon">
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="id" value="{{ @major.id }}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-primary mb-3"><i class="fa fa-save mr-2"
+																			  aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/class/create/'. @major.id }}" class="btn btn-success mb-3"><i class="fa fa-plus mr-2"
+																							  aria-hidden="true"></i>Add
+				Class</a>
+			<a href="{{ @BASE.'/majors' }}" class="btn btn-secondary mb-3"><i class="fa fa-times mr-2"
+																			  aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<check if="{{ @classes }}">
+	<true>
+		<table width="100%" cellpadding="5" id="classes" class="table table-hover table-bordered mt-3">
+			<caption style="caption-side:top">Classes associated with {{ @major.majorName }}</caption>
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Semester</th>
+				<th scope="col">Level</th>
+				<th scope="col">Name</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<repeat group="{{ @classes }}" value="{{ @class }}">
+				<tr>
+					<th scope="row">{{ trim(@class.id) }}
+					</td>
+					<td>{{ trim(@class.semester) }}</td>
+					<td>{{ trim(@class.classLevel) }}</td>
+					<td>{{ trim(@class.className) }}</td>
+					<td><a href="javascript:window.open('{{ @BASE.'/class/update/'. @class.id }}','_blank')"
+						   data-toggle="tooltip" title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+						<a href="#" onclick="confirm('{{ @BASE.'/class/delete/'. @class.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No classes found.</p>
+	</false>
+</check>
+
+<script>
+	$(document).ready(function () {
+		$('#classes').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

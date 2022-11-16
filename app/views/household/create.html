@@ -1,0 +1,99 @@
+<check if="{{ @hood.id != null }}">
+	<true>
+		<form action="{{ @BASE.'/household/create' }}" validate="true" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name">Household Name</label>
+				<input type="text" required="required" class="form-control" name="name" id="name"/>
+			</div>
+
+			<div class="form-group">
+				<label for="money">Starting funds</label>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">§</span>
+					</div>
+					<input type="number" required="required" class="form-control" min=0 name="money" id="money"
+					<check if="{{ @hood.gameVersion == 2 }}">
+						<check if="{{ @hood.type == 'Main hood' }}">
+							value="20000"
+						</check>
+						<check if="{{ @hood.type == 'University' }}">
+							value="500"
+						</check>
+					</check>
+					<check if="{{ @hood.gameVersion == 3 }}">
+						value="16500"
+					</check>
+					<check if="{{ @hood.gameVersion == 4 }}">
+						value="20000"
+					</check>
+					/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="hhSims">Any Sims that will form this household (hold Ctrl to choose more than 1)</label>
+				<select class="custom-select" multiple name="hhSims[]" id="hhSims">
+					<repeat group="{{ @sims }}" value="{{ @sim }}">
+						<option value="{{ @sim.id }}">{{ @sim.firstName }} {{ @sim.lastName }}</option>
+					</repeat>
+				</select>
+			</div>
+
+			<div class="control-group">
+				<div class="">
+					<input type="text" name="hptrap" class="hptrap"/>
+					<input type="hidden" name="nhID" value="{{ @hood.id }}"/>
+					<input type="hidden" name="phID" value="{{ @hood.parentHood }}"/>
+					<input type="hidden" name="gameVersion" value="{{ @hood.gameVersion }}"/>
+					<input type="hidden" name="create" value="create"/>
+					<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
+						Household
+					</button>
+					<a href="{{ @BASE.'/households' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																					 aria-hidden="true"></i>Cancel</a>
+				</div>
+			</div>
+		</form>
+	</true>
+	<false>
+		<div class="form-group">
+			<label for="nh">Which neighbourhood is this household part of?</label>
+			<select class="custom-select" name="nh" id="nh">
+				<option value="">-- Create new hood --</option>
+				<repeat group="{{ @hoods }}" value="{{ @hood }}">
+					<option value="{{ @hood.id }}">{{ @hood.name }} (Sims {{ @hood.gameVersion }})
+						<repeat group="{{ @parents }}" value="{{ @parent }}" counter="{{ @ctr }}">
+							<check if="{{ @hood.parentHood == @parent.id }}">
+								- {{ @parent.type }} of {{ @parent.name }}
+							</check>
+						</repeat>
+					</option>
+				</repeat>
+			</select>
+		</div>
+		<a href="" id="url" class="btn btn-primary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+		<a href="{{ @BASE.'/households' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																		 aria-hidden="true"></i>Cancel</a>
+	</false>
+</check>
+
+<script>
+	$(function () {
+		let v = $("#nh").children("option:selected").val();
+		url(v);
+		$("#nh").change(function () {
+			v = $("#nh").children("option:selected").val();
+			url(v);
+		});
+	});
+
+	function url(v) {
+		if (v === '') {
+			$('#url').attr("href", "{{ @BASE.'/hood/create/' }}");
+		} else {
+			$('#url').attr("href", "{{ @BASE.'/household/create/' }}" + v);
+		}
+	}
+</script>

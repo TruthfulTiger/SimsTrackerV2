@@ -1,0 +1,154 @@
+body {
+	padding-top: 4rem;
+}
+
+html,
+body {
+	overflow-x: hidden; /* Prevent scroll on narrow devices */
+	position: relative;
+	margin: 0;
+	height: 100%;
+}
+
+.main-container {
+	padding-top: 0;
+	margin-top: 1rem;
+	min-height: calc(100vh - 12.5rem); /* Sticky footer */
+}
+
+@media (max-width: 991.98px) {
+	.offcanvas-collapse {
+		position: fixed;
+		top: 4rem; /* Height of navbar */
+		bottom: 0;
+		left: 100%;
+		width: 100%;
+		padding-bottom: 1rem;
+		overflow-y: auto;
+		visibility: hidden;
+		background-color: #343a40;
+		transition-timing-function: ease-in-out;
+		transition-duration: .3s;
+		transition-property: left, visibility;
+	}
+
+	.offcanvas-collapse.open {
+		left: 0;
+		visibility: visible;
+	}
+}
+
+.nav-scroller {
+	position: relative;
+	z-index: 2;
+	height: 2.75rem;
+	overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	padding-top: 0.5rem;
+	margin-top: -1px;
+	overflow-x: auto;
+	color: rgba(255, 255, 255, .75);
+	text-align: center;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .nav-link {
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	font-size: .875rem;
+	color: #6c757d;
+}
+
+.nav-underline .nav-link:hover {
+	color: #007bff;
+}
+
+.nav-underline .active {
+	font-weight: 500;
+	color: #343a40;
+}
+
+.text-white-50 {
+	color: rgba(255, 255, 255, .5);
+}
+
+.bg-purple {
+	background-color: #6f42c1;
+}
+
+.lh-100 {
+	line-height: 1;
+}
+
+.lh-125 {
+	line-height: 1.25;
+}
+
+.lh-150 {
+	line-height: 1.5;
+}
+
+/* Rainbow table colours */
+.table tbody tr.Red {
+	background-color: #dc3545;
+	color: white;
+}
+
+.table tbody tr.Orange {
+	background-color: #ffb74d;
+}
+
+.table tbody tr.Yellow {
+	background-color: #ffff8d;
+}
+
+.table tbody tr.Lime {
+	background-color: #cddc39;
+}
+
+.table tbody tr.Green {
+	background-color: #28a745;
+	color: white;
+}
+
+.table tbody tr.Turquoise {
+	background-color: paleturquoise;
+}
+
+.table tbody tr.Blue {
+	background-color: lightskyblue;
+}
+
+.table tbody tr.Purple {
+	background-color: #ce93d8;
+}
+
+.table tbody tr.Black {
+	background-color: black;
+	color: white;
+}
+
+.table tbody tr.Grey {
+	background-color: lightgrey;
+}
+
+.table tbody tr.White {
+	background-color: ghostwhite;
+}
+
+.table tbody tr.Brown {
+	background-color: #795548;
+	color: white;
+}
+
+.table tbody tr.Pink {
+	background-color: pink;
+}
+

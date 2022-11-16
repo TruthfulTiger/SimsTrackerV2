@@ -1,0 +1,103 @@
+{   
+    "name" : "Show Biz",  
+    "dog" : [
+        {
+            "name" : "Extra",
+            "pay" : 125, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Understudy",
+            "pay" : 220, 
+            "bonus" : 440,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Stunt Double",
+            "pay" : 388, 
+            "bonus" : 776,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : true,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Star",
+            "pay" : 737, 
+            "bonus" : 1474,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : true,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : true
+        }
+    ],
+    "cat" : [
+        {
+            "name" : "Extra",
+            "pay" : 144, 
+            "bonus" : 0,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : null,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Understudy",
+            "pay" : 253, 
+            "bonus" : 506,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : null,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Stunt Double",
+            "pay" : 446, 
+            "bonus" : 892,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : true,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : null
+        },
+        {
+            "name" : "Star",
+            "pay" : 847, 
+            "bonus" : 1694,
+            "sit" : null,
+            "stay" : null,
+            "come" : null,
+            "rollover" : true,
+            "speak" : true,
+            "shake" : null,
+            "playdead" : true
+        }
+    ]
+}

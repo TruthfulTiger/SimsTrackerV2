@@ -1,0 +1,24 @@
+<form action="{{ @BASE.'/hood/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="name">Neighbourhood Name</label>
+		<input type="text" class="form-control" required="required" value="{{ @hood.name }}" name="name" id="name"/>
+	</div>
+
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="id" value="{{ @hood.id }}"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/household/create/'. @hood.id }}" class="btn btn-success"><i class="fa fa-plus mr-2"
+																							aria-hidden="true"></i>Add
+				Household</a>
+			<a href="{{ @BASE.'/hoods' }}" class="btn btn-secondary"><i class="fa fa-times mr-2" aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

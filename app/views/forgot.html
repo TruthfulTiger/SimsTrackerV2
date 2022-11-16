@@ -1,0 +1,33 @@
+<!-- Forgot password -->
+<div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="forgotLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="forgotLabel">Forgotten Password</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ @BASE.'/user/forgot' }}" validate="true" method="post">
+					<p>Please enter your email address. If we can find you in the system, you will receive a link to
+						reset your password.</p>
+					<div class="form-group">
+						<label class="sr-only" for="emailForgot">Email address</label>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">@</div>
+							</div>
+							<input type="email" class="form-control" id="emailForgot" name="emailForgot"
+								   required="required" placeholder="Email address">
+						</div>
+					</div>
+					<div class="form-group mt-3">
+						<input type="text" name="hptrap" class="hptrap"/>
+						<input type="submit" name="send" class="btn btn-primary btn-block btn-lg" value="Send email">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

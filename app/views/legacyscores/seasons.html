@@ -1,0 +1,123 @@
+<h3 class="text-primary">{{ @cat }} <img src="{{@BASE}}{{@s2path}}Seasons.png" title="Needs Seasons"
+										 data-toggle="tooltip" alt="Needs Seasons"> <a href="#"
+																					   class="badge badge-pill badge-secondary"
+																					   data-toggle="collapse"
+																					   data-target="#snsHelp"
+																					   aria-label="More details"
+																					   aria-expanded="false"
+																					   aria-controls="snsHelp">
+	<i aria-hidden="true" data-toggle="tooltip" title="More details" class="fas fa-question"></i></a>
+	</a></h3>
+<div class="collapse" id="snsHelp">
+	<div class="card card-body">
+		<blockquote>
+			<h6 class="text-primary">Legacy Tree</h6>
+			On the first day your founder moves into the Legacy Lot, you must purchase and place a fruit bearing tree.
+			This can be any of the three fruit bearing trees. Once placed, this tree may never be moved or deleted. When
+			the founder dies, their marker must be placed in a space adjacent to the Legacy Tree. The founder must
+			actually die in order to earn points for the Legacy Tree For every generation, besides the first, the tree
+			remains alive and un-moved, earn one point. Having the tree live until the birth of the 10th generation will
+			net you 9 points.
+			<br/><br/>
+			<h6 class="text-primary">Fish</h6>
+			If you have every single kind of fishable item mounted on the wall, and the wishing well… earn 1 point. This
+			point can only be earned once.
+			<br/><br/>
+			<h6 class="text-primary">Juice</h6>
+			If you are able to create every kind of juice, earn 1 point. This point may only be earned once.
+			<br/><br/>
+			Points over 10 go into the overflow category.<br/><br/>
+			<cite>~ SimsLegacyChallenge.com</cite>
+		</blockquote>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="tree">Legacy Tree has survived this many generations</label>
+			<input type="number" min="0" max="9" class="form-control sns" id="tree" value="{{ trim(@s2legacy.tree) }}"
+				   name="tree"/>
+		</div>
+		<div class="form-group">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input sns" value="1" name="fish" id="fish"
+				<check if="{{ @s2legacy.fish == 1 }}">
+					checked
+				</check>
+				/>
+				<label class="custom-control-label" for="fish">Every fishable item and wishing well</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input sns" value="1" name="juice" id="juice"
+				<check if="{{ @s2legacy.juice == 1 }}">
+					checked
+				</check>
+				/>
+				<label class="custom-control-label" for="juice">Every kind of juice</label>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="seasonstotal" id="st" value="{{ trim(@s2legacy.seasonstotal) }}">
+<p class="lead mb-3"><b>Sub total:
+	<output id="seasonstotal" for="st"><span
+		<check if="{{ @s2legacy.seasonstotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.seasonstotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.seasonstotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.seasonstotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	$(function () {
+		snsboxes();
+		$(".sns").change(function () {
+			snsboxes();
+		});
+	});
+
+	function snsboxes() {
+		let boxes = $('.sns:checked').length;
+		let t = $("#tree").val();
+		snsSub(t, boxes);
+	}
+
+	function snsSub(t, boxes) {
+		let result = parseInt(t) + parseInt(boxes);
+		if (result > 10) {
+			let o = result - 10;
+			result = 10;
+			$("#oseasons").val(o);
+			oseasonsChange(o);
+		} else {
+			$("#oseasons").val(0);
+			oseasonsChange(0);
+		}
+		$("#seasonstotal").val(result);
+		$("#st").val(result);
+
+		gtChange();
+
+		if (result == 0) {
+			$('#seasonstotal').removeClass('badge badge-danger');
+			$('#seasonstotal').removeClass('badge badge-success');
+			$('#seasonstotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#seasonstotal').removeClass('badge badge-danger');
+			$('#seasonstotal').removeClass('badge badge-primary');
+			$('#seasonstotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#seasonstotal').removeClass('badge badge-primary');
+			$('#seasonstotal').removeClass('badge badge-success');
+			$('#seasonstotal').addClass('badge badge-danger');
+		}
+	}
+</script>

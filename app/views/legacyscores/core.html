@@ -1,0 +1,113 @@
+<h3 class="text-primary">{{ @cat }} <a href="#" class="badge badge-pill badge-secondary" data-toggle="collapse"
+									   data-target="#legacyHelp" aria-expanded="false" aria-label="More details"
+									   aria-controls="legacyHelp">
+	<i aria-hidden="true" data-toggle="tooltip" title="More details" class="fas fa-question"></i></a>
+	</a></h3>
+<div class="collapse" id="legacyHelp">
+	<div class="card card-body">
+		<blockquote>
+			The heart of the challenge, this category will slowly earn points just for producing the generations. You
+			can double the worth of an heir by painting a portrait of them and having it hanging somewhere on the lot.
+			Portraits must be painted while the sim is alive. Because the challenge ends the moment the 10th generation
+			is born, you obviously cannot paint a portrait of the 10th generation baby. For that reason, the 10th
+			generation earns a full point when born. <br/><br/>
+			<cite>~ SimsLegacyChallenge.com</cite>
+		</blockquote>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="currentGen">Current generation:
+				<output for="currentGen" id="generation">1</output>
+			</label>
+			<input type="range" class="custom-range" min="1" max="10" step="1" value="{{ trim(@s2legacy.currentGen) }}"
+				   class="form-control-range" name="currentGen" id="currentGen" oninput="outputUpdate(value)">
+		</div>
+	</div>
+</div>
+<div class="form-row">
+	<div class="col">
+		<div class="form-group">
+			<label for="portraits">Generations with portrait </label>
+			<input type="number" id="portraits" min="0" max="9" step="1" name="portraits"
+				   value="{{ trim(@s2legacy.portraits) }}" oninput="portraitChange(value)" class="form-control"
+				   aria-label="portraits" aria-describedby="portraits">
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label for="novels">Novels written </label>
+			<input type="number" id="novels" min="0" max="9" step="1" name="novels" value="{{ trim(@s2legacy.novels) }}"
+				   class="form-control" aria-label="novels" aria-describedby="novels">
+			<small>One per Sim - for <a
+					href="https://www.simslegacychallenge.com/legacy-challenge-rules/sims-2-legacy-challenge-rules-advanced/sims-2-legacy-challenge-handicaps/"
+					target="_blank">Storyteller handicap</a></small>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="legacytotal" id="lt" value="{{ trim(@s2legacy.legacytotal) }}">
+<p class="lead"><b>Sub total:
+	<output id="legacytotal" for="lt"><span
+		<check if="{{ @s2legacy.legacytotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.legacytotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.legacytotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.legacytotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	$(function () {
+		let p = $("#portraits").val();
+		let gen = $("#currentGen").val();
+		document.querySelector('#generation').value = gen;
+		legacySub(gen, p);
+	});
+
+	function outputUpdate(gen) {
+		let p = $("#portraits").val();
+		document.querySelector('#generation').value = gen;
+		legacySub(gen, p);
+	}
+
+	function portraitChange(p) {
+		let gen = $("#generation").val();
+		document.querySelector('#portraits').value = p;
+		legacySub(gen, p);
+	}
+
+	function legacySub(g, p) {
+		let n = p * 0.5;
+		showGen(g);
+
+		if (g < 10) {
+			$("#legacytotal").val((g * 0.5) + n);
+		} else {
+			$("#legacytotal").val(((g * 0.5) + 0.5) + n);
+		}
+
+		n = $("#legacytotal").val();
+		$("#lt").val(n);
+		gtChange();
+
+		if (n == 0) {
+			$('#legacytotal').removeClass('badge badge-danger');
+			$('#legacytotal').removeClass('badge badge-success');
+			$('#legacytotal').addClass('badge badge-primary');
+		}
+
+
+		if (n > 0) {
+			$('#legacytotal').removeClass('badge badge-danger');
+			$('#legacytotal').removeClass('badge badge-primary');
+			$('#legacytotal').addClass('badge badge-success');
+		}
+
+		if (n < 0) {
+			$('#legacytotal').removeClass('badge badge-primary');
+			$('#legacytotal').removeClass('badge badge-success');
+			$('#legacytotal').addClass('badge badge-danger');
+		}
+	}
+</script>

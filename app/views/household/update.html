@@ -1,0 +1,232 @@
+<form action="{{ @BASE.'/household/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-group">
+		<label for="name">Household Name</label>
+		<input type="text" class="form-control" required="required" name="name" value="{{ @household.name }}"
+			   id="name"/>
+	</div>
+
+	<div class="form-group">
+		<label for="money">Net Worth</label>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">§</span>
+			</div>
+			<input type="number" class="form-control" required="required" name="money" value="{{ @household.money }}"
+				   id="money"/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="friends">Total Family Friends</label>
+		<input type="number" class="form-control" required="required" name="friends" value="{{ @household.friends }}"
+			   id="friends"/>
+	</div>
+
+	<h3>Collectables</h3>
+	<ul class="nav nav-tabs" id="collectablesTabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link active" id="fish-tab" data-toggle="tab" href="#fish" role="tab" aria-controls="fish"
+			   aria-selected="true">Fish</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link" id="harvestables-tab" data-toggle="tab" href="#harvestables" role="tab"
+			   aria-controls="harvestables" aria-selected="false">Harvestables</a>
+		</li>
+	</ul>
+	<div class="tab-content p-3" id="collectablesContent">
+		<div class="tab-pane fade show active" id="fish" role="tabpanel" aria-labelledby="fish-tab">
+			<check if="{{ @household.gameVersion == 2 }}">
+				<check if="{{ @users2.sns == 1 }}">
+					<true>
+						<div class="form-group row">
+							<label for="lmb" class="col-sm-3 col-form-label">Largemouth Bass</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="lmb" name="largemouthBass" min=0
+									   value="{{ @s2hh.largemouthBass }}"/>
+							</div>
+							<label for="jlmb" class="col-sm-3 col-form-label">Jumbo Largemouth Bass</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="jlmb" name="jumboLargemouthBass" min=0
+									   value="{{ @s2hh.jumboLargemouthBass }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="bcf" class="col-sm-3 col-form-label">Blue Catfish</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="bcf" name="blueCatfish" min=0
+									   value="{{ @s2hh.blueCatfish }}"/>
+							</div>
+							<label for="jbcf" class="col-sm-3 col-form-label">Jumbo Blue Catfish</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="jbcf" name="jumboBlueCatfish" min=0
+									   value="{{ @s2hh.jumboBlueCatfish }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="rt" class="col-sm-3 col-form-label">Rainbow Trout</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="rt" name="rainbowTrout" min=0
+									   value="{{ @s2hh.rainbowTrout }}"/>
+							</div>
+							<label for="jrt" class="col-sm-3 col-form-label">Jumbo Rainbow Trout</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="jrt" name="jumboRainbowTrout" min=0
+									   value="{{ @s2hh.jumboRainbowTrout }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="gt" class="col-sm-3 col-form-label">Golden Trout</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="gt" min=0 name="goldenTrout"
+									   value="{{ @s2hh.goldenTrout }}"/>
+							</div>
+							<label for="boot" class="col-sm-3 col-form-label">Boot</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="boot" min=0 name="boot"
+									   value="{{ @s2hh.boot }}"/>
+							</div>
+						</div>
+					</true>
+					<false>
+						<p>You don't have the required expansion pack</p>
+					</false>
+				</check>
+			</check>
+			<check if="{{ @household.gameVersion == 3 }}">
+				<div class="form-group row">
+					<label for="gt" class="col-sm-3 col-form-label">Golden Trout</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="gt" min=0 name="goldenTrout"
+							   value="{{ @s3hh.goldenTrout }}"/>
+					</div>
+					<label for="boot" class="col-sm-3 col-form-label">Boot</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="boot" min=0 name="boot" value="{{ @s3hh.boot }}"/>
+					</div>
+				</div>
+			</check>
+			<check if="{{ @household.gameVersion == 4 }}">
+				<div class="form-group row">
+					<label for="gt" class="col-sm-3 col-form-label">Golden Trout</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="gt" min=0 name="goldenTrout"
+							   value="{{ @s4hh.goldenTrout }}"/>
+					</div>
+					<label for="boot" class="col-sm-3 col-form-label">Boot</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="boot" min=0 name="boot" value="{{ @s4hh.boot }}"/>
+					</div>
+				</div>
+			</check>
+		</div>
+		<div class="tab-pane fade p-3" id="harvestables" role="tabpanel" aria-labelledby="harvestables-tab">
+			<check if="{{ @household.gameVersion == 2 }}">
+				<check if="{{ @users2.sns == 1 }}">
+					<true>
+						<div class="form-group row">
+							<label for="apple" class="col-sm-2 col-form-label">Apple</label>
+							<div class="col-sm-2">
+								<input type="number" class="form-control" id="apple" min=0 name="apple"
+									   value="{{ @s2hh.apple }}"/>
+							</div>
+							<label for="orange" class="col-sm-2 col-form-label">Orange</label>
+							<div class="col-sm-2">
+								<input type="number" class="form-control" id="orange" min=0 name="orange"
+									   value="{{ @s2hh.orange }}"/>
+							</div>
+							<label for="lemon" class="col-sm-2 col-form-label">Lemon</label>
+							<div class="col-sm-2">
+								<input type="number" class="form-control" id="lemon" min=0 name="lemon"
+									   value="{{ @s2hh.lemon }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="tomato" class="col-sm-3 col-form-label">Tomato</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="tomato" name="tomato" min=0
+									   value="{{ @s2hh.tomato }}"/>
+							</div>
+							<label for="strawberry" class="col-sm-3 col-form-label">Strawberry</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="strawberry" name="strawberry" min=0
+									   value="{{ @s2hh.strawberry }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="cucumber" class="col-sm-3 col-form-label">Cucumber</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="cucumber" name="cucumber" min=0
+									   value="{{ @s2hh.cucumber }}"/>
+							</div>
+							<label for="pepper" class="col-sm-3 col-form-label">Pepper</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="pepper" name="pepper" min=0
+									   value="{{ @s2hh.pepper }}"/>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="poleBean" class="col-sm-3 col-form-label">Pole Bean</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="poleBean" name="poleBean" min=0
+									   value="{{ @s2hh.poleBean }}"/>
+							</div>
+							<label for="eggplant" class="col-sm-3 col-form-label">Eggplant</label>
+							<div class="col-sm-3">
+								<input type="number" class="form-control" id="eggplant" name="eggplant" min=0
+									   value="{{ @s2hh.eggplant }}"/>
+							</div>
+						</div>
+					</true>
+					<false>
+						<p>You don't have the required expansion pack</p>
+					</false>
+				</check>
+			</check>
+			<check if="{{ @household.gameVersion == 3 }}">
+				<div class="form-group row">
+					<label for="poleBean" class="col-sm-3 col-form-label">Pole Bean</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="poleBean" name="poleBean" min=0
+							   value="{{ @s3hh.poleBean }}"/>
+					</div>
+					<label for="eggplant" class="col-sm-3 col-form-label">Eggplant</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="eggplant" name="eggplant" min=0
+							   value="{{ @s3hh.eggplant }}"/>
+					</div>
+				</div>
+			</check>
+			<check if="{{ @household.gameVersion == 4 }}">
+				<div class="form-group row">
+					<label for="poleBean" class="col-sm-3 col-form-label">Pole Bean</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="poleBean" name="poleBean" min=0
+							   value="{{ @s4hh.poleBean }}"/>
+					</div>
+					<label for="eggplant" class="col-sm-3 col-form-label">Eggplant</label>
+					<div class="col-sm-3">
+						<input type="number" class="form-control" id="eggplant" name="eggplant" min=0
+							   value="{{ @s4hh.eggplant }}"/>
+					</div>
+				</div>
+			</check>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="id" value="{{ @household.hhID }}"/>
+			<input type="hidden" name="userID" value="{{@SESSION.user[2]}}"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-success"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/sim/create/'. @household.hhID }}" class="btn btn-success"><i
+					class="fa fa-plus mr-2"></i>Create Sim</a>
+			<a href="{{ @BASE.'/households' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			 aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>

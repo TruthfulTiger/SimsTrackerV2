@@ -1,0 +1,87 @@
+<h3 class="text-primary">{{ trim(@challenge.challengeName) }}</h3>
+<dt>Household name:</dt>
+<dd>{{ trim(@household.name) }}</dd>
+<div class="form-group mb-2">
+	Is this also a <a
+		href="https://web.archive.org/web/20110112123130/http://community.livejournal.com/rainbowlegacy/tag/rules"
+		target="_blank">Rainbow Challenge?</a>
+	<div class="custom-control custom-radio">
+		<input type="radio" id="no" value="0" name="isRainbow" class="custom-control-input"
+		<check if="{{ @s2legacy.isRainbow == 0}}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="no">No</label>
+	</div>
+	<div class="custom-control custom-radio">
+		<input type="radio" id="yes" value="1" name="isRainbow" class="custom-control-input"
+		<check if="{{ @s2legacy.isRainbow == 1}}">
+			checked
+		</check>
+		>
+		<label class="custom-control-label" for="yes">Yes</label>
+	</div>
+</div>
+<check if="{{ @s2legacy.isRainbow == 1}}">
+	<a href="{{ @BASE.'/colours/'. @s2legacy.cid }}" target="_blank" class="btn btn-success mb-3"><i
+			class="fa fa-plus mr-2" aria-hidden="true"></i> Set up colours</a>
+</check>
+<include if="{{ @s2legacy.isRainbow == 0 }}" href="/legacygen/bwlist.html"/>
+<include if="{{ @s2legacy.isRainbow == 1 }}" href="/legacygen/colourlist.html"/>
+
+<input type="hidden" name="grandtotal" id="gt" value="{{ trim(@s2legacy.grandtotal) }}">
+<p class="lead mt-3"><b>Grand total:
+	<output id="grandtotal" for="gt"><span
+		<check if="{{ @s2legacy.grandtotal }} == 0">class="badge badge-primary"</check>
+		<check if="{{ @s2legacy.grandtotal }} > 0">class="badge badge-success"</check>
+		<check if="{{ @s2legacy.grandtotal }} < 0">class="badge badge-danger"</check>
+		>
+		{{ trim(@s2legacy.grandtotal) }}
+		</span></output>
+</b></p>
+
+<script>
+	let text = null;
+
+	function gtChange() {
+		let lt = $("#lt").val();
+		let mt = $("#mt").val();
+		let ft = $("#ft").val();
+		let wt = $("#wt").val();
+		let gvt = $("#gvt").val();
+		let ght = $("#ght").val();
+		let bt = $("#bt").val();
+		let pt = $("#pt").val();
+		let st = $("#st").val();
+		let bvt = $("#bvt").val();
+		let ftt = $("#ftt").val();
+		let ct = $("#ct").val();
+		let mat = $("#mat").val();
+		let ht = $("#ht").val();
+		let ot = $("#ot").val();
+
+		let result = parseFloat(lt) + parseFloat(mt) + parseFloat(ft) + parseFloat(wt) + parseFloat(gvt) + parseFloat(ght) + parseFloat(bt) + parseFloat(pt) + parseFloat(st) + parseFloat(bvt) + parseFloat(ftt) + parseFloat(ct) + parseFloat(mat) + parseFloat(ht) + parseFloat(ot);
+
+		$("#grandtotal").val(result);
+		$("#gt").val(result);
+
+		if (result == 0) {
+			$('#grandtotal').removeClass('badge badge-danger');
+			$('#grandtotal').removeClass('badge badge-success');
+			$('#grandtotal').addClass('badge badge-primary');
+		}
+
+
+		if (result > 0) {
+			$('#grandtotal').removeClass('badge badge-danger');
+			$('#grandtotal').removeClass('badge badge-primary');
+			$('#grandtotal').addClass('badge badge-success');
+		}
+
+		if (result < 0) {
+			$('#grandtotal').removeClass('badge badge-primary');
+			$('#grandtotal').removeClass('badge badge-success');
+			$('#grandtotal').addClass('badge badge-danger');
+		}
+	}
+</script>

@@ -1,0 +1,214 @@
+<form action="{{ @BASE.'/sim/update' }}" validate="true" method="post" enctype="multipart/form-data"
+	  class="form-horizontal">
+	{* Sim's name *}
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="firstName">First Name</label>
+			<input type="text" required="required" class="form-control" name="firstName"
+				   value="{{ trim(@sim.firstName) }}" id="firstName"/>
+		</div>
+		<div class="form-group col">
+			<label for="lastName">Last Name</label>
+			<input type="text" required="required" class="form-control" name="lastName"
+				   value="{{ trim(@sim.lastName) }}" id="lastName"/>
+		</div>
+	</div>
+
+	{* Gender and age *}
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="gender">Gender</label>
+			<select class="custom-select" required="required" name="gender" id="gender">
+				<option value="F"
+				<check if="{{ @sim.gender == 'F'}}">
+					selected
+				</check>
+				>Female</option>
+				<option value="M"
+				<check if="{{ @sim.gender == 'M'}}">
+					selected
+				</check>
+				>Male</option>
+			</select>
+		</div>
+
+		<div class="form-group col">
+			<label for="age">Age</label>
+			<select class="custom-select" required="required" name="age" id="age">
+				<repeat group="{{ @ages }}" value="{{ @age }}">
+					<option value="{{ @age }}"
+					<check if="{{ @sim.age == @age}}">
+						selected
+					</check>
+					>{{ @age }}</option>
+				</repeat>
+			</select>
+		</div>
+	</div>
+
+	{* Origin *}
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="origin">Origin</label>
+			<select class="custom-select" name="origin" required="required" id="origin">
+				<option>-- Where does this sim come from? --</option>
+				<option value="cas"
+				<check if="{{ @sim.origin == 'cas'}}">
+					selected
+				</check>
+				>CAS</option>
+				<option value="big"
+				<check if="{{ @sim.origin == 'big'}}">
+					selected
+				</check>
+				>Born in-game</option>
+				<option value="npc"
+				<check if="{{ @sim.origin == 'npc'}}">
+					selected
+				</check>
+				>NPC</option>
+				<option value="townie"
+				<check if="{{ @sim.origin == 'townie'}}">
+					selected
+				</check>
+				>Townie</option>
+			</select>
+		</div>
+		<div class="form-group col" id="genshow" style="display: none;">
+			<label for="generation">What generation is this sim?</label>
+			<input type="number" class="form-control" value="{{ trim(@sim.generation) }}" name="generation"
+				   id="generation"/>
+		</div>
+	</div>
+
+	{* Parents *}
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="parent1">Parent 1</label>
+			<select class="custom-select" name="parent1" id="parent1">
+				<option value="0">Unknown</option>
+				<repeat group="{{ @parents }}" value="{{ @parent }}">
+					<check if="{{ @parent.id !=  @sim.id}}">
+						<option value="{{@parent.id}}"
+						<check if="{{ @parent.id == @sim.parent1}}">
+							selected
+						</check>
+						>{{trim(@parent.firstName)}}</option>
+					</check>
+				</repeat>
+			</select>
+		</div>
+		<div class="form-group col">
+			<label for="parent2">Parent 2</label>
+			<select class="custom-select" name="parent2" id="parent2">
+				<option value="0">Unknown</option>
+				<option value="-1"
+				<check if="{{ @sim.parent2 == -1}}">
+					selected
+				</check>
+				>Pollination Technician</option>
+				<option value="-2"
+				<check if="{{ @sim.parent2 == -2}}">
+					selected
+				</check>
+				>Plantsim</option>
+				<repeat group="{{ @parents }}" value="{{ @parent }}">
+					<check if="{{ @parent.id !=  @sim.id }}">
+						<option value="{{@parent.id}}"
+						<check if="{{ @parent.id == @sim.parent2}}">
+							selected
+						</check>
+						>{{trim(@parent.firstName)}}</option>
+					</check>
+				</repeat>
+			</select>
+		</div>
+	</div>
+	{* Bio and image upload*}
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="bio">Bio</label>
+			<textarea class="form-control" id="bio" name="bio" cols="50" rows="7">{{trim(@sim.bio)}}</textarea>
+		</div>
+		<div class="form-group col">
+			<div class="custom-file-container w-auto" data-upload-id="image">
+				<label
+				>Upload File
+					<a
+							href="javascript:void(0)"
+							class="custom-file-container__image-clear"
+							title="Clear Image" data-toggle="tooltip"
+							onclick="$('#image').val('ui/images/sims4/Silhouette2.png');"
+					>&times;</a
+					></label
+				>
+
+				<label class="custom-file-container__custom-file">
+					<input
+							type="file"
+							class="custom-file-container__custom-file__custom-file-input"
+							accept="image/*"
+							aria-label="Choose File"
+							id="image-raw" name="image-raw"
+					/>
+					<input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
+					<input type="hidden" name="image" id="image"/>
+					<span
+							class="custom-file-container__custom-file__custom-file-control"
+					></span>
+				</label>
+				<div class="custom-file-container__image-preview w-50" scroll="no" style="overflow: hidden"></div>
+			</div>
+		</div>
+	</div>
+	<include if="{{@sim.gameVersion == 2}}" href="sim/sims2/update.html"/>
+	<include if="{{@sim.gameVersion == 3}}" href="sim/sims3/update.html"/>
+	<include if="{{@sim.gameVersion == 4}}" href="sim/sims4/update.html"/>
+	<!-- Hidden fields and form submission -->
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="id" value="{{ @sim.id }}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-success mb-3"><i class="fa fa-save mr-2"
+																			  aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/sims' }}" class="btn btn-secondary mb-3"><i class="fa fa-times mr-2"
+																			aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+<script>
+	$(function () {
+		var user = "{{@SESSION.user[2]}}";
+		var simImage = "{{@sim.image}}";
+		var upload = new FileUploadWithPreview("image", {
+			showDeleteButtonOnImages: true,
+			presetFiles: [
+				"{{@BASE}}/{{@sim.image}}"
+			]
+		});
+
+		window.addEventListener("fileUploadWithPreview:imagesAdded", function (e) {
+			e.detail.uploadId
+			e.detail.cachedFileArray
+			e.detail.addedFilesCount
+			// Use e.detail.uploadId to match up to your specific input
+			if (e.detail.uploadId === "image") {
+				var file = e.detail.cachedFileArray[0];
+				var image = $('#image-raw').val();
+				/* 					var filename = imagename.split('.').shift();
+									var ext = imagename.split('.').pop();
+									var image = filename+$.now()+'.'+ext; */
+
+				if (!image) {
+					$('#image').val(simImage);
+				}
+				if (image) {
+					$('#image').val('uploads/' + user + '/' + image.slice(12));
+				}
+			}
+		});
+	});
+</script>

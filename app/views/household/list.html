@@ -1,0 +1,263 @@
+<check if="{{ @households }}">
+	<true>
+		<table width="100%" id="households" class="table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Neighbourhood</th>
+				<th scope="col">
+					<select class="custom-select" id="gameSort">
+						<option value="">Game</option>
+						<repeat group="{{ @games }}" value="{{ @game }}">
+							<option value="{{ @game }}">{{ @game }}</option>
+						</repeat>
+					</select>
+				</th>
+				<th scope="col">Sims / Pets</th>
+				<th scope="col">Net worth</th>
+				<th scope="col">Family friends</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<repeat group="{{ @hoods }}" value="{{ @hood }}">
+				<repeat group="{{ @households }}" value="{{ @household }}">
+					<check if="{{ @household.nhID == @hood.id }}">
+						<tr>
+							<td>{{ trim(@household.name) }}</td>
+							<td>{{ trim(@hood.name) }}</td>
+							<td>Sims {{ trim(@household.gameVersion) }}</td>
+							<check if="{{ @household.sims > 0 }}">
+								<true>
+									<td>{{ trim(@household.sims) }} /
+								</true>
+								<false>
+									<td>0 /
+								</false>
+							</check>
+							<check if="{{ @household.pets > 0 }}">
+								<true>
+									{{ trim(@household.pets) }}</td>
+								</true>
+								<false>
+									0</td>
+								</false>
+							</check>
+							<td>{{ trim(@household.money) | simoleons }}</td>
+							<td>{{ trim(@household.friends) }}</td>
+							<td><a href="{{ @BASE.'/household/update/'. @household.hhID }}" data-toggle="tooltip"
+								   title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+								<a href="#" onclick="confirm('{{ @BASE.'/household/delete/'. @household.hhID }}');"
+								   data-toggle="tooltip"
+								   title="Delete"
+								   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					</check>
+				</repeat>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No households found.</p>
+	</false>
+</check>
+
+<a href="{{ @BASE.'/household/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2"
+																		  aria-hidden="true"></i>Create</a>
+
+<a class="btn btn-primary mt-3 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+   aria-haspopup="true" aria-expanded="false">
+	<i class="fas fa-exchange-alt mr-2" aria-hidden="true"></i>Move
+</a>
+
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	<repeat group="{{ @games }}" key="{{ @gkey }}" value="{{ @game }}">
+		<a class="dropdown-item" href="#hhMove{{ @gkey }}" data-toggle="modal" data-target="#hhMove{{ @gkey }}">{{ @game
+			}}</a>
+	</repeat>
+</div>
+
+<div class="modal fade" id="hhMove2" tabindex="-1" aria-labelledby="hhMoveLabel2" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="hhMoveLabel2">Move sim</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ @BASE.'/household/move' }}" validate="true" method="post" class="form-horizontal">
+					<div class="form-group">
+						<label for="nhHousehold">Choose households to move (hold Ctrl to choose more than 1)</label>
+						<select class="custom-select" multiple name="nhHousehold[]" id="nhHousehold">
+							<repeat group="{{ @households }}" value="{{ @hh }}">
+								<check if="{{ @hh.name != 'Adoption pool'}}">
+									<check if="{{ @hh.gameVersion == 2}}">
+										<option value="{{ @hh.hhID }}">{{ @hh.name }}</option>
+									</check>
+								</check>
+							</repeat>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="nhID">Where are you moving these households?</label>
+						<select class="custom-select" name="nhID" id="nhID">
+							<repeat group="{{ @hoods }}" value="{{ @hood }}">
+								<check if="{{ @hood.gameVersion == 2}}">
+									<option value="{{ @hood.id }}">{{ @hood.name }}</option>
+								</check>
+							</repeat>
+						</select>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<!-- Hidden fields and form submission -->
+				<div class="control-group">
+					<div class="">
+						<input type="text" class="hptrap" name="hptrap"/>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>
+							Save
+						</button>
+						</a>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"
+																								aria-hidden="true"></i>Cancel
+						</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="hhMove3" tabindex="-1" aria-labelledby="hhMoveLabel3" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="hhMoveLabel3">Move sim</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ @BASE.'/household/move' }}" validate="true" method="post" class="form-horizontal">
+					<div class="form-group">
+						<label for="nhHousehold">Choose households to move (hold Ctrl to choose more than 1)</label>
+						<select class="custom-select" multiple name="nhHousehold[]" id="nhHousehold">
+							<repeat group="{{ @households }}" value="{{ @hh }}">
+								<check if="{{ @hh.name != 'Adoption pool'}}">
+									<check if="{{ @hh.gameVersion == 3}}">
+										<option value="{{ @hh.hhID }}">{{ @hh.name }}</option>
+									</check>
+								</check>
+							</repeat>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="nhID">Where are you moving these households?</label>
+						<select class="custom-select" name="nhID" id="nhID">
+							<repeat group="{{ @hoods }}" value="{{ @hood }}">
+								<check if="{{ @hood.gameVersion == 3}}">
+									<option value="{{ @hood.id }}">{{ @hood.name }}</option>
+								</check>
+							</repeat>
+						</select>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<!-- Hidden fields and form submission -->
+				<div class="control-group">
+					<div class="">
+						<input type="text" class="hptrap" name="hptrap"/>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>
+							Save
+						</button>
+						</a>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"
+																								aria-hidden="true"></i>Cancel
+						</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="hhMove4" tabindex="-1" aria-labelledby="hhMoveLabel4" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="hhMoveLabel4">Move sim</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ @BASE.'/household/move' }}" validate="true" method="post" class="form-horizontal">
+					<div class="form-group">
+						<label for="nhHousehold">Choose households to move (hold Ctrl to choose more than 1)</label>
+						<select class="custom-select" multiple name="nhHousehold[]" id="nhHousehold">
+							<repeat group="{{ @households }}" value="{{ @hh }}">
+								<check if="{{ @hh.name != 'Adoption pool'}}">
+									<check if="{{ @hh.gameVersion == 4}}">
+										<option value="{{ @hh.hhID }}">{{ @hh.name }}</option>
+									</check>
+								</check>
+							</repeat>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="nhID">Where are you moving these households?</label>
+						<select class="custom-select" name="nhID" id="nhID">
+							<repeat group="{{ @hoods }}" value="{{ @hood }}">
+								<check if="{{ @hood.gameVersion == 4}}">
+									<option value="{{ @hood.id }}">{{ @hood.name }}</option>
+								</check>
+							</repeat>
+						</select>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<!-- Hidden fields and form submission -->
+				<div class="control-group">
+					<div class="">
+						<input type="text" class="hptrap" name="hptrap"/>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>
+							Save
+						</button>
+						</a>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"
+																								aria-hidden="true"></i>Cancel
+						</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		let table = $('#households').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+
+		$('#gameSort').change(function () {
+			let val = $(this).find('option:selected').val();
+			table.columns(2).search(val).draw();
+		});
+	});
+
+</script>

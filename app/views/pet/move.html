@@ -1,0 +1,43 @@
+<div class="modal fade" id="petMove" tabindex="-1" aria-labelledby="petMoveLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="petMoveLabel">Move pet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+		<!-- Hidden fields and form submission -->
+		<div class="control-group">
+			<div class="">
+				<input type="text" name="hptrap" class="hptrap" />
+				<input type="hidden" name="move" value="move" />{{ @BASE.'/pet/move' }}
+				<input type="hidden" name="id" value="{{ @pet.id }}" />
+				<button type="submit" name="save" class="btn btn-success"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function () {
+		$('#url').attr("href","{{ @BASE.'/household/create/' }}");
+
+		$("#hh").change(function(){
+			let v = $("#hh").children("option:selected").val();
+			if (v !== "") {
+				$('#url').attr("href","{{ @BASE.'/pet/create/' }}"+v);
+			} else {
+				$('#url').attr("href","{{ @BASE.'/household/create/' }}");
+			}
+		});
+	});
+
+</script>

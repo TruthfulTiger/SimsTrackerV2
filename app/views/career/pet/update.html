@@ -1,0 +1,139 @@
+<form action="{{ @BASE.'/pcareer/update' }}" validate="true" method="post" class="form-horizontal">
+
+	<div class="form-row">
+		<div class="form-group col">
+			<label for="name">Career Name</label>
+			<input type="text" class="form-control" required="required" value="{{ @pcareer.careerName }}"
+				   name="careerName" id="careerName"/>
+		</div>
+		<exclude>
+			<div class="form-group col">
+				<div class="custom-file-container w-auto" data-upload-id="image">
+					<label
+					>Upload File
+						<a
+								href="javascript:void(0)"
+								class="custom-file-container__image-clear"
+								title="Clear Image" data-toggle="tooltip"
+								onclick="$('#image').val('ui/images/sims2/Employed.png');"
+						>&times;</a
+						></label
+					>
+
+					<label class="custom-file-container__custom-file">
+						<input
+								type="file"
+								class="custom-file-container__custom-file__custom-file-input"
+								accept="image/*"
+								aria-label="Choose File"
+								id="image-raw" name="image-raw"
+						/>
+						<input type="hidden" name="MAX_FILE_SIZE" value="800"/>
+						<input type="hidden" name="icon" id="image"/>
+						<span
+								class="custom-file-container__custom-file__custom-file-control"
+						></span>
+					</label>
+					<div class="custom-file-container__image-preview h-20" scroll="no" style="overflow: hidden"></div>
+				</div>
+			</div>
+		</exclude>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="id" value="{{ @pcareer.id }}"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<button type="submit" name="save" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/pjob/create/'. @pcareer.id }}" class="btn btn-success"><i class="fa fa-plus mr-2"
+																						  aria-hidden="true"></i>Add
+				Jobs</a>
+			<a href="{{ @BASE.'/careers' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																		  aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+</form>
+
+<check if="{{ @pjobs }}">
+	<true>
+		<table width="100%" cellpadding="5" id="pjobs" class="table table-hover table-bordered mt-3">
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Job Name</th>
+				<th scope="col">Job Level</th>
+				<th scope="col">Pay (Cat / Dog)</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<repeat group="{{ @pjobs }}" value="{{ @pjob }}">
+				<tr>
+					<th scope="row">{{ trim(@pjob.id) }}
+					</td>
+					<td>{{ trim(@pjob.jobName) }}</td>
+					<td>{{ trim(@pjob.jobLevel) }}</td>
+					<td>{{ trim(@pjob.payCat) | simoleons }} / {{ trim(@pjob.payDog) | simoleons }}</td>
+					<td><a href="javascript:window.open('{{ @BASE.'/pjob/update/'. @pjob.id }}','_blank')"
+						   data-toggle="tooltip" title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+						<a href="#" onclick="confirm('{{ @BASE.'/pjob/delete/'. @pjob.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p class="mt-3">No jobs found.</p>
+	</false>
+</check>
+
+<script>
+	$(function () {
+		var user = "{{@SESSION.user[2]}}";
+		var simImage = "{{@pcareer.icon}}";
+		var upload = new FileUploadWithPreview("image", {
+			showDeleteButtonOnImages: true,
+			presetFiles: [
+				"{{@BASE}}/{{@pcareer.icon}}"
+			]
+		});
+
+		window.addEventListener("fileUploadWithPreview:imagesAdded", function (e) {
+			e.detail.uploadId
+			e.detail.cachedFileArray
+			e.detail.addedFilesCount
+			// Use e.detail.uploadId to match up to your specific input
+			if (e.detail.uploadId === "image") {
+				var file = e.detail.cachedFileArray[0];
+				var image = $('#image-raw').val();
+				/* 					var filename = imagename.split('.').shift();
+									var ext = imagename.split('.').pop();
+									var image = filename+$.now()+'.'+ext; */
+
+				if (!image) {
+					$('#image').val(simImage);
+				}
+				if (image) {
+					$('#image').val('uploads/' + user + '/' + image.slice(12));
+				}
+			}
+		});
+
+		$('#pjobs').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

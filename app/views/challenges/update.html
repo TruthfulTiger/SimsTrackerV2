@@ -1,0 +1,22 @@
+<form action="{{ @BASE.'/challenge/update' }}" validate="true" method="post" class="form-horizontal">
+	<div class="form-group">
+		<label for="challengeName">Name</label>
+		<input type="text" required="required" class="form-control" value="{{ @challenge.challengeName }}"
+			   name="challengeName" id="challengeName"/>
+	</div>
+
+	<div class="control-group">
+		<div class="">
+			<input type="text" name="hptrap" class="hptrap"/>
+			<input type="hidden" name="update" value="update"/>
+			<input type="hidden" name="userID" value="{{ @SESSION.user[2] }}"/>
+			<input type="hidden" name="modified" value="{{ @modified }}"/>
+			<input type="hidden" name="id" value="{{ @challenge.id }}"/>
+			<button type="submit" name="save" class="btn btn-success"><i class="fa fa-save mr-2" aria-hidden="true"></i>Save
+			</button>
+			<a href="{{ @BASE.'/challenges' }}" class="btn btn-secondary"><i class="fa fa-times mr-2"
+																			 aria-hidden="true"></i>Cancel</a>
+		</div>
+	</div>
+
+</form>

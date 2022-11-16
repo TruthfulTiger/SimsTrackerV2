@@ -1,0 +1,150 @@
+<ul class="nav nav-tabs mb-3" id="careers" role="tablist">
+	<li class="nav-item" role="presentation">
+		<a class="nav-link active" id="sims-tab" data-toggle="tab" href="#sims" role="tab" aria-controls="sims"
+		   aria-selected="true">Sim careers</a>
+	</li>
+	<li class="nav-item" role="presentation">
+		<a class="nav-link" id="pets-tab" data-toggle="tab" href="#pets" role="tab" aria-controls="pets"
+		   aria-selected="false">Pet careers</a>
+	</li>
+</ul>
+<div class="tab-content" id="careersContent">
+	<div class="tab-pane fade show active" id="sims" role="tabpanel" aria-labelledby="sims-tab">
+		<check if="{{ @careers }}">
+			<true>
+				<table width="100%" cellpadding="5" id="scareers" class="table table-hover table-bordered">
+					<thead>
+					<tr>
+						<th scope="col">Icon</th>
+						<th scope="col">Name</th>
+						<th scope="col">Game Version</th>
+						<th scope="col">Jobs</th>
+						<th scope="col">Action</th>
+					</tr>
+					</thead>
+					<tbody>
+					<repeat group="{{ @careers }}" value="{{ @career }}">
+						<tr>
+							<td>
+								<check if="{{ @career.icon !='' }}">
+									<true>
+										<img src="{{@BASE}}/{{@career.icon}}">
+									</true>
+									<false>
+										{{ trim(@career.icon) }}
+									</false>
+								</check>
+							</td>
+							<td>{{ trim(@career.careerName) }}</td>
+							<td>Sims {{ trim(@career.gameVersion) }}</td>
+							<check if="{{ @career.jobs > 0 }}">
+								<true>
+									<td>{{ trim(@career.jobs) }}</td>
+								</true>
+								<false>
+									<td>0</td>
+							</check>
+							<td><a href="{{ @BASE.'/user/career/update/'. @career.id }}" data-toggle="tooltip"
+								   title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+								<a href="#" onclick="confirm('{{ @BASE.'/user/career/delete/'. @career.id }}');"
+								   data-toggle="tooltip"
+								   title="Delete"
+								   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					</repeat>
+					</tbody>
+				</table>
+			</true>
+			<false>
+				<p>No careers found.</p>
+			</false>
+		</check>
+
+	</div>
+	<div class="tab-pane fade" id="pets" role="tabpanel" aria-labelledby="pets-tab">
+		<check if="{{ @pcareers }}">
+			<true>
+				<table width="100%" cellpadding="5" id="pcareers" class="table table-hover table-bordered">
+					<thead>
+					<tr>
+						<th scope="col">Icon</th>
+						<th scope="col">Name</th>
+						<th scope="col">Jobs</th>
+						<th scope="col">Action</th>
+					</tr>
+					</thead>
+					<tbody>
+					<repeat group="{{ @pcareers }}" value="{{ @pcareer }}">
+						<tr>
+							<td>
+								<check if="{{ @pcareer.icon !='' }}">
+									<true>
+										<img src="{{@BASE}}/{{@pcareer.icon}}">
+									</true>
+									<false>
+										{{ trim(@pcareer.icon) }}
+									</false>
+								</check>
+							</td>
+							<td>{{ trim(@pcareer.careerName) }}</td>
+							<check if="{{ @pcareer.pjobs > 0 }}">
+								<true>
+									<td>{{ trim(@pcareer.pjobs) }}</td>
+								</true>
+								<false>
+									<td>0</td>
+							</check>
+							<td><a href="{{ @BASE.'/user/pcareer/update/'. @pcareer.id }}" data-toggle="tooltip"
+								   title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+								<a href="#" onclick="confirm('{{ @BASE.'/user/pcareer/delete/'. @pcareer.id }}');"
+								   data-toggle="tooltip"
+								   title="Delete"
+								   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					</repeat>
+					</tbody>
+				</table>
+			</true>
+			<false>
+				<p>No careers found.</p>
+			</false>
+		</check>
+	</div>
+</div>
+
+<div class="dropdown">
+	<button class="btn btn-success mt-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false">
+		<i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a class="dropdown-item" href="{{ @BASE.'/career/create' }}">Sim Career</a>
+		<a class="dropdown-item" href="{{ @BASE.'/pcareer/create' }}">Pet Career</a>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('#scareers').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+
+		$('#pcareers').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

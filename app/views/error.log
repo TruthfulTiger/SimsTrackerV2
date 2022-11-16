@@ -1,0 +1,48 @@
+Thu, 03 Sep 2020 18:35:35 +0100 [::1] Not Found HTTP 404 (GET /ho)
+Mon, 07 Sep 2020 19:25:44 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Mon, 07 Sep 2020 19:25:44 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Mon, 07 Sep 2020 19:25:44 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Mon, 07 Sep 2020 19:25:45 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Fri, 11 Sep 2020 11:24:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Fri, 11 Sep 2020 11:24:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Fri, 11 Sep 2020 11:24:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Fri, 11 Sep 2020 11:24:47 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Fri, 11 Sep 2020 14:40:47 +0100 [::1] Internal Server Error Undefined field id
+Fri, 11 Sep 2020 15:44:51 +0100 [::1] Internal Server Error Unable to open
+Fri, 11 Sep 2020 18:31:47 +0100 [::1] Internal Server Error Fatal error: Cannot use [] for reading
+Fri, 11 Sep 2020 19:23:06 +0100 [::1] Internal Server Error Invalid argument supplied for foreach()
+Fri, 11 Sep 2020 19:37:16 +0100 [::1] Internal Server Error SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`playwithdolls`.`pets`, CONSTRAINT `FK_pethh` FOREIGN KEY (`hhID`) REFERENCES `household` (`hhID`) ON DELETE SET NULL ON UPDATE SET NULL) [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Fri, 11 Sep 2020 19:38:42 +0100 [::1] Internal Server Error SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`playwithdolls`.`pets`, CONSTRAINT `FK_pethh` FOREIGN KEY (`hhID`) REFERENCES `household` (`hhID`) ON DELETE CASCADE ON UPDATE CASCADE) [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Fri, 11 Sep 2020 19:58:47 +0100 [::1] Not Found HTTP 404 (POST /sim/move)
+Fri, 11 Sep 2020 21:05:55 +0100 [::1] Internal Server Error Undefined field id
+Fri, 11 Sep 2020 21:42:09 +0100 [::1] Internal Server Error SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Fri, 11 Sep 2020 21:42:40 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS INTO household (hhID, userID, `name`)
+Fri, 11 Sep 2020 21:42:40 +0100 [::1] VALUES (0, 1, 'Adop...' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Fri, 11 Sep 2020 21:51:14 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 0' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Fri, 11 Sep 2020 23:37:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Fri, 11 Sep 2020 23:37:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Fri, 11 Sep 2020 23:37:46 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Fri, 11 Sep 2020 23:37:47 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Sat, 12 Sep 2020 00:25:27 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Sat, 12 Sep 2020 00:25:27 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Sat, 12 Sep 2020 00:25:28 +0100 [::1] Not Found HTTP 404 (GET /user/styles/shards-dashboards.1.1.0.min.css)
+Sat, 12 Sep 2020 00:25:28 +0100 [::1] Not Found HTTP 404 (GET /user/styles/extras.1.1.0.min.css)
+Thu, 17 Sep 2020 13:00:40 +0100 [::1] Internal Server Error SQLSTATE[HY093]: Invalid parameter number: parameter was not defined [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 13:50:20 +0100 [::1] Internal Server Error Undefined field 14
+Thu, 17 Sep 2020 13:52:06 +0100 [::1] Internal Server Error SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause' [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 13:53:08 +0100 [::1] Internal Server Error Object of class Sim could not be converted to string [E:\Documents\SimsTracker\app\controllers\SimController.php:131]
+Thu, 17 Sep 2020 13:55:04 +0100 [::1] Internal Server Error Undefined field 14
+Thu, 17 Sep 2020 13:55:13 +0100 [::1] Internal Server Error Undefined field 14
+Thu, 17 Sep 2020 13:56:01 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 13:58:32 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 14:03:47 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 14:06:02 +0100 [::1] Internal Server Error SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause' [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Thu, 17 Sep 2020 14:08:21 +0100 [::1] Internal Server Error SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Mon, 21 Sep 2020 12:12:48 +0100 [::1] Internal Server Error SQLSTATE[42S02]: Base table or view not found: 1146 Table 'playwithdolls.relationships' doesn't exist [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Mon, 21 Sep 2020 12:26:11 +0100 [::1] Internal Server Error SQLSTATE[42S02]: Base table or view not found: 1146 Table 'playwithdolls.sims' doesn't exist [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Mon, 21 Sep 2020 12:27:40 +0100 [::1] Internal Server Error SQLSTATE[42S02]: Base table or view not found: 1146 Table 'playwithdolls.sims' doesn't exist [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Mon, 21 Sep 2020 19:44:01 +0100 [::1] Internal Server Error SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'earnedCulinary' at row 1 [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:226]
+Mon, 21 Sep 2020 19:51:31 +0100 [::1] Internal Server Error Object of class S2Sim could not be converted to string [E:\Documents\SimsTracker\vendor\bcosca\fatfree-core\db\sql.php:216]
+Tue, 22 Sep 2020 16:58:00 +0100 [::1] Internal Server Error Undefined field id
+Tue, 22 Sep 2020 16:58:59 +0100 [::1] Internal Server Error Undefined field nhID
+Fri, 25 Sep 2020 09:46:23 +0100 [89.242.217.6] Internal Server Error SQLSTATE[HY000] [1045] Access denied for user 'playwithdolls'@'localhost' (using password: YES) [/home/customer/www/simstracker.pdasites.uk/public_html/vendor/bcosca/fatfree-core/db/sql.php:519]

@@ -1,0 +1,137 @@
+<check if="{{ @relationships }}">
+	<true>
+		<table width="100%" cellpadding="5" id="ships" class="table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">
+					<select class="custom-select" id="nhSort">
+						<option value="">Neighbourhood</option>
+						<repeat group="{{ @hoods }}" value="{{ @hood }}">
+							<option value="{{ trim(@hood.name) }}">{{ trim(@hood.name) }}</option>
+						</repeat>
+					</select>
+				</th>
+				<th scope="col">Sim 1</th>
+				<th scope="col">Sim 2</th>
+				<th scope="col">Relationship</th>
+				<th scope="col">STR / LTR</th>
+				<th scope="col">Relationship flags</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<repeat group="{{ @hoods }}" value="{{ @hood }}">
+				<repeat group="{{ @relationships }}" value="{{ @ship }}">
+					<check if="{{ @ship.nhID == @hood.id }}">
+						<tr>
+							<td>{{ trim(@hood.name) }}</td>
+							<repeat group="{{ @sims }}" value="{{ @sim }}">
+								<check if="{{ @ship.sim1 == @sim.id}}">
+									<td>{{ trim(@sim.firstName) }} {{ trim(@sim.lastName) }}</td>
+								</check>
+							</repeat>
+							<repeat group="{{ @sims }}" value="{{ @sim }}">
+								<check if="{{ @ship.sim2 == @sim.id}}">
+									<td>{{ trim(@sim.firstName) }} {{ trim(@sim.lastName) }}</td>
+								</check>
+							</repeat>
+							<td>{{ trim(@ship.relName) }}</td>
+							<td>{{ trim(@ship.str) }} / {{ trim(@ship.ltr) }}</td>
+							<td>
+								<check if="{{ @ship.isFamily }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}family.png" height="24" alt="Family"
+											 data-toggle="tooltip" title="Family"/>
+									</check>
+								</check>
+
+								<check if="{{ @ship.isSteady }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}steady.png" height="24" alt="Going Steady"
+											 data-toggle="tooltip" title="Going Steady"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isEngaged }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}engaged.png" height="24" alt="Engaged"
+											 data-toggle="tooltip" title="Engaged"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isMarried }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}married.png" height="24" alt="Married"
+											 data-toggle="tooltip" title="Married"/>
+									</check>
+								</check>
+								<br/>
+								<check if="{{ @ship.isEnemy }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}enemy.png" height="24" alt="Enemy"
+											 data-toggle="tooltip" title="Enemy"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isFriend }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}friend.png" height="24" alt="Friend"
+											 data-toggle="tooltip" title="Friend"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isBF }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}bf.png" height="24" alt="Best Friend"
+											 data-toggle="tooltip" title="Best Friend"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isCrush }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}crush.png" height="24" alt="Crush"
+											 data-toggle="tooltip" title="Crush"/>
+									</check>
+								</check>
+								<check if="{{ @ship.isLove }}">
+									<check if="{{ @ship.gameVersion == 2 }}">
+										<img src="{{@BASE}}{{@s2path}}love.png" height="24" alt="Love"
+											 data-toggle="tooltip" title="Love"/>
+									</check>
+								</check>
+							</td>
+							<td><a href="{{ @BASE.'/relationship/update/'. @ship.id }}" data-toggle="tooltip"
+								   title="Edit" class="text-primary"><i class="fa fa-edit mr-2"></i></a>
+								<a href="#" onclick="confirm('{{ @BASE.'/relationship/delete/'. @ship.id }}');"
+								   data-toggle="tooltip"
+								   title="Delete"
+								   class="text-danger delete"><i class="fa fa-trash"></i></td>
+						</tr>
+					</check>
+				</repeat>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No relationships found.</p>
+	</false>
+</check>
+<a href="{{ @BASE.'/relationship/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2"
+																			 aria-hidden="true"></i>Create</a>
+
+<script>
+	$(document).ready(function () {
+		let table = $('#ships').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+		$('#nhSort').change(function () {
+			let val = $(this).find('option:selected').val();
+			console.log(val);
+			table.columns(0).search(val).draw();
+		});
+	});
+</script>

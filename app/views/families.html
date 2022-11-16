@@ -1,0 +1,30 @@
+<p class="mb-3">Pick a random family for your next Prosperity Challenge, or just to keep things interesting.</p>
+<ul class="nav nav-tabs" id="games" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link active" id="sims2-tab" data-toggle="tab" href="#sims2" role="tab" aria-controls="sims2"
+		   aria-selected="true">Sims 2</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" id="sims3-tab" data-toggle="tab" href="#sims3" role="tab" aria-controls="sims3"
+		   aria-selected="false">Sims 3</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" id="sims4-tab" data-toggle="tab" href="#sims4" role="tab" aria-controls="sims4"
+		   aria-selected="false">Sims 4</a>
+	</li>
+</ul>
+<div class="tab-content mt-3" id="gamesContent">
+	<div class="tab-pane fade show active" id="sims2" role="tabpanel" aria-labelledby="sims2-tab">
+		<include href="familygens/s2famgen.html"/>
+	</div>
+	{* End Sims 2 *}
+	<div class="tab-pane fade" id="sims3" role="tabpanel" aria-labelledby="sims3-tab">
+		TO DO: Sims 3
+	</div>
+	{* End Sims 3 *}
+	<div class="tab-pane fade" id="sims4" role="tabpanel" aria-labelledby="sims4-tab">
+		TO DO: Sims 4
+	</div>
+	{* End Sims 4 *}
+
+	<script src="{{@BASE}}/ui/js/randomiser.min.js"></script>

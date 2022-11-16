@@ -1,0 +1,47 @@
+<table width="100%" cellpadding="5" id="users" class="table table-hover table-bordered">
+	<thead>
+	<tr>
+		<th scope="col">#</th>
+		<th scope="col">Name</th>
+		<th scope="col">Email</th>
+		<th scope="col">Role</th>
+		<th scope="col">Created</th>
+		<th scope="col">Last login</th>
+		<th scope="col">Action</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	<repeat group="{{ @users }}" value="{{ @user }}">
+		<tr>
+			<th scope="row">{{ trim(@user.id) }}</th>
+			<td>{{ trim(@user.name) }}</td>
+			<td>{{ trim(@user.email) }}</td>
+			<td>{{ trim(@user.role) }}</td>
+			<td>{{ trim(@user.created) }}</td>
+			<td>{{ trim(@user.lastLogin) }}</td>
+			<td><a href="{{ @BASE.'/user/update/'. @user.id }}" data-toggle="tooltip" title="Edit" class="text-primary"><i
+					class="fa fa-edit mr-2"></i></a>
+				<a href="#" onclick="confirm('{{ @BASE.'/user/delete/'. @user.id }}');"
+				   data-toggle="tooltip"
+				   title="Delete"
+				   class="text-danger delete"><i class="fa fa-trash"></i></a></td>
+		</tr>
+	</repeat>
+	</tbody>
+</table>
+<a href="{{ @BASE.'/user/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Create</a>
+<script>
+	$(document).ready(function () {
+		$('#users').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+	});
+</script>

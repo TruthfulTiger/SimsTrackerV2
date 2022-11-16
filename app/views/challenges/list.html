@@ -1,0 +1,102 @@
+<check if="{{ @challenges }}">
+	<true>
+		<table width="100%" cellpadding="5" class="challenges table table-hover table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">
+					<select class="custom-select" id="challengeSort">
+						<option value="">Challenge scope</option>
+						<option value="Neighbourhood">Neighbourhood</option>
+						<option value="Household">Household</option>
+						<option value="Sim">Sim</option>
+					</select>
+				</th>
+				<th scope="col">Name</th>
+				<th scope="col">Challenge Type</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<repeat group="{{ @challenges }}" value="{{ @challenge }}">
+				<tr>
+					<td>
+						<check if="{{ @challenge.nhID > 0 }}">
+							Neighbourhood
+						</check>
+						<check if="{{ @challenge.hhID > 0 }}">
+							Household
+						</check>
+						<check if="{{ @challenge.simID > 0 }}">
+							Sim
+						</check>
+					</td>
+					<td>{{ trim(@challenge.challengeName) }}</td>
+					<td>{{ @challenge.type }}</td>
+					<td>
+						{* Sims 2 legacy challenge *}
+						<check if="{{@challenge.gameVersion == 2}}">
+							<check if="{{@challenge.type == 'Legacy Challenge'}}">
+								<check if="{{@challenge.hasScores == 1}}">
+									<true>
+										<a id="url" href="{{ @BASE.'/s2legacy/'. @challenge.id }}" data-toggle="tooltip"
+										   title="Go to scoresheet" class="text-primary"><i
+												class="fas fa-calculator mr-2"></i></a>
+									</true>
+									<false>
+										<a href="{{ @BASE.'/s2legacy/'. @challenge.id }}/{{ @SESSION.user[2] }}/{{ @challenge.hhID }}"
+										   data-toggle="tooltip" title="Create scoresheet" class="text-success"><i
+												class="fas fa-calculator mr-2"></i></a>
+									</false>
+								</check>
+							</check>
+							{* Sims 2 ISBI challenge *}
+							<check if="{{@challenge.type == 'I\'m Surrounded By Idiots'}}">
+								<check if="{{@challenge.hasScores == 1}}">
+									<true>
+										<a id="url" href="{{ @BASE.'/s2isbi/'. @challenge.id }}" data-toggle="tooltip"
+										   title="Go to scoresheet" class="text-primary"><i
+												class="fas fa-calculator mr-2"></i></a>
+									</true>
+									<false>
+										<a href="{{ @BASE.'/s2isbi/'. @challenge.id }}/{{ @SESSION.user[2] }}/{{ @challenge.hhID }}"
+										   data-toggle="tooltip" title="Create scoresheet" class="text-success"><i
+												class="fas fa-calculator mr-2"></i></a>
+									</false>
+								</check>
+							</check>
+						</check>
+						<a href="#" onclick="confirm('{{ @BASE.'/challenge/delete/'. @challenge.id }}');"
+						   data-toggle="tooltip"
+						   title="Delete"
+						   class="text-danger delete"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			</repeat>
+			</tbody>
+		</table>
+	</true>
+	<false>
+		<p>No challenges found.</p>
+	</false>
+</check>
+<a href="{{ @BASE.'/challenge/create' }}" class="btn btn-success mt-3"><i class="fa fa-plus mr-2"
+																		  aria-hidden="true"></i>Create</a>
+<script>
+	$(document).ready(function () {
+		let table = $('.challenges').DataTable({
+			responsive: {
+				breakpoints: [
+					{name: 'desktop', width: Infinity},
+					{name: 'tablet', width: 1024},
+					{name: 'fablet', width: 768},
+					{name: 'phone', width: 480}
+				]
+			}
+		});
+		$('#challengeSort').change(function () {
+			let val = $(this).find('option:selected').val();
+			console.log(val);
+			table.columns(0).search(val).draw();
+		});
+	});
+</script>
